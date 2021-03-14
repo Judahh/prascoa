@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "HOME"
+  },
+  "languageAcronym": "EN",
+  "language": "ENGLISH",
+  "notFound": {
+    "title": "404",
+    "description": "Página Não Encontrada."
+  },
+  "home": {
+    "title": "PRÁSCOA",
+    "login": "LOGIN",
+    "googleLogin": "G LOGIN",
+    "logout": "LOGOUT",
+    "error": {
+      "general": "O formulário possui erros, corrija-os para continuar",
+      "specific": "Ocorreu um erro:",
+      "email": "Seu e-mail é obrigatório",
+      "password": "Sua senha é obrigatória"
+    },
+    "messageSent": "Mensagem enviada.",
+    "inputPassword": "SENHA",
+    "inputEmail": "E-MAIL"
+  },
+  "footer": {
+    "copyright": "PRÁSCOA. 2021 © Todos os direitos reservados — CNPJ: 39.514.176/0001-05"
+  }
+}

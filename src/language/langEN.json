@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "HOME"
+  },
+  "languageAcronym": "BR",
+  "language": "PORTUGUÊS-BR",
+  "notFound": {
+    "title": "404",
+    "description": "Page Not Found."
+  },
+  "home": {
+    "title": "PRÁSCOA",
+    "login": "LOGIN",
+    "googleLogin": "G LOGIN",
+    "logout": "LOGOUT",
+    "error": {
+      "general": "The form has errors, correct them to continue",
+      "specific": "An error has occurred:",
+      "email": "Your email is required",
+      "password": "Your password is required"
+    },
+    "messageSent": "Message sent.",
+    "inputPassword": "PASSWORD",
+    "inputEmail": "EMAIL"
+  },
+  "footer": {
+    "copyright": "PRÁSCOA. 2021 © All rights reserved — CNPJ: 39.514.176/0001-05"
+  }
+}
