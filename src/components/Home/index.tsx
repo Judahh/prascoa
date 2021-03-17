@@ -1,27 +1,76 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import Head from 'next/head';
 import LanguageContext from '../../language/context';
 
-import Main from './Main';
 import Layout from '../Layout';
+
+import { Block } from '../Blockly';
+import { BlocklyComponent } from '../Blockly/blocklyComponent';
+
+import '../Blockly/custom';
+import Blockly from 'blockly';
+
+const initialXml =
+  '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="start" x="0" y="0"></block></xml>';
 
 const Home = (props) => {
   const lang = useContext(LanguageContext);
+  const [simpleWorkspace, setSimpleWorkspace] = useState({});
+  const [minimal, setMinimal] = useState({});
+  useEffect(() => {
+    setMinimal(
+      Blockly.Theme.defineTheme('minimal', {
+        base: 'zelos',
+        componentStyles: {
+          workspaceBackgroundColour: 'transparent', //'#98eae0',
+          flyoutBackgroundColour: '#47baa4',
+          flyoutOpacity: 1,
+          scrollbarColour: '#797979',
+          insertionMarkerColour: '#47baa4',
+          insertionMarkerOpacity: 1,
+          scrollbarOpacity: 1,
+        },
+      })
+    );
+  }, []);
 
   return (
-    <Fragment>
+    <div className="background">
       <Head>
         <title>PRÁSCOA</title>
       </Head>
       <Layout theme={props.theme} language={lang}>
-        <Main
-          theme={props.theme}
-          handleToken={props.handleToken}
-          google={props.google}
+        <BlocklyComponent
           host={props.host}
-        />
+          ref={simpleWorkspace}
+          readOnly={false}
+          trashcan={false}
+          initialXml={initialXml}
+          theme={minimal}
+          renderer={'zelos'}
+          grid={{
+            spacing: 50,
+            length: 0,
+            snap: true,
+            colour: 'transparent',
+          }}
+        >
+          <Block type="forward" />
+          <Block type="left" />
+          <Block type="right" />
+          <Block type="if" />
+          <Block type="while" />
+          <Block type="block" />
+          <Block type="carrot" />
+          <Block type="number" />
+          <Block type="and" />
+          <Block type="or" />
+          <Block type="not" />
+        </BlocklyComponent>
+        <canvas className="svgCanvas"></canvas>
+        {/* <svg className="svgCanvas" xmlns="http://www.w3.org/2000/svg"></svg> */}
       </Layout>
-    </Fragment>
+    </div>
   );
 };
 

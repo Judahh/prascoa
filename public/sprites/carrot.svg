@@ -1,0 +1,68 @@
+<?xml version="1.0" ?><svg height="161.0px" viewBox="0 0 168.0 161.0" width="168.0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(20, 10.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_878">
+<path d=" M 18.4 -18.05 L 0 -8.85 0.05 43.95 6.75 40.55 18.4 -18.05 Z" fill="#F7941D" stroke="none"/>
+</g>
+
+<g id="uid_879">
+<path d=" M 0.05 43.95 L 0 -8.85 -18.4 -18.05 -6.75 40.55 0.05 43.95 Z" fill="#CE7923" stroke="none"/>
+</g>
+
+<g id="uid_880">
+<path d=" M 0 18.4 L 18.4 36.8 36.8 18.4 18.4 0 0 18.4 Z" fill="#F7941D" stroke="none"/>
+</g>
+
+<path d=" M 0 18.4 L 18.4 0 36.8 18.4 18.4 36.8 0 18.4 Z" fill="none" id="uid_881" stroke="#FF9900" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+
+<path d=" M 0 32.7 L -8.75 28.35 M 0 15.2 L -12.65 8.9 M 0.05 1.1 L -15.8 -6.85" fill="none" id="uid_882" stroke="#F7941C" stroke-linecap="butt" stroke-linejoin="bevel" stroke-width="1.6"/>
+
+<path d=" M 8.75 28.35 L 0 32.7 M 12.7 8.9 L 0 15.2 M 15.9 -6.85 L 0.05 1.1" fill="none" id="uid_883" stroke="#CE7924" stroke-linecap="butt" stroke-linejoin="bevel" stroke-width="1.6"/>
+
+<path d=" M 0.1 -17.65 L 0.1 -42.25" fill="none" id="uid_884" stroke="#125C68" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/>
+
+<path d=" M 0.1 -17.65 Q -2.4 -29.55 -13.2 -29.5" fill="none" id="uid_885" stroke="#125C68" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/>
+</defs>
+
+<g transform="matrix( 0.7867279052734375, 0, 0, 0.7867279052734375, 63.5,64.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_878"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_879"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 0.5, 0,-18.05) ">
+<g transform="matrix( 1, 0, 0, 1, -18.4,-18.4) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_880"/>
+
+<use xlink:href="#uid_881"/>
+</g>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_882"/>
+
+<use xlink:href="#uid_883"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_884"/>
+</g>
+
+<g transform="matrix( -1, 0, 0, 1, 0.15,-0.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_885"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -0.05,-0.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_885"/>
+</g>
+</g>
+</g>
+</g></g></svg>

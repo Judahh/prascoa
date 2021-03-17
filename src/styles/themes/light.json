@@ -1,8 +1,8 @@
 {
-  "background": "#FCFCFC",
-  "text": "#0E0E0E",
+  "background": "#98eae0",
+  "text": "#FFF",
   "holder": "#787878",
-  "primary": "#0E0E0E",
+  "primary": "#FFF",
   "bright": "#000000",
   "error": "#f10"
 }

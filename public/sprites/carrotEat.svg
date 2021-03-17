@@ -1,0 +1,719 @@
+<?xml version="1.0" ?><svg height="972.0px" viewBox="0 0 168.0 972.0" width="168.0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(20, 0.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_886">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_887">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_888">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.797576904296875, 0, 0, 0.797576904296875, 26.8,62.05) ">
+<g transform="matrix( 1, 0, 0, 1, 11.3,-21.95) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_886"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_887"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_888"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -11.2,-16.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_886"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_887"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_888"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -24.1,-30.3) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_886"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_887"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_888"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 81.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<filter color-interpolation-filters="sRGB" height="140%" id="uid_889" width="140%" x="-20%" y="-20%">
+<feColorMatrix in="SourceGraphic" result="result1" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.4 0"/>
+</filter>
+
+<g id="uid_890">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_891">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_892">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.963165283203125, 0, 0, 0.963165283203125, 26.55,33.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0.45,-33.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_890"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_891"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_892"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 11.3,-21.95) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_890"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_891"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_892"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -11.2,-16.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_890"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_891"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_889)" xlink:href="#uid_892"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 162.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<filter color-interpolation-filters="sRGB" height="140%" id="uid_893" width="140%" x="-20%" y="-20%">
+<feColorMatrix in="SourceGraphic" result="result1" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.2 0"/>
+</filter>
+
+<g id="uid_894">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_895">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_896">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.9815673828125, 0, 0, 0.9815673828125, 26.55,30.3) ">
+<g transform="matrix( 1, 0, 0, 1, 8.35,-30.9) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_894"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_895"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_896"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 6.4,-18.95) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_894"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_895"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_896"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -19.85,-18.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_894"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_895"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_893)" xlink:href="#uid_896"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 243.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<filter color-interpolation-filters="sRGB" height="140%" id="uid_897" width="140%" x="-20%" y="-20%">
+<feColorMatrix in="SourceGraphic" result="result1" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0"/>
+</filter>
+
+<g id="uid_898">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_899">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_900">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 26.5,27.2) ">
+<g transform="matrix( 1, 0, 0, 1, 12.25,-27.15) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_898"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_899"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_900"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -2.25,-16.75) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_898"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_899"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_900"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -26.5,-23.25) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_898"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_899"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_897)" xlink:href="#uid_900"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 324.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_901">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_902">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_903">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.8159637451171875, 0, 0, 0.8159637451171875, 26.75,58.9) ">
+<g transform="matrix( 1, 0, 0, 1, 6.4,-18.95) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_901"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_902"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_903"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -19.85,-18.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_901"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_902"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_903"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -16.3,-33.5) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_901"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_902"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_903"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 405.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_904">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_905">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_906">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.8343505859375, 0, 0, 0.8343505859375, 26.7,55.75) ">
+<g transform="matrix( 1, 0, 0, 1, -2.25,-16.75) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_904"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_905"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_906"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -26.5,-23.25) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_904"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_905"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_906"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -7.9,-34.45) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_904"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_905"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_906"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 486.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_907">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_908">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_909">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.852752685546875, 0, 0, 0.852752685546875, 26.75,52.55) ">
+<g transform="matrix( 1, 0, 0, 1, -11.2,-16.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_907"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_908"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_909"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -24.1,-30.3) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_907"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_908"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_909"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0.45,-33.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_907"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_908"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_909"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 567.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_910">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_911">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_912">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.87115478515625, 0, 0, 0.87115478515625, 26.7,49.4) ">
+<g transform="matrix( 1, 0, 0, 1, -19.85,-18.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_910"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_911"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_912"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -16.3,-33.5) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_910"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_911"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_912"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 8.35,-30.9) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_910"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_911"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_912"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 648.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_913">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_914">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_915">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.8895416259765625, 0, 0, 0.8895416259765625, 26.65,46.25) ">
+<g transform="matrix( 1, 0, 0, 1, -26.5,-23.25) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_913"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_914"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_915"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -7.9,-34.45) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_913"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_914"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_915"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 12.25,-27.15) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_913"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_914"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_915"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 729.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_916">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_917">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_918">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.907958984375, 0, 0, 0.907958984375, 26.65,43) ">
+<g transform="matrix( 1, 0, 0, 1, -24.1,-30.3) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_916"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_917"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_918"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0.45,-33.7) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_916"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_917"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_918"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 11.3,-21.95) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_916"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_917"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use xlink:href="#uid_918"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 810.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<filter color-interpolation-filters="sRGB" height="140%" id="uid_919" width="140%" x="-20%" y="-20%">
+<feColorMatrix in="SourceGraphic" result="result1" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.8 0"/>
+</filter>
+
+<g id="uid_920">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_921">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_922">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.92633056640625, 0, 0, 0.92633056640625, 26.6,39.85) ">
+<g transform="matrix( 1, 0, 0, 1, -16.3,-33.5) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_920"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_921"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_922"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 8.35,-30.9) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_920"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_921"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_922"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 6.4,-18.95) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_920"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_921"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_919)" xlink:href="#uid_922"/>
+</g>
+</g>
+</g>
+</g></g><g transform="translate(20, 891.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<filter color-interpolation-filters="sRGB" height="140%" id="uid_923" width="140%" x="-20%" y="-20%">
+<feColorMatrix in="SourceGraphic" result="result1" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.6 0"/>
+</filter>
+
+<g id="uid_924">
+<path d=" M 504.05 301.4 L 512.2 297.3 504.05 293.25 495.9 297.3 504.05 301.4 Z" fill="#F59331" stroke="none"/>
+</g>
+
+<g id="uid_925">
+<path d=" M 495.9 297.3 L 495.9 305.5 504.05 309.55 504.05 301.4 495.9 297.3 Z" fill="#CC7828" stroke="none"/>
+</g>
+
+<g id="uid_926">
+<path d=" M 512.2 297.3 L 504.05 301.4 504.05 309.55 512.2 305.5 512.2 297.3 Z" fill="#F59331" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.94476318359375, 0, 0, 0.94476318359375, 26.55,36.65) ">
+<g transform="matrix( 1, 0, 0, 1, -7.9,-34.45) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_924"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_925"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_926"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 12.25,-27.15) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_924"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_925"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_926"/>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -2.25,-16.75) ">
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_924"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_925"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, -495.9,-293.25) ">
+<use filter="url(#uid_923)" xlink:href="#uid_926"/>
+</g>
+</g>
+</g>
+</g></g>
+</svg>

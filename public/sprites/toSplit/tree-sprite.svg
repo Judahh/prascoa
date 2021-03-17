@@ -1,0 +1,1206 @@
+<?xml version="1.0" ?><svg height="10933.0px" viewBox="0 0 193.0 10933.0" width="193.0px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(20, 6501.0)"><g transform="translate(-0.0, -0.0)"><g id="uid_869" overflow="visible"><g id="uid_870"><path d="M58.5,154.45 L53.15,151.7 53.15,162.5 58.5,165.25 58.5,154.45Z" fill="#186EA8" stroke="none"/><path d="M63.5,162.75 L63.5,151.95 58.5,154.45 58.5,165.25 63.5,162.75Z" fill="#98C64E" stroke="none"/><path d="M53.15,151.7 L58.5,154.45 63.45,151.95 58.1,149.2 53.15,151.7Z" fill="#D7E13D" stroke="none"/><path d="M60.8,161.35 L60.8,88.95 49.55,155.55 60.8,161.35Z" fill="#186EA8" stroke="none"/><path d="M60.8,161.35 L71.4,155.9 60.8,88.95 60.8,161.35Z" fill="#D7E13D" stroke="none"/></g></g></g></g><g transform="translate(20, 6691.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_871">
+<path d=" M -0.1 44.95 L -5.45 42.2 -5.45 53 -0.1 55.75 -0.1 44.95 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_872">
+<path d=" M 4.9 53.25 L 4.9 42.45 -0.1 44.95 -0.1 55.75 4.9 53.25 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_873">
+<path d=" M -0.5 39.7 L -5.45 42.2 -0.1 44.95 4.85 42.45 -0.5 39.7 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_874">
+<path d=" M 2.2 51.85 L 2.2 -20.55 -9.05 46.05 2.2 51.85 Z" fill="#186EA8" stroke="none"/>
+
+<path d=" M 2.2 51.85 L 12.8 46.4 2.2 -20.55 2.2 51.85 Z" fill="#D7E13D" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_871"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_872"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_873"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_874"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 6893.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_875">
+<path d=" M 54.85 71.05 L 49.5 68.3 49.5 155.95 54.85 158.7 54.85 71.05 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_876">
+<path d=" M 59.85 68.55 L 54.85 71.05 54.85 158.7 59.85 156.2 59.85 68.55 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_877">
+<path d=" M 54.45 65.8 L 49.5 68.3 54.85 71.05 59.8 68.55 54.45 65.8 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_878">
+<path d=" M 9.8 109.55 L 57 133.15 57 30.3 9.8 109.55 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 133.15 L 57 133.2 103.3 110 57 30.3 57 133.15 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_879">
+<path d=" M 56.9 19.35 L 56.9 104.1 100.85 82.15 56.9 19.35 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.9 19.35 L 12.9 82.1 56.9 104.1 56.9 19.35 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_880">
+<path d=" M 57.15 2.7 L 57.15 75.1 94.25 56.55 57.15 2.7 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 2.7 L 20 56.5 57.15 75.1 57.15 2.7 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_875"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_876"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_877"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_878"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_879"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_880"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 7095.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_881">
+<path d=" M 54.85 69.6 L 49.5 66.85 49.5 155.95 54.85 158.7 54.85 69.6 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_882">
+<path d=" M 59.85 67.1 L 54.85 69.6 54.85 158.7 59.85 156.2 59.85 67.1 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_883">
+<path d=" M 54.45 64.35 L 49.5 66.85 54.85 69.6 59.8 67.1 54.45 64.35 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_884">
+<path d=" M 8.1 109.35 L 57 133.8 57 30.95 8.1 109.35 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 133.8 L 57 133.85 105.15 109.75 57 30.95 57 133.8 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_885">
+<path d=" M 56.95 19.3 L 56.95 104.05 101.15 81.95 56.95 19.3 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.95 19.3 L 12.65 81.95 56.95 104.05 56.95 19.3 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_886">
+<path d=" M 57.15 2.2 L 57.15 74.6 94.75 55.8 57.15 2.2 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 2.2 L 19.45 55.8 57.15 74.6 57.15 2.2 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_881"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_882"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_883"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_884"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_885"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_886"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 7297.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_887">
+<path d=" M 54.85 68.3 L 49.5 65.55 49.5 155.95 54.85 158.7 54.85 68.3 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_888">
+<path d=" M 59.85 65.8 L 54.85 68.3 54.85 158.7 59.85 156.2 59.85 65.8 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_889">
+<path d=" M 54.45 63.05 L 49.5 65.55 54.85 68.3 59.8 65.8 54.45 63.05 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_890">
+<path d=" M 6.55 109.2 L 57 134.4 57 31.55 6.55 109.2 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 134.4 L 57 134.45 106.85 109.5 57 31.55 57 134.4 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_891">
+<path d=" M 56.95 19.3 L 56.95 104.05 101.4 81.8 56.95 19.3 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.95 19.3 L 12.4 81.8 56.95 104.05 56.95 19.3 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_892">
+<path d=" M 57.15 1.8 L 57.15 74.2 95.25 55.15 57.15 1.8 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 1.8 L 19 55.15 57.15 74.2 57.15 1.8 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_887"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_888"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_889"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_890"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_891"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_892"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 7499.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_893">
+<path d=" M 54.85 67.1 L 49.5 64.35 49.5 155.95 54.85 158.7 54.85 67.1 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_894">
+<path d=" M 59.85 64.6 L 54.85 67.1 54.85 158.7 59.85 156.2 59.85 64.6 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_895">
+<path d=" M 54.45 61.85 L 49.5 64.35 54.85 67.1 59.8 64.6 54.45 61.85 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_896">
+<path d=" M 5.2 109.05 L 57 134.95 57 32.1 5.2 109.05 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 134.95 L 57 135 108.35 109.3 57 32.1 57 134.95 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_897">
+<path d=" M 56.95 19.25 L 56.95 104 101.7 81.65 56.95 19.25 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.95 19.25 L 12.15 81.65 56.95 104 56.95 19.25 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_898">
+<path d=" M 57.15 1.4 L 57.15 73.8 95.65 54.55 57.15 1.4 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 1.4 L 18.6 54.55 57.15 73.8 57.15 1.4 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_893"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_894"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_895"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_896"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_897"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_898"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 7701.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_899">
+<path d=" M 54.85 66.05 L 49.5 63.3 49.5 155.95 54.85 158.7 54.85 66.05 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_900">
+<path d=" M 59.85 63.55 L 54.85 66.05 54.85 158.7 59.85 156.2 59.85 63.55 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_901">
+<path d=" M 54.45 60.8 L 49.5 63.3 54.85 66.05 59.8 63.55 54.45 60.8 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_902">
+<path d=" M 3.95 108.95 L 57 135.45 57 32.6 3.95 108.95 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 135.45 L 57 135.5 109.65 109.1 57 32.6 57 135.45 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_903">
+<path d=" M 56.95 19.25 L 56.95 104 102 81.5 56.95 19.25 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.95 19.25 L 11.9 81.5 56.95 104 56.95 19.25 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_904">
+<path d=" M 57.15 1.1 L 57.15 73.5 96.05 54.05 57.15 1.1 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 1.1 L 18.25 54.05 57.15 73.5 57.15 1.1 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_899"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_900"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_901"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_902"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_903"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_904"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 7903.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_905">
+<path d=" M 54.85 65.2 L 49.5 62.45 49.5 155.95 54.85 158.7 54.85 65.2 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_906">
+<path d=" M 59.85 62.7 L 54.85 65.2 54.85 158.7 59.85 156.2 59.85 62.7 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_907">
+<path d=" M 54.45 59.95 L 49.5 62.45 54.85 65.2 59.8 62.7 54.45 59.95 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_908">
+<path d=" M 2.9 108.8 L 57 135.85 57 33 2.9 108.8 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 135.85 L 57 135.9 110.8 108.95 57 33 57 135.85 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_909">
+<path d=" M 56.95 19.25 L 56.95 104 102.25 81.35 56.95 19.25 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.95 19.25 L 11.6 81.3 56.95 104 56.95 19.25 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_910">
+<path d=" M 57.15 0.8 L 57.15 73.2 96.35 53.6 57.15 0.8 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 0.8 L 17.9 53.6 57.15 73.2 57.15 0.8 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_905"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_906"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_907"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_908"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_909"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_910"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 8105.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_911">
+<path d=" M 54.85 64.4 L 49.5 61.65 49.5 155.95 54.85 158.7 54.85 64.4 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_912">
+<path d=" M 59.85 61.9 L 54.85 64.4 54.85 158.7 59.85 156.2 59.85 61.9 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_913">
+<path d=" M 54.45 59.15 L 49.5 61.65 54.85 64.4 59.8 61.9 54.45 59.15 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_914">
+<path d=" M 2 108.7 L 57 136.2 57 33.35 2 108.7 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 136.2 L 57 136.25 111.8 108.8 57 33.35 57 136.2 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_915">
+<path d=" M 56.95 19.2 L 56.95 103.95 102.55 81.2 56.95 19.2 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.95 19.2 L 11.35 81.15 56.95 103.95 56.95 19.2 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_916">
+<path d=" M 57.15 0.55 L 57.15 72.95 96.65 53.2 57.15 0.55 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 0.55 L 17.65 53.2 57.15 72.95 57.15 0.55 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_911"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_912"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_913"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_914"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_915"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_916"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 8307.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_917">
+<path d=" M 54.85 63.8 L 49.5 61.05 49.5 155.95 54.85 158.7 54.85 63.8 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_918">
+<path d=" M 59.85 61.3 L 54.85 63.8 54.85 158.7 59.85 156.2 59.85 61.3 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_919">
+<path d=" M 54.45 58.55 L 49.5 61.05 54.85 63.8 59.8 61.3 54.45 58.55 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_920">
+<path d=" M 1.3 108.65 L 57 136.5 57 33.65 1.3 108.65 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 136.5 L 57 136.55 112.6 108.7 57 33.65 57 136.5 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_921">
+<path d=" M 56.95 19.2 L 56.95 103.95 102.8 81.05 56.95 19.2 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.95 19.2 L 11.1 81 56.95 103.95 56.95 19.2 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_922">
+<path d=" M 57.15 0.35 L 57.15 72.75 96.85 52.9 57.15 0.35 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 0.35 L 17.45 52.9 57.15 72.75 57.15 0.35 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_917"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_918"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_919"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_920"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_921"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_922"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 8509.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_923">
+<path d=" M 54.85 63.3 L 49.5 60.55 49.5 155.95 54.85 158.7 54.85 63.3 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_924">
+<path d=" M 59.85 60.8 L 54.85 63.3 54.85 158.7 59.85 156.2 59.85 60.8 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_925">
+<path d=" M 54.45 58.05 L 49.5 60.55 54.85 63.3 59.8 60.8 54.45 58.05 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_926">
+<path d=" M 0.75 108.6 L 57 136.7 57 33.85 0.75 108.6 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 136.7 L 57 136.75 113.2 108.6 57 33.85 57 136.7 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_927">
+<path d=" M 57 19.15 L 57 103.9 103.1 80.85 57 19.15 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57 19.15 L 10.85 80.85 57 103.9 57 19.15 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_928">
+<path d=" M 57.15 0.2 L 57.15 72.6 97.05 52.65 57.15 0.2 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 0.2 L 17.25 52.65 57.15 72.6 57.15 0.2 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_923"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_924"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_925"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_926"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_927"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_928"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 8711.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_929">
+<path d=" M 54.85 63 L 49.5 60.25 49.5 155.95 54.85 158.7 54.85 63 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_930">
+<path d=" M 59.85 60.5 L 54.85 63 54.85 158.7 59.85 156.2 59.85 60.5 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_931">
+<path d=" M 54.45 57.75 L 49.5 60.25 54.85 63 59.8 60.5 54.45 57.75 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_932">
+<path d=" M 0.3 108.55 L 57 136.85 57 34 0.3 108.55 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 136.85 L 57 136.9 113.65 108.55 57 34 57 136.85 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_933">
+<path d=" M 57 19.15 L 57 103.9 103.4 80.7 57 19.15 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57 19.15 L 10.55 80.7 57 103.9 57 19.15 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_934">
+<path d=" M 57.15 0.1 L 57.15 72.5 97.15 52.5 57.15 0.1 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 0.1 L 17.15 52.5 57.15 72.5 57.15 0.1 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_929"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_930"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_931"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_932"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_933"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_934"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 8913.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_935">
+<path d=" M 54.85 87.55 L 49.5 84.8 49.5 155.95 54.85 158.7 54.85 87.55 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_936">
+<path d=" M 59.85 85.05 L 54.85 87.55 54.85 158.7 59.85 156.2 59.85 85.05 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_937">
+<path d=" M 59.8 85.05 L 54.45 82.3 49.5 84.8 54.85 87.55 59.8 85.05 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_938">
+<path d=" M 57 137 L 57 137.05 62.95 134.15 57 34.15 57 137 Z" fill="#98C64E" stroke="none"/>
+
+<path d=" M 46.55 131.95 L 57 137 57 34.15 46.55 131.95 Z" fill="#125C68" stroke="none"/>
+</g>
+
+<g id="uid_939">
+<path d=" M 0.85 20.9 L 0.85 -63.85 -8.4 15.8 0.85 20.9 Z" fill="#156B7E" stroke="none"/>
+
+<path d=" M 0.85 20.9 L 9.4 16.6 0.85 -63.85 0.85 20.9 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_940">
+<path d=" M 2.2 -9.35 L 2.2 -81.75 -9.05 -15.15 2.2 -9.35 Z" fill="#186EA8" stroke="none"/>
+
+<path d=" M 2.2 -9.35 L 12.8 -14.8 2.2 -81.75 2.2 -9.35 Z" fill="#D7E13D" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_935"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_936"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_937"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_938"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_939"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_940"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 9115.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_941">
+<path d=" M 54.85 62.75 L 49.5 60 49.5 155.95 54.85 158.7 54.85 62.75 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_942">
+<path d=" M 59.85 60.25 L 54.85 62.75 54.85 158.7 59.85 156.2 59.85 60.25 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_943">
+<path d=" M 54.45 57.5 L 49.5 60 54.85 62.75 59.8 60.25 54.45 57.5 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_944">
+<path d=" M 0.1 108.5 L 57 136.95 57 34.1 0.1 108.5 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 136.95 L 57 137 113.9 108.5 57 34.1 57 136.95 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_945">
+<path d=" M 57 19.1 L 57 103.85 103.65 80.55 57 19.1 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57 19.1 L 10.3 80.55 57 103.85 57 19.1 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_946">
+<path d=" M 57.15 0 L 57.15 72.4 97.25 52.4 57.15 0 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 0 L 17.05 52.4 57.15 72.4 57.15 0 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_941"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_942"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_943"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_944"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_945"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_946"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 9317.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_947">
+<path d=" M -0.1 -40.25 L -5.45 -43 -5.45 53 -0.1 55.75 -0.1 -40.25 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_948">
+<path d=" M -0.1 55.75 L 4.9 53.25 4.9 -42.75 -0.1 -40.25 -0.1 55.75 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_949">
+<path d=" M -0.5 -45.5 L -5.45 -43 -0.1 -40.25 4.85 -42.75 -0.5 -45.5 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_950">
+<path d=" M 2.05 34.05 L 2.05 -68.8 -54.95 5.55 2.05 34.05 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 2.05 34.05 L 2.05 34.1 59.05 5.55 2.05 -68.8 2.05 34.05 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_951">
+<path d=" M 2.05 0.9 L 2.05 -83.85 -44.9 -22.55 2.05 0.9 Z" fill="#156B7E" stroke="none"/>
+
+<path d=" M 49 -22.55 L 2.05 -83.85 2.05 0.9 49 -22.55 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_952">
+<path d=" M 53.7 0 L 16 49.2 53.7 68.05 53.7 0 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_953">
+<path d=" M 53.7 0 L 53.7 68.05 91.4 49.2 53.7 0 Z" fill="#D7E13D" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_947"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_948"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_949"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_950"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_951"/>
+</g>
+
+<g transform="matrix( 1.06427001953125, 0, 0, 1.06427001953125, 0,0) ">
+<use xlink:href="#uid_952"/>
+</g>
+
+<g transform="matrix( 1.06427001953125, 0, 0, 1.06427001953125, 0,0) ">
+<use xlink:href="#uid_953"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 9519.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_954">
+<path d=" M 54.85 85 L 49.5 82.25 49.5 155.95 54.85 158.7 54.85 85 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_955">
+<path d=" M 59.85 82.5 L 54.85 85 54.85 158.7 59.85 156.2 59.85 82.5 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_956">
+<path d=" M 54.45 79.75 L 49.5 82.25 54.85 85 59.8 82.5 54.45 79.75 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_957">
+<path d=" M 57 136.3 L 62.95 133.4 57 33.4 57 136.25 57 136.3 Z" fill="#98C64E" stroke="none"/>
+
+<path d=" M 46.55 131.2 L 57 136.25 57 33.4 46.55 131.2 Z" fill="#125C68" stroke="none"/>
+</g>
+
+<g id="uid_958">
+<path d=" M 0.9 16.8 L 0.9 -67.95 -10 10.9 0.9 16.8 Z" fill="#156B7E" stroke="none"/>
+
+<path d=" M 0.9 16.8 L 11.1 11.65 0.9 -67.95 0.9 16.8 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_959">
+<path d=" M 57.15 7.2 L 57.15 79.6 89.2 63.55 57.15 7.2 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 24.9 63.45 L 57.15 79.6 57.15 7.2 24.9 63.45 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_954"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_955"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_956"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_957"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 54.95,102.95) ">
+<use xlink:href="#uid_958"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_959"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 9721.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_960">
+<path d=" M 54.85 82.6 L 49.5 79.85 49.5 155.95 54.85 158.7 54.85 82.6 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_961">
+<path d=" M 59.85 80.1 L 54.85 82.6 54.85 158.7 59.85 156.2 59.85 80.1 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_962">
+<path d=" M 54.45 77.35 L 49.5 79.85 54.85 82.6 59.8 80.1 54.45 77.35 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_963">
+<path d=" M 57 134.1 L 62.95 131.2 57 31.2 57 134.05 57 134.1 Z" fill="#98C64E" stroke="none"/>
+
+<path d=" M 46.55 129 L 57 134.05 57 31.2 46.55 129 Z" fill="#125C68" stroke="none"/>
+</g>
+
+<g id="uid_964">
+<path d=" M 56.35 20.75 L 56.35 105.5 83.3 92.05 56.35 20.75 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.35 20.75 L 29.1 91.65 56.35 105.5 56.35 20.75 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_965">
+<path d=" M 57.15 6.4 L 57.15 78.8 90.05 62.35 57.15 6.4 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 6.4 L 24.05 62.25 57.15 78.8 57.15 6.4 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_960"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_961"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_962"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_963"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_964"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_965"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 9923.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_966">
+<path d=" M 54.85 80.3 L 49.5 77.55 49.5 155.95 54.85 158.7 54.85 80.3 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_967">
+<path d=" M 59.85 77.8 L 54.85 80.3 54.85 158.7 59.85 156.2 59.85 77.8 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_968">
+<path d=" M 54.45 75.05 L 49.5 77.55 54.85 80.3 59.8 77.8 54.45 75.05 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_969">
+<path d=" M 57 130.45 L 62.95 127.55 57 27.55 57 130.4 57 130.45 Z" fill="#98C64E" stroke="none"/>
+
+<path d=" M 46.55 125.35 L 57 130.4 57 27.55 46.55 125.35 Z" fill="#125C68" stroke="none"/>
+</g>
+
+<g id="uid_970">
+<path d=" M 56.55 20.3 L 56.55 105.05 88.85 88.9 56.55 20.3 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.55 20.3 L 23.95 88.6 56.55 105.05 56.55 20.3 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_971">
+<path d=" M 57.15 5.7 L 57.15 78.1 90.9 61.2 57.15 5.7 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 5.7 L 23.25 61.1 57.15 78.1 57.15 5.7 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_966"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_967"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_968"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_969"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_970"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_971"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 10125.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_972">
+<path d=" M 54.85 78.2 L 49.5 75.45 49.5 155.95 54.85 158.7 54.85 78.2 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_973">
+<path d=" M 59.85 75.7 L 54.85 78.2 54.85 158.7 59.85 156.2 59.85 75.7 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_974">
+<path d=" M 54.45 72.95 L 49.5 75.45 54.85 78.2 59.8 75.7 54.45 72.95 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_975">
+<path d=" M 57 125.25 L 62.95 122.35 57 22.35 57 125.2 57 125.25 Z" fill="#98C64E" stroke="none"/>
+
+<path d=" M 46.55 120.15 L 57 125.2 57 22.35 46.55 120.15 Z" fill="#125C68" stroke="none"/>
+</g>
+
+<g id="uid_976">
+<path d=" M 56.7 19.85 L 56.7 104.6 94.45 85.75 56.7 19.85 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.7 19.85 L 18.85 85.6 56.7 104.6 56.7 19.85 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_977">
+<path d=" M 57.15 5 L 57.15 77.4 91.65 60.15 57.15 5 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 5 L 22.5 60.05 57.15 77.4 57.15 5 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_972"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_973"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_974"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_975"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_976"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_977"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 10327.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_978">
+<path d=" M 54.85 76.2 L 49.5 73.45 49.5 155.95 54.85 158.7 54.85 76.2 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_979">
+<path d=" M 59.85 73.7 L 54.85 76.2 54.85 158.7 59.85 156.2 59.85 73.7 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_980">
+<path d=" M 54.45 70.95 L 49.5 73.45 54.85 76.2 59.8 73.7 54.45 70.95 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_981">
+<path d=" M 57 118.6 L 57 118.65 62.95 115.75 57 15.75 57 118.6 Z" fill="#98C64E" stroke="none"/>
+
+<path d=" M 46.55 113.55 L 57 118.6 57 15.75 46.55 113.55 Z" fill="#125C68" stroke="none"/>
+</g>
+
+<g id="uid_982">
+<path d=" M 56.9 104.15 L 100 82.6 56.9 19.4 56.9 104.15 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.9 19.4 L 13.7 82.55 56.9 104.15 56.9 19.4 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_983">
+<path d=" M 57.15 4.35 L 57.15 76.75 92.4 59.15 57.15 4.35 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 4.35 L 21.8 59.05 57.15 76.75 57.15 4.35 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_978"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_979"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_980"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_981"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_982"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_983"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 10529.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_984">
+<path d=" M 54.85 74.35 L 49.5 71.6 49.5 155.95 54.85 158.7 54.85 74.35 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_985">
+<path d=" M 59.85 71.85 L 54.85 74.35 54.85 158.7 59.85 156.2 59.85 71.85 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_986">
+<path d=" M 54.45 69.1 L 49.5 71.6 54.85 74.35 59.8 71.85 54.45 69.1 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_987">
+<path d=" M 29.1 111.65 L 57 125.5 57 22.65 29.1 111.65 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 125.5 L 57 125.55 82.1 113.05 57 22.65 57 125.5 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_988">
+<path d=" M 56.9 19.4 L 56.9 104.15 100.3 82.45 56.9 19.4 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.9 19.4 L 13.45 82.4 56.9 104.15 56.9 19.4 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_989">
+<path d=" M 57.15 3.75 L 57.15 76.15 93.05 58.2 57.15 3.75 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 3.75 L 21.15 58.15 57.15 76.15 57.15 3.75 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_984"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_985"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_986"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_987"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_988"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_989"/>
+</g>
+</g>
+</g></g><g transform="translate(20, 10731.0)"><g transform="translate(-0.0, -0.0)">
+<defs>
+<g id="uid_990">
+<path d=" M 54.85 72.6 L 49.5 69.85 49.5 155.95 54.85 158.7 54.85 72.6 Z" fill="#186EA8" stroke="none"/>
+</g>
+
+<g id="uid_991">
+<path d=" M 59.85 70.1 L 54.85 72.6 54.85 158.7 59.85 156.2 59.85 70.1 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_992">
+<path d=" M 54.45 67.35 L 49.5 69.85 54.85 72.6 59.8 70.1 54.45 67.35 Z" fill="#D7E13D" stroke="none"/>
+</g>
+
+<g id="uid_993">
+<path d=" M 11.65 109.75 L 57 132.4 57 29.55 11.65 109.75 Z" fill="#125C68" stroke="none"/>
+
+<path d=" M 57 132.4 L 57 132.45 101.25 110.3 57 29.55 57 132.4 Z" fill="#98C64E" stroke="none"/>
+</g>
+
+<g id="uid_994">
+<path d=" M 56.9 19.35 L 56.9 104.1 100.55 82.3 56.9 19.35 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 56.9 19.35 L 13.2 82.25 56.9 104.1 56.9 19.35 Z" fill="#156B7E" stroke="none"/>
+</g>
+
+<g id="uid_995">
+<path d=" M 57.15 3.2 L 57.15 75.6 93.65 57.35 57.15 3.2 Z" fill="#D7E13D" stroke="none"/>
+
+<path d=" M 57.15 3.2 L 20.55 57.3 57.15 75.6 57.15 3.2 Z" fill="#186EA8" stroke="none"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,23.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_990"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_991"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_992"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_993"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_994"/>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#uid_995"/>
+</g>
+</g>
+</g></g></svg>

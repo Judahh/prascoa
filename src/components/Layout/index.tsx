@@ -117,13 +117,13 @@ const Layout = ({ language, children, ...rest }) => {
             {childrenWithProps}
           </LayoutWrapper>
 
-          <Footer
+          {/* <Footer
             handleToken={handleToken}
             handleTheme={handleTheme}
             theme={currentTheme}
             handleMenu={handleMenu}
             menu={currentMenu}
-          />
+          /> */}
         </TokenContext.Provider>
       </LanguageContext.Provider>
     </ThemeProvider>
