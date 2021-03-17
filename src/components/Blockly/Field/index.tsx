@@ -15,9 +15,9 @@ class BlocklyField extends Field {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    let border = this.sourceBlock_.getColourBorder();
-    border = border.colourBorder || border.colourLight;
-    DropDownDiv.setColour(this.sourceBlock_.getColour(), border);
+    // let border = this.sourceBlock_.getColourBorder();
+    // border = border.colourBorder || border.colourLight;
+    // DropDownDiv.setColour(this.sourceBlock_.getColour(), border);
 
     DropDownDiv.showPositionedByField(this, this.dropdownDispose_.bind(this));
   }

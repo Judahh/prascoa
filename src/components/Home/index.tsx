@@ -9,13 +9,14 @@ import { BlocklyComponent } from '../Blockly/blocklyComponent';
 
 import '../Blockly/custom';
 import Blockly from 'blockly';
+import { SvgCanvas } from '../Blockly/styles';
 
 const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="start" x="0" y="0"></block></xml>';
 
 const Home = (props) => {
   const lang = useContext(LanguageContext);
-  const [simpleWorkspace, setSimpleWorkspace] = useState({});
+  const [simpleWorkspace] = useState({});
   const [minimal, setMinimal] = useState({});
   useEffect(() => {
     setMinimal(
@@ -67,7 +68,7 @@ const Home = (props) => {
           <Block type="or" />
           <Block type="not" />
         </BlocklyComponent>
-        <canvas className="svgCanvas"></canvas>
+        {/* <SvgCanvas className="svgCanvas"></SvgCanvas> */}
         {/* <svg className="svgCanvas" xmlns="http://www.w3.org/2000/svg"></svg> */}
       </Layout>
     </div>
