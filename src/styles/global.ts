@@ -240,6 +240,6 @@ export default createGlobalStyle`
     z-index: -1;
     padding-left: 140px;
     box-sizing: border-box;
-    background-color: rgb(152, 234, 224);
+    background-color: transparent;
   }
 `;

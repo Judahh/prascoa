@@ -11,7 +11,7 @@ import { default as lightTheme } from '../../styles/themes/light.json';
 import { default as darkTheme } from '../../styles/themes/dark.json';
 
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+// import Footer from '../../components/Footer';
 
 import { LayoutWrapper } from './styles';
 

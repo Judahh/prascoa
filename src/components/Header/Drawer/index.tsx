@@ -1,26 +1,48 @@
 // file deepcode ignore no-any: any needed
 import React, { useContext, useState } from 'react';
-import { DrawerWrapper, DrawerMenu, ItemHolder, Item, Toggle } from './styles';
-import { Text, FixedLink } from '../../../components/Text';
+import { DrawerWrapper, DrawerMenu, Toggle, Item } from './styles';
+import { Text } from '../../../components/Text';
 import { NavHolder } from '../../../components/Header/Nav/styles';
 import LanguageContext from '../../../language/context';
 import { default as map } from '../../../pages/map.json';
-import { default as lightTheme } from '../../../styles/themes/light.json';
-import { LogoHolder, Logo } from '../../../components/Layout/styles';
+// import { default as lightTheme } from '../../../styles/themes/light.json';
+// import { LogoHolder, Logo } from '../../../components/Layout/styles';
 
 const Drawer = (props) => {
-  const { nav, language } = useContext(LanguageContext);
+  const { nav, languageAcronym } = useContext(LanguageContext);
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const navItems: Array<{ href: any; content: any }> = [];
 
+  const svg = {
+    map: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="17"
+        viewBox="0 0 30 30"
+      >
+        <path d="M19.333 6.646L9.666 3.247v19.107l9.667 3.398V6.646zM29 .83v24.318c0 .353-.202.604-.604.755l-9.063 3.096L9.666 25.6l-8.609 3.324a.578.578 0 0 1-.226.074c-.504-.049-.782-.327-.832-.831V3.849c0-.402.202-.653.605-.755L9.666-.002l9.667 3.399 8.61-3.399h.226c.503.05.78.328.831.831z"></path>
+      </svg>
+    ),
+    share: (
+      <svg width="20" height="17" viewBox="0 0 29 34">
+        <path d="M24.1 22.6c-1.3.1-2.3.5-3.2 1.2L9.4 17.2c.1-.4.2-.7.2-1.1 0-.4-.1-.8-.2-1.1l11.3-6.6c.9.9 2 1.3 3.4 1.3 1.3 0 2.5-.5 3.4-1.4.9-.9 1.4-2 1.4-3.4s-.5-2.5-1.4-3.4S25.4 0 24.1 0s-2.5.5-3.4 1.4-1.4 2.1-1.4 3.5c0 .4.1.7.2 1.1L8.1 12.5c-.9-.8-2-1.2-3.4-1.2s-2.5.5-3.4 1.4-1.3 2-1.3 3.4.5 2.5 1.4 3.4c.9.9 2 1.4 3.4 1.4s2.5-.4 3.4-1.2l11.4 6.6c-.1.4-.1.7-.1 1.1 0 1.4.5 2.5 1.4 3.4s2 1.3 3.3 1.3c1.3 0 2.4-.4 3.3-1.3s1.4-2 1.4-3.3-.5-2.4-1.4-3.3c-1-1.1-2.1-1.5-3.4-1.6z"></path>
+      </svg>
+    ),
+  };
+
   for (const key in map.sections) {
+    // console.log(key);
     if (map.sections.hasOwnProperty(key)) {
       const element = map.sections[key];
-      navItems.push({
-        href: element,
-        content: key !== 'home' ? nav[key] : '‏‏‎ ‎',
-      });
+      // console.log(element);
+      // console.log(nav[key]);
+      if (key !== 'home')
+        navItems.push({
+          href: element,
+          content: key !== 'home' ? nav[key] : '‏‏‎ ‎',
+        });
     }
   }
 
@@ -43,46 +65,32 @@ const Drawer = (props) => {
   return (
     <DrawerWrapper>
       <NavHolder>
-        <LogoHolder>
-          <FixedLink href="#home" onClick={handleCollapsed}>
-            <Logo
-              src={
-                props.theme !== lightTheme || props.menu === 2
-                  ? '/img/JLInvert.svg'
-                  : '/img/JL.svg'
-              }
-              alt="JL"
-            />
-          </FixedLink>
-        </LogoHolder>
-
         <Toggle className={open ? 'active' : ''} onClick={handleOpen}>
-          <span></span>
+          <Item>
+            <span>•••</span>
+          </Item>
         </Toggle>
-      </NavHolder>
-
-      <DrawerMenu
-        className={open ? 'open' : !open && collapsed ? 'closed' : ''}
-      >
-        <Item>
+        <DrawerMenu
+          className={open ? 'open' : !open && collapsed ? 'closed' : ''}
+        >
           {navItems.map((item, index) => {
             return (
-              <ItemHolder
+              <Item
                 key={index}
                 href={item.href}
                 onClick={handleCollapsed}
                 menu={props.menu}
               >
-                <Text>{item.content}</Text>
-              </ItemHolder>
+                {svg[item.content]}
+              </Item>
             );
           })}
 
-          <ItemHolder onClick={props.handleLanguage}>
-            <Text>{language}</Text>
-          </ItemHolder>
-        </Item>
-      </DrawerMenu>
+          <Item onClick={props.handleLanguage}>
+            <Text>{languageAcronym}</Text>
+          </Item>
+        </DrawerMenu>
+      </NavHolder>
     </DrawerWrapper>
   );
 };

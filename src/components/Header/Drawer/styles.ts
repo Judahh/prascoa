@@ -32,31 +32,37 @@ export const ItemHolder = styled.a`
 `;
 
 export const Item = styled.div`
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   text-align: center;
+  margin: 15px;
+  cursor: pointer;
+  color: ${(props) => props.theme.text};
+  fill: ${(props) => props.theme.text};
 `;
 
 export const DrawerMenu = styled.div`
   position: relative;
-  top: -500%;
+  left: -100%;
   display: node;
-  animation: none;
-  transition: all 0.2s ease;
-  z-index: -10;
-  opacity: 0;
+  animation: all 1s ease;
+  transition: all 0.5s ease;
+  // z-index: -10;
+  // opacity: 0;
 
   &.open {
     display: block;
-    top: -70px;
-    transition: all transform 0.2s ease;
+    left: 0px;
+    animation: all 1s ease;
+    transition: all 0.5s ease;
     opacity: 1;
   }
 
   &.closed {
     display: none;
-    top: -500%;
-    transition: all transform 0.2s ease;
+    left: -100%;
+    animation: all 1s ease;
+    transition: all 0.5s ease;
     opacity: 0;
   }
 `;
@@ -64,16 +70,12 @@ export const DrawerMenu = styled.div`
 export const DrawerWrapper = styled.div`
   width: 100%;
   left: 0;
-  display: none;
+  display: block;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   right: 5px;
   height: 100%;
-
-  @media screen and (max-width: 800px) {
-    display: block;
-  }
 `;
 
 export const Toggle = styled.div`
@@ -82,82 +84,21 @@ export const Toggle = styled.div`
   cursor: pointer;
   display: inline-block;
   float: right;
-  height: 50px;
   outline: none;
   padding: 0;
   pointer-events: initial;
   position: relative;
   vertical-align: middle;
-  width: 50px;
   z-index: 1110;
+  transform: rotate(90deg);
 
   span {
-    background-color: ${(props) => props.theme.primary};
-    content: '';
+    color: ${(props) => props.theme.primary};
     display: block;
-    height: 2px;
-    left: calc(50% - 13px);
-    position: absolute;
-    top: calc(50% - 1px);
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-transition: background-color 0.2s ease-in-out,
-      top 0.2s 0.2s ease-out, -webkit-transform 0.2s linear;
-    transition: background-color 0.2s ease-in-out, top 0.2s 0.2s ease-out,
-      -webkit-transform 0.2s linear;
-    transition: background-color 0.2s ease-in-out, top 0.2s 0.2s ease-out,
-      transform 0.2s linear;
-    transition: background-color 0.2s ease-in-out, top 0.2s 0.2s ease-out,
-      transform 0.2s linear, -webkit-transform 0.2s linear;
-    width: 26px;
+    font-family: 'Circular-Loom';
   }
 
-  span:before,
-  span:after {
-    background-color: ${(props) => props.theme.primary};
-    content: '';
-    display: block;
-    height: 2px;
-    position: absolute;
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-transition: background-color 0.2s ease-in-out,
-      top 0.2s 0.2s ease-out, -webkit-transform 0.2s linear;
-    transition: background-color 0.2s ease-in-out, top 0.2s 0.2s ease-out,
-      -webkit-transform 0.2s linear;
-    transition: background-color 0.2s ease-in-out, top 0.2s 0.2s ease-out,
-      transform 0.2s linear;
-    transition: background-color 0.2s ease-in-out, top 0.2s 0.2s ease-out,
-      transform 0.2s linear, -webkit-transform 0.2s linear;
-    width: 26px;
-  }
-  span:before {
-    top: 7px;
-  }
-  span:after {
-    top: -7px;
-  }
   &.active span {
-    background-color: transparent;
-    -webkit-transition: background 0.2s ease-out;
-    transition: background 0.2s ease-out;
-  }
-  &.active span:before,
-  &.active span:after {
-    -webkit-transition: top 0.2s ease-out, -webkit-transform 0.2s 0.2s ease-out;
-    transition: top 0.2s ease-out, -webkit-transform 0.2s 0.2s ease-out;
-    transition: top 0.2s ease-out, transform 0.2s 0.2s ease-out;
-    transition: top 0.2s ease-out, transform 0.2s 0.2s ease-out,
-      -webkit-transform 0.2s 0.2s ease-out;
-  }
-  &.active span:before {
-    top: 0;
-    -webkit-transform: rotate3d(0, 0, 1, -45deg);
-    transform: rotate3d(0, 0, 1, -45deg);
-  }
-  &.active span:after {
-    top: 0;
-    -webkit-transform: rotate3d(0, 0, 1, 45deg);
-    transform: rotate3d(0, 0, 1, 45deg);
+    transform: rotate(90deg);
   }
 `;

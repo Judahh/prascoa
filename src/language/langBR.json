@@ -1,6 +1,8 @@
 {
   "nav": {
-    "home": "HOME"
+    "home": "HOME",
+    "map": "map",
+    "share": "share"
   },
   "languageAcronym": "EN",
   "language": "ENGLISH",

@@ -1,5 +1,7 @@
 {
   "sections": {
-    "home": "#home"
+    "home": "#home",
+    "map": "#map",
+    "share": "#share"
   }
 }

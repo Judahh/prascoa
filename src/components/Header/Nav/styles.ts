@@ -4,14 +4,11 @@ export const NavWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  @media screen and (max-width: 800px) {
-    display: none;
-  }
 `;
 export const NavHolder = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   height: 100%;
   width: 100%;
   padding: 15px 30px;
