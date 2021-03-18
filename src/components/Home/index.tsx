@@ -10,7 +10,7 @@ import { BlocklyComponent } from '../Blockly/blocklyComponent';
 import '../Blockly/custom';
 import Blockly from 'blockly';
 import { SvgCanvas } from '../Blockly/styles';
-import { Level } from '../../levels/level';
+import { Level } from '../../game/level';
 
 const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="start" x="0" y="0"></block></xml>';

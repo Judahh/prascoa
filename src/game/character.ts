@@ -3,31 +3,7 @@
  * @suppress {duplicate}
  */
 // import Blockly from 'blockly';
-export class Level {
-  currentLevel: any;
-
-  blocks = [
-    // sprite: A 1029x51 set of 21 avatar images.
-    // tiles: A 250x200 set of 20 map images.
-    // marker: A 20x34 goal image.
-    // background: An optional 400x450 background image, or false.
-    // look: Colour of sonar-like look icon.
-    // winSound: List of sounds (in various formats) to play when the player wins.
-    // crashSound: List of sounds (in various formats) for player crashes.
-    // crashType: Behaviour when player crashes (stop, spin, or fall).
-    {
-      sprite: 'sprites/block.svg',
-      start: 0, //,
-      // tiles: 'maze/tiles_pegman.png',
-      // marker: 'maze/marker.png',
-      // background: false,
-      // look: '#000',
-      // winSound: ['maze/win.mp3', 'maze/win.ogg'],
-      // crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
-      // crashType: Maze.CRASH_STOP
-    },
-  ];
-
+export class Character {
   skins = [
     // sprite: A 1029x51 set of 21 avatar images.
     // tiles: A 250x200 set of 20 map images.
@@ -49,136 +25,7 @@ export class Level {
       // crashType: Maze.CRASH_STOP
     },
   ];
-  levels = [
-    [
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 'RR-BA', 'C-BB', 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ],
-    // Level 2.
-    [
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 'RR-BA', 'C-BB', 'C-BA', 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ],
-    // Level 3.
-    [
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 'RU-BA', 'C-BB', 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ], //,
-  ];
+
   constructor(level?: number) {
     this.nextLevel(level);
   }
@@ -217,6 +64,7 @@ export class Level {
     ctx: CanvasRenderingContext2D,
     map
   ) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let index = 0; index < currentLevel.length; index++) {
       const line = currentLevel[index];
       for (let index2 = 0; index2 < line.length; index2++) {
