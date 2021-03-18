@@ -50,160 +50,133 @@ export class Level {
     },
   ];
   levels = [
-    // // Level 0.
-    // [
-    //   // eslint-disable-next-line prettier/prettier
-    //   [0, 0, 0, 20, 25],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [0, 0, 14, 19, 24],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [0, 8, 0, 0, 23],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [0, 7, 12, 17, 0],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [0, 6, 11, 16, 21]
-    // ],
-    // // Level 0.
-    // [
-    //   // eslint-disable-next-line prettier/prettier
-    //   [5, 10, 15, 20, 25],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [4, 9, 14, 19, 24],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [3, 8, 13, 18, 23],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [2, 7, 12, 17, 22],
-    //   // eslint-disable-next-line prettier/prettier
-    //   [1, 6, 11, 16, 21]
-    // ],
-    // // Level 1.
     [
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', 'RR-BA', 'C-BB', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 'RR-BA', 'C-BB', 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ],
     // Level 2.
     [
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', 'RR-BA', 'C-BB', 'C-BA', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 'RR-BA', 'C-BB', 'C-BA', 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ],
     // Level 3.
     [
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', 'RU-BA', 'C-BB', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 'RU-BA', 'C-BB', 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       // eslint-disable-next-line prettier/prettier
-      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ], //,
   ];
   constructor(level?: number) {
@@ -231,7 +204,7 @@ export class Level {
   min2(a: number, b: number): number {
     return a < b ? a : b;
   }
-  min(a: number, b: number, c: number): number {
+  min3(a: number, b: number, c: number): number {
     return this.min2(this.min2(a, b), c);
   }
   max(a: number, b: number): number {
@@ -244,114 +217,28 @@ export class Level {
     ctx: CanvasRenderingContext2D,
     map
   ) {
-    let yInc = true;
-    let xInc = true;
-
-    let y = 1;
-    let x = 1;
-    let max = (x + y) / 2;
-    while ((x + y) / 2 >= 1) {
-      max = (x + y) / 2;
-      for (let i = 0; i < max; i++) {
-        const xLevel = y - 1 < 0 ? 0 : y - 1;
-        const xNorm = x - 1 < 0 ? 0 : x - 1;
-
-        const fullMax = Math.trunc(
-          (currentLevel.length + currentLevel[xLevel].length) / 2
-        );
-        let finalX;
-        let finalY;
-        if (max < fullMax) {
-          // console.log(
-          //   '[y],[x]:',
-          //   currentLevel[yInc ? currentLevel.length - 1 - i : max - 1 - i][
-          //     xInc ? xNorm - i : currentLevel[xLevel].length - 1 - i
-          //   ]
-          // );
-          finalX = xInc ? xNorm - i : currentLevel[xLevel].length - 1 - i;
-          finalY = yInc ? currentLevel.length - 1 - i : max - 1 - i;
-        } else {
-          //! TO FIX: Its wrong
-          // console.log(
-          //   '[y],[x]:',
-          //   currentLevel[yInc ? currentLevel.length - 1 - i : max - 1 - i][
-          //     xInc ? xNorm - i : currentLevel[xLevel].length - 1 - i
-          //   ]
-          // );
-          // console.log(x, y);
-          finalX = xInc ? xNorm - i : currentLevel[xLevel].length - 1 - i;
-          finalY = yInc ? currentLevel.length - 1 - i : max - 1 - i;
-        }
-        // if (currentLevel[finalY][finalX])
-        // ctx.drawImage(
-        //   map,
-        //   20,
-        //   0,
-        //   128,
-        //   128,
-        //   (finalX * canvas.width) / 20,
-        //   (finalY * canvas.height) / 40,
-        //   canvas.width / 20,
-        //   canvas.height / 20
-        // );
+    for (let index = 0; index < currentLevel.length; index++) {
+      const line = currentLevel[index];
+      for (let index2 = 0; index2 < line.length; index2++) {
+        // const element = line[index2];
+        // if (currentLevel[index][index2])
         ctx.drawImage(
           map,
           20,
           0,
           128,
           128,
-          (finalY * canvas.width) / 20 - (finalY * canvas.width) / 40,
-          (finalX * canvas.height) / 40 +
-            (finalY * canvas.height) / 78 +
-            canvas.height / 14,
+          (index2 * canvas.width) / 40 -
+            (index * canvas.height) / 40 +
+            canvas.width / 2.1111,
+          (index * canvas.height) / 80 +
+            (index2 * canvas.width) / 80 +
+            canvas.height / 4,
           canvas.width / 20,
           canvas.height / 20
         );
       }
-      xInc = xInc && !(x + 1 > currentLevel[y - 1].length || x > max);
-      yInc = yInc && !(y + 1 > currentLevel.length || y > max);
-      y = yInc ? y + 1 : y - 1;
-      x = xInc ? x + 1 : x - 1;
-      x = x < 0 ? 0 : x;
-      y = y < 0 ? 0 : y;
     }
-    // for (let x = 0; x < currentLevel.length + currentLevel.length; x++) {
-    //   const startY = this.max(0, x - currentLevel[0].length);
-    //   const count = this.min(
-    //     x,
-    //     currentLevel.length - startY,
-    //     currentLevel[0].length
-    //   );
-    //   /* Print elements of this line */
-    //   for (let y = count - 1; y >= 0; y--) {
-    //     // console.log(x, y);
-    //     // ctx.drawImage(
-    //     //   map,
-    //     //   20,
-    //     //   0,
-    //     //   128,
-    //     //   128,
-    //     //   (x * canvas.width) / 20 - (x * canvas.width) / 40,
-    //     //   (y * canvas.height) / 40 +
-    //     //     (x * canvas.height) / 78 +
-    //     //     canvas.height / 14,
-    //     //   canvas.width / 20,
-    //     //   canvas.height / 20
-    //     // );
-    //     console.log(
-    //       currentLevel[this.min2(currentLevel[0].length, x) - y - 1][startY + y]
-    //     );
-    //     // console.log(
-    //     //   currentLevel[startY + y][this.min2(currentLevel[0].length, x) - y - 1]
-    //     // );
-    //     // let newX = this.min2(currentLevel[0].length , x)-y-1;
-    //     // let newY = startY+y;
-    //     // ctx.drawImage(images.block, 20, 0, 128, 128, newX * canvas.width/20, newY * canvas.height/40, canvas.width/20, canvas.height/20);
-    //     /* Print elements of next diagonal on next line */
-    //     // printf("\n");
-    //   }
-    // }
-    // ctx.drawImage(images.block, 0, 0);
   }
 
   draw(level: number): void {
@@ -373,13 +260,13 @@ export class Level {
   }
 }
 
-//   // Return a value of '0' if the specified square is wall or out of bounds,
+//   // Return a value of 0 if the specified square is wall or out of bounds,
 //   // '1' otherwise (empty, start, finish).
 //   var normalize = function(x, y) {
 //     if (x < 0 || x >= Maze.COLS || y < 0 || y >= Maze.ROWS) {
-//       return '0';
+//       return 0;
 //     }
-//     return (Maze.map[y][x] == Maze.SquareType.WALL) ? '0' : '1';
+//     return (Maze.map[y][x] == Maze.SquareType.WALL) ? 0 : '1';
 //   };
 
 //   // Compute and draw the tile for each square.
