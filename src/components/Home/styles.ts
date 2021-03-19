@@ -29,6 +29,30 @@ export const SvgCanvas = styled.canvas`
     @media (max-width: 1140px) {
       padding-left: 140px;
     }
+
+    @media (min-width: 1280px) {
+      padding-right: 140px;
+    }
+
+    @media (min-width: 1400px) {
+      right: 15%;
+      left: 15%;
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    @media (min-width: 1700px) {
+      right: 25%;
+      left: 25%;
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
   }
   // z-index: -1;
   // margin-left: 140px;
