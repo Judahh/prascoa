@@ -9,8 +9,8 @@ import { BlocklyComponent } from '../Blockly/blocklyComponent';
 
 import '../Blockly/custom';
 import Blockly from 'blockly';
-import { SvgCanvas } from '../Blockly/styles';
 import { Level } from '../../game/level';
+import { Background, SvgCanvas } from './styles';
 
 const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="start" x="0" y="0"></block></xml>';
@@ -39,7 +39,7 @@ const Home = (props) => {
   }, []);
 
   return (
-    <div className="background">
+    <>
       <Head>
         <title>PRÁSCOA</title>
       </Head>
@@ -71,10 +71,11 @@ const Home = (props) => {
           <Block type="or" />
           <Block type="not" />
         </BlocklyComponent>
-        <SvgCanvas height="30" width="30" className="svgCanvas"></SvgCanvas>
-        {/* <svg className="svgCanvas" xmlns="http://www.w3.org/2000/svg"></svg> */}
+        <Background theme={props.theme}>
+          <SvgCanvas className="svgCanvas"></SvgCanvas>
+        </Background>
       </Layout>
-    </div>
+    </>
   );
 };
 

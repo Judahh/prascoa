@@ -7,7 +7,7 @@ export const ItemHolder = styled.a`
   cursor: pointer;
   border-top: 1px solid ${(props) => props.theme.holder};
   border-bottom: 1px solid ${(props) => props.theme.holder};
-  background: ${(props) => props.theme.background};
+  background: ${(props) => props.theme.menu};
   color: ${(props) => props.theme.text};
   transition: none;
 
@@ -20,7 +20,7 @@ export const ItemHolder = styled.a`
   }
 
   &: hover {
-    background: ${(props) => props.theme.background};
+    background: ${(props) => props.theme.menu};
     font-weight: bold;
     color: ${(props) => props.theme.bright};
   }

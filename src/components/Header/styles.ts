@@ -7,7 +7,7 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   height: 70px;
   background: ${(props) =>
-    props.menu === 0 ? props.theme.background : 'transparent'};
+    props.menu === 0 ? props.theme.menu : 'transparent'};
   mix-blend-mode: ${(props) => (props.menu === 2 ? 'difference' : 'unset')};
   position: fixed;
   z-index: 999;

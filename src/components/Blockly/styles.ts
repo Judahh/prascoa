@@ -8,19 +8,6 @@ export const Div = styled.div`
   padding-right: 5vw;
 `;
 
-export const SvgCanvas = styled.canvas`
-  transition: none;
-  animation: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  padding-left: 140px;
-  box-sizing: border-box;
-  background-color: rgb(152, 234, 224);
-`;
-
 export const BlocklyDiv = styled.div`
   padding-top: 70px;
   height: 100%;
@@ -65,31 +52,31 @@ export const BlocklyDiv = styled.div`
     transform: translateY(4px);
   }
 
-  .svgCanvas {
-    transition: none;
-    animation: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    padding-left: 140px;
-    box-sizing: border-box;
-    background-color: rgb(152, 234, 224);
-  }
+  // .svgCanvas {
+  //   transition: none;
+  //   animation: none;
+  //   position: absolute;
+  //   top: 0;
+  //   width: 1000;
+  //   height: 1000;
+  //   z-index: -1;
+  //   padding-left: 140px;
+  //   box-sizing: border-box;
+  //   background-color: rgb(152, 234, 224);
+  // }
 
-  .blocklyComputeCanvas {
-    transition: none;
-    animation: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    padding-left: 140px;
-    box-sizing: border-box;
-    background-color: transparent;
-  }
+  // .blocklyComputeCanvas {
+  //   transition: none;
+  //   animation: none;
+  //   position: absolute;
+  //   top: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   z-index: -1;
+  //   padding-left: 140px;
+  //   box-sizing: border-box;
+  //   background-color: transparent;
+  // }
 
   .blocklySvg {
     background-color: transparent;

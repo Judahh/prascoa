@@ -3,6 +3,7 @@
  * @suppress {duplicate}
  */
 
+import { Character } from './character';
 import { Element } from './element';
 
 // import Blockly from 'blockly';
@@ -27,6 +28,48 @@ export class Level {
   ];
 
   levels = [
+    [
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, Element.BA + Element.CharRight, Element.BB + Element.C, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      // eslint-disable-next-line prettier/prettier
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ],
     [
       // eslint-disable-next-line prettier/prettier
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -156,19 +199,28 @@ export class Level {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ], //,
   ];
+  canvas: HTMLCanvasElement;
+  context?: CanvasRenderingContext2D;
+
   constructor(level?: number) {
-    this.nextLevel(level);
+    this.canvas = document.getElementsByClassName(
+      'svgCanvas'
+    )[0] as HTMLCanvasElement;
+    const ctx = this.canvas.getContext('2d');
+    this.context = ctx !== null ? ctx : undefined;
+    this.refreshCanvas();
+    if (this.canvas) this.nextLevel(level);
+  }
+
+  refreshCanvas(): void {
+    const height = window.innerHeight;
+    const width = window.innerWidth - 140;
+    const smaller = height <= width ? height : width;
+    this.canvas.height = smaller;
+    this.canvas.width = smaller;
   }
 
   nextLevel(level?: number): void {
-    // if (this.currentLevel < this.levels.length) {
-    //   window.location = window.location.protocol + '//' +
-    //       window.location.host + window.location.pathname +
-    //       '?lang=' + BlocklyGames.LANG + '&level=' + (BlocklyGames.LEVEL + 1) +
-    //       '&skin=' + Maze.SKIN_ID;
-    // } else {
-    //   BlocklyInterface.indexPage();
-    // }
     this.draw(level ? level : 0);
   }
 
@@ -188,14 +240,8 @@ export class Level {
     return a > b ? a : b;
   }
 
-  drawMap(
-    currentLevel,
-    canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D,
-    map,
-    blockSprite
-  ) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawMap(currentLevel, map, blockSprite): void {
+    this.context!.clearRect(0, 0, this.canvas.width, this.canvas.height);
     for (let y = 0; y < currentLevel.length; y++) {
       const line = currentLevel[y];
       for (let x = 0; x < line.length; x++) {
@@ -203,41 +249,50 @@ export class Level {
         // if (currentLevel[y][x])
         console.log(currentLevel.length);
         console.log(line.length);
-
-        ctx.drawImage(
-          map,
-          blockSprite.startX,
-          blockSprite.startY,
-          blockSprite.width,
-          blockSprite.height,
-          (x * canvas.width) / (line.length * 2) -
-            (y * canvas.height) / (currentLevel.length * 2) +
-            canvas.width / 2.1111,
-          (y * canvas.height) / (currentLevel.length * 4) +
-            (x * canvas.width) / (line.length * 4) +
-            canvas.height / 4,
-          canvas.width / line.length,
-          canvas.height / currentLevel.length
-        );
+        console.log(blockSprite);
+        if (currentLevel[y][x])
+          this.context!.drawImage(
+            map,
+            blockSprite.startX,
+            blockSprite.startY,
+            blockSprite.width,
+            blockSprite.height,
+            (x * this.canvas.width) / (line.length * 2) -
+              (y * this.canvas.height) / (currentLevel.length * 2) +
+              this.canvas.width / 2.1111,
+            (y * this.canvas.height) / (currentLevel.length * 4) +
+              (x * this.canvas.width) / (line.length * 4) +
+              this.canvas.height / 4,
+            this.canvas.width / line.length,
+            this.canvas.height / currentLevel.length
+          );
+        if (
+          currentLevel[y][x] >= Element.Char &&
+          currentLevel[y][x] < Element.Carrot
+        )
+          new Character(
+            { x, y, position: currentLevel[y][x] / Element.Char },
+            this.canvas,
+            currentLevel,
+            {
+              height: currentLevel.length,
+              width: currentLevel.length,
+            }
+          );
       }
     }
   }
 
   draw(level: number): void {
-    const canvas: HTMLCanvasElement = document.getElementsByClassName(
-      'svgCanvas'
-    )[0] as HTMLCanvasElement;
-    const ctx = canvas.getContext('2d');
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-
     // load images
     const images = { map: new Image() };
     images.map.src = this.skins[0].sprite;
     const currentLevel = this.levels[level];
-
-    if (ctx)
-      images.map.onload = () =>
-        this.drawMap(currentLevel, canvas, ctx, images.map, this.skins[0]);
+    images.map.onload = () =>
+      this.drawMap(currentLevel, images.map, this.skins[0]);
+    // window.addEventListener('resize', () => {
+    //   // canvas.height = window.innerHeight;
+    //   // canvas.width = window.innerWidth;
+    // });
   }
 }
