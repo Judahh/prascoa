@@ -1,7 +1,15 @@
 export enum Position {
   None = 0,
   Left = 1,
+  L = 1,
+  left = 1,
   Right = 2,
+  R = 2,
+  right = 2,
   Down = 3,
+  D = 3,
+  down = 3,
   Up = 4,
+  U = 4,
+  up = 4,
 }

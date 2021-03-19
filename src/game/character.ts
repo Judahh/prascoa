@@ -3,7 +3,6 @@
  * @suppress {duplicate}
  */
 
-import { blockAnimations } from 'blockly';
 import { Action } from './action';
 import { Position } from './position';
 
@@ -18,8 +17,24 @@ export class Character {
       startX: 0,
       startY: 20,
       width: 148,
-      height: 208,
+      height: 148,
       speed: 2.5,
+      left: {
+        minFrame: 0,
+        maxFrame: 18,
+      },
+      up: {
+        minFrame: 19,
+        maxFrame: 37,
+      },
+      down: {
+        minFrame: 38,
+        maxFrame: 56,
+      },
+      right: {
+        minFrame: 57,
+        maxFrame: 75,
+      },
       // winSound: ['maze/win.mp3', 'maze/win.ogg'],
       // crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
       // crashType: Maze.CRASH_STOP
@@ -57,7 +72,7 @@ export class Character {
 
   action(
     location?: { x: number; y: number; position: Position },
-    action: Action
+    action?: Action
   ): { x: number; y: number; position: Position } {
     if (location) {
       this.x = location.x;
@@ -97,19 +112,21 @@ export class Character {
     this.context!.drawImage(
       sprite,
       this.skins[this.skin].startX,
-      this.skins[this.skin].startY,
+      this.skins[this.skin].startY +
+        this.skins[this.skin][Position[Position.left]].minFrame *
+          this.skins[this.skin].height,
       this.skins[this.skin].width,
       this.skins[this.skin].height,
       (this.x * this.canvas.width) / (this.currentLevel[0].length * 2) -
         (this.y * this.canvas.height) / (this.currentLevel.length * 2) +
         this.canvas.width / 2.1111 -
-        this.block.width * 0.8,
+        this.block.width,
       (this.y * this.canvas.height) / (this.currentLevel.length * 4) +
         (this.x * this.canvas.width) / (this.currentLevel[0].length * 4) +
         this.canvas.height / 4 -
-        this.block.height * 1.8,
-      (this.canvas.width / this.currentLevel[0].length) * 1.5,
-      (this.canvas.height / this.currentLevel.length) * 1.5
+        this.block.height,
+      this.canvas.width / this.currentLevel[0].length,
+      this.canvas.height / this.currentLevel.length
     );
   }
   update() {
