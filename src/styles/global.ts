@@ -242,4 +242,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
     background-color: transparent;
   }
+
+  .blocklyWidgetDiv,
+  .blocklyWidgetDiv * {
+    display: none;
+  }
 `;

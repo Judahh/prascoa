@@ -9,33 +9,42 @@ import { BlocklyComponent } from '../Blockly/blocklyComponent';
 
 import '../Blockly/custom';
 import Blockly from 'blockly';
-import { Level } from '../../game/level';
+import { Game } from '../../game/game';
 import { Background, SvgCanvas } from './styles';
+import { Audio } from '../../game/audio';
 
 const initialXml =
-  '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="start" x="0" y="0"></block></xml>';
+  '<xml xmlns="http://www.w3.org/1999/xhtml"><block deletable="false" movable="false" id="blockStart" type="start" x="0" y="0"></block></xml>';
 
 const Home = (props) => {
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState({});
-  const [minimal, setMinimal] = useState({});
-  const [level, setLevel] = useState({});
+  const [play, setPlay] = useState({});
+  const [level, setLevel] = useState(0);
+  const [game, setGame] = useState({});
+  const [audio, setAudio] = useState({});
+
   useEffect(() => {
-    setMinimal(
-      Blockly.Theme.defineTheme('minimal', {
-        base: 'zelos',
-        componentStyles: {
-          workspaceBackgroundColour: 'transparent', //'#98eae0',
-          flyoutBackgroundColour: '#47baa4',
-          flyoutOpacity: 1,
-          scrollbarColour: '#797979',
-          insertionMarkerColour: '#47baa4',
-          insertionMarkerOpacity: 1,
-          scrollbarOpacity: 1,
-        },
-      })
-    );
-    if (level !== {}) setLevel(new Level(0));
+    if (game instanceof Game) game.setLevel(level);
+  }, [level]);
+
+  useEffect(() => {
+    if (!(game instanceof Game)) {
+      setGame(new Game());
+    }
+
+    if (!(audio instanceof Audio)) {
+      setAudio(new Audio());
+    }
+
+    if (game instanceof Game && audio instanceof Audio && play === {}) {
+      setPlay(document.querySelectorAll('[data-id="blockStart"]')[0]);
+      if (play instanceof HTMLElement)
+        play.onclick = () => {
+          audio.play.bind(audio);
+          if (game instanceof Game) game.play.bind(game);
+        };
+    }
   }, []);
 
   return (
@@ -50,7 +59,6 @@ const Home = (props) => {
           readOnly={false}
           trashcan={false}
           initialXml={initialXml}
-          theme={minimal}
           renderer={'zelos'}
           grid={{
             spacing: 50,

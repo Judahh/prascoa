@@ -1,6 +1,14 @@
 import Blockly from 'blockly';
 import './renderers/constants';
 
+// Blockly.WidgetDiv.createDom = () => {
+//   if (Blockly.WidgetDiv.DIV) {
+//     console.log('A');
+//     return; // Already created.
+//   }
+//   console.log('B');
+// };
+
 Blockly.Blocks['start'] = {
   init: function () {
     this.setMovable(false);

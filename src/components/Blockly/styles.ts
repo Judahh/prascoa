@@ -39,6 +39,16 @@ export const BlocklyDiv = styled.div`
     animation: none;
   }
 
+  .blocklyScrollbarHandle,
+  .blocklyScrollbarBackground:hover + .blocklyScrollbarHandle {
+    opacity: 1;
+    fill: #fff;
+    :hover {
+      opacity: 1;
+      fill: #98eae0;
+    }
+  }
+
   .blocklyText {
     font-family: 'Roboto';
   }
@@ -52,38 +62,11 @@ export const BlocklyDiv = styled.div`
     transform: translateY(4px);
   }
 
-  // .svgCanvas {
-  //   transition: none;
-  //   animation: none;
-  //   position: absolute;
-  //   top: 0;
-  //   width: 1000;
-  //   height: 1000;
-  //   z-index: -1;
-  //   padding-left: 140px;
-  //   box-sizing: border-box;
-  //   background-color: rgb(152, 234, 224);
-  // }
-
-  // .blocklyComputeCanvas {
-  //   transition: none;
-  //   animation: none;
-  //   position: absolute;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   z-index: -1;
-  //   padding-left: 140px;
-  //   box-sizing: border-box;
-  //   background-color: transparent;
-  // }
-
   .blocklySvg {
     background-color: transparent;
   }
 
   .background {
-    /* background-color: rgb(152, 234, 224); */
     z-index: -1000;
   }
 

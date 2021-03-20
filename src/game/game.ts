@@ -7,8 +7,9 @@ import { Character } from './character';
 import { Element } from './element';
 
 // import Blockly from 'blockly';
-export class Level {
+export class Game {
   currentLevel: any;
+  chars: Character[];
 
   skins = [
     {
@@ -209,7 +210,8 @@ export class Level {
     const ctx = this.canvas.getContext('2d');
     this.context = ctx !== null ? ctx : undefined;
     this.refreshCanvas();
-    if (this.canvas) this.nextLevel(level);
+    this.chars = [];
+    if (this.canvas) this.setLevel(level);
   }
 
   refreshCanvas(): void {
@@ -220,9 +222,11 @@ export class Level {
     this.canvas.width = smaller;
   }
 
-  nextLevel(level?: number): void {
+  setLevel(level?: number): void {
     this.draw(level ? level : 0);
   }
+
+  play() {}
 
   getNode(n: any, v: any): any {
     n = document.createElementNS('http://www.w3.org/2000/svg', n);
@@ -247,9 +251,9 @@ export class Level {
       for (let x = 0; x < line.length; x++) {
         // const element = line[x];
         // if (currentLevel[y][x])
-        console.log(currentLevel.length);
-        console.log(line.length);
-        console.log(blockSprite);
+        // console.log(currentLevel.length);
+        // console.log(line.length);
+        // console.log(blockSprite);
         if (currentLevel[y][x])
           this.context!.drawImage(
             map,
@@ -270,14 +274,16 @@ export class Level {
           currentLevel[y][x] >= Element.Char &&
           currentLevel[y][x] < Element.Carrot
         )
-          new Character(
-            { x, y, position: currentLevel[y][x] / Element.Char },
-            this.canvas,
-            currentLevel,
-            {
-              height: currentLevel.length,
-              width: currentLevel.length,
-            }
+          this.chars.push(
+            new Character(
+              { x, y, position: currentLevel[y][x] / Element.Char },
+              this.canvas,
+              currentLevel,
+              {
+                height: currentLevel.length,
+                width: currentLevel.length,
+              }
+            )
           );
       }
     }
@@ -295,4 +301,6 @@ export class Level {
     //   // canvas.width = window.innerWidth;
     // });
   }
+
+  play() {}
 }
