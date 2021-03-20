@@ -8,6 +8,35 @@ import './renderers/constants';
 //   }
 //   console.log('B');
 // };
+Blockly.Workspace.prototype.undo = (redo) => {
+  // var inputStack = redo ? this.redoStack_ : this.undoStack_;
+  // var outputStack = redo ? this.undoStack_ : this.redoStack_;
+  // var event = inputStack.pop();
+  // if (!event) {
+  //   return;
+  // }
+  // var events = [event];
+  // // Do another undo/redo if the next one is of the same group.
+  // while (inputStack.length && event.group &&
+  //     event.group == inputStack[inputStack.length - 1].group) {
+  //   events.push(inputStack.pop());
+  // }
+  // // Push these popped events on the opposite stack.
+  // for (var i = 0, event; event = events[i]; i++) {
+  //   outputStack.push(event);
+  // }
+  // events = Blockly.Events.filter(events, redo);
+  // Blockly.Events.recordUndo = false;
+  // // BROKEN
+  // // for (var i = 0, event; event = events[i]; i++) {
+  // //   event.run(redo);
+  // // }
+  // // FIXED
+  // for (var i = events.length - 1; i >= 0; i--) {
+  //   events[i].run(redo);
+  // }
+  // Blockly.Events.recordUndo = true;
+};
 
 Blockly.Blocks['start'] = {
   init: function () {
@@ -17,6 +46,7 @@ Blockly.Blocks['start'] = {
     this.setColour('#4285F4');
     this.appendStatementInput('Content').setCheck(null);
     this.setInputsInline(true);
+    this.event;
   },
 };
 
