@@ -113,6 +113,7 @@ Blockly.Blocks['and'] = {
     this.setInputsInline(true);
   },
 };
+//! TODO
 
 Blockly.Blocks['or'] = {
   init: function () {
@@ -124,6 +125,7 @@ Blockly.Blocks['or'] = {
     this.setInputsInline(true);
   },
 };
+//! TODO
 
 Blockly.Blocks['not'] = {
   init: function () {
@@ -134,6 +136,7 @@ Blockly.Blocks['not'] = {
     this.setInputsInline(true);
   },
 };
+//! TODO
 
 Blockly.Blocks['number'] = {
   init: function () {
@@ -147,6 +150,7 @@ Blockly.Blocks['number'] = {
   },
 };
 Blockly.JavaScript['number'] = (block) => {
+  //! TODO
   console.log(block);
   return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
 };
