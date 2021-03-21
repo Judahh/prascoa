@@ -1,18 +1,31 @@
 // file deepcode ignore no-any: any needed
-import React, { useContext, useState } from 'react';
-import { DrawerWrapper, DrawerMenu, Toggle, Item } from './styles';
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import {
+  DrawerWrapper,
+  DrawerMenu,
+  Toggle,
+  Item,
+  DrawerModal,
+  Modal,
+  DrawerModalHolder,
+} from './styles';
 import { Text } from '../../../components/Text';
 import { NavHolder } from '../../../components/Header/Nav/styles';
 import LanguageContext from '../../../language/context';
 import { default as map } from '../../../pages/map.json';
+import { ModalType } from './modalType';
 // import { default as lightTheme } from '../../../styles/themes/light.json';
 // import { LogoHolder, Logo } from '../../../components/Layout/styles';
+
+// const useOutsideAlerter = (ref, func) => {};
 
 const Drawer = (props) => {
   const { nav, languageAcronym } = useContext(LanguageContext);
   const [open, setOpen] = useState(false);
+  const [modal, setModal] = useState(ModalType.None);
   const [collapsed, setCollapsed] = useState(false);
-  const navItems: Array<{ href: any; content: any }> = [];
+  const navItems: Array<{ href: any; content: any; modal: ModalType }> = [];
+  const wrapperRef = useRef(null);
 
   const svg = {
     map: (
@@ -42,6 +55,7 @@ const Drawer = (props) => {
         navItems.push({
           href: element,
           content: key !== 'home' ? nav[key] : '‏‏‎ ‎',
+          modal: ModalType[key],
         });
     }
   }
@@ -62,6 +76,35 @@ const Drawer = (props) => {
     }
   };
 
+  const setAndHandleCollapsed = (type: ModalType) => {
+    handleCollapsed();
+    set(type);
+  };
+
+  const set = (type: ModalType) => {
+    if (modal !== type) {
+      setModal(type);
+    }
+  };
+
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    const handleClickOutside = (event) => {
+      if (wrapperRef.current && !wrapperRef?.current?.contains(event.target)) {
+        setModal(ModalType.None);
+      }
+    };
+
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [wrapperRef]);
+
   return (
     <DrawerWrapper>
       <NavHolder>
@@ -78,7 +121,9 @@ const Drawer = (props) => {
               <Item
                 key={index}
                 href={item.href}
-                onClick={handleCollapsed}
+                onClick={() => {
+                  setAndHandleCollapsed(item.modal);
+                }}
                 menu={props.menu}
               >
                 {svg[item.content]}
@@ -90,6 +135,20 @@ const Drawer = (props) => {
             <Text>{languageAcronym}</Text>
           </Item>
         </DrawerMenu>
+
+        <DrawerModalHolder
+          className={modal !== ModalType.None ? 'open' : 'closed'}
+        >
+          <DrawerModal ref={wrapperRef}>
+            <Modal className={modal === ModalType.Share ? 'open' : 'closed'}>
+              SHARE
+            </Modal>
+
+            <Modal className={modal === ModalType.Map ? 'open' : 'closed'}>
+              MAP
+            </Modal>
+          </DrawerModal>
+        </DrawerModalHolder>
       </NavHolder>
     </DrawerWrapper>
   );

@@ -67,6 +67,62 @@ export const DrawerMenu = styled.div`
   }
 `;
 
+export const DrawerModalHolder = styled.div`
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: -500%;
+  display: node;
+  animation: none;
+  transition: all 0.2s ease;
+  z-index: 10;
+  opacity: 0;
+
+  background: transparent;
+
+  &.open {
+    display: block;
+    top: 0px;
+    transition: all transform 0.2s ease;
+    opacity: 1;
+  }
+
+  &.closed {
+    display: none;
+    top: -500%;
+    transition: all transform 0.2s ease;
+    opacity: 0;
+  }
+`;
+
+export const DrawerModal = styled.div`
+  position: relative;
+  padding: 25px;
+  height: 30%;
+  width: 100%;
+  left: 0;
+  top: 70px;
+  display: block;
+  animation: none;
+  transition: all 0.2s ease;
+  z-index: 10;
+  opacity: 1;
+
+  background: ${(props) => props.theme.menu};
+  color: ${(props) => props.theme.text};
+`;
+
+export const Modal = styled.div`
+  &.open {
+    display: block;
+  }
+
+  &.closed {
+    display: none;
+  }
+`;
+
 export const DrawerWrapper = styled.div`
   width: 100%;
   left: 0;
