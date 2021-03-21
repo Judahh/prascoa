@@ -189,7 +189,7 @@ Blockly.Blocks['forward'] = {
 };
 
 Blockly.JavaScript['forward'] = (block) => {
-  return 'this.forward();\n';
+  return 'this.action(' + block.type + ');\n';
 };
 
 Blockly.Blocks['left'] = {
