@@ -243,8 +243,8 @@ export default createGlobalStyle`
     background-color: transparent;
   }
 
-  .blocklyWidgetDiv,
-  .blocklyWidgetDiv * {
+  .blocklyMenu,
+  .blocklyMenu * {
     display: none;
   }
 `;

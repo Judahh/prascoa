@@ -16,6 +16,7 @@ import { Audio } from '../../game/audio';
 const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block deletable="false" movable="false" id="blockStart" type="start" x="0" y="0"></block></xml>';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Home = (props) => {
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState({});
@@ -29,21 +30,27 @@ const Home = (props) => {
   }, [level]);
 
   useEffect(() => {
-    if (!(game instanceof Game)) {
+    if (audio instanceof Audio && !(game instanceof Game)) {
       setGame(new Game());
     }
+  }, [audio]);
 
+  useEffect(() => {
+    if (game instanceof Game) {
+      setPlay(document.querySelectorAll('[data-id="blockStart"]')[0]);
+    }
+  }, [game]);
+
+  useEffect(() => {
+    (play as HTMLElement).onclick = () => {
+      (audio as Audio).play.bind(audio)();
+      (game as Game).play.bind(game)(simpleWorkspace.current.primaryWorkspace);
+    };
+  }, [play]);
+
+  useEffect(() => {
     if (!(audio instanceof Audio)) {
       setAudio(new Audio());
-    }
-
-    if (game instanceof Game && audio instanceof Audio && play === {}) {
-      setPlay(document.querySelectorAll('[data-id="blockStart"]')[0]);
-      if (play instanceof HTMLElement)
-        play.onclick = () => {
-          audio.play.bind(audio);
-          if (game instanceof Game) game.play.bind(game);
-        };
     }
   }, []);
 

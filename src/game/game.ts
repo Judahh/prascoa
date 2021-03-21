@@ -6,7 +6,7 @@
 import { Character } from './character';
 import { Element } from './element';
 
-// import Blockly from 'blockly';
+import Blockly from 'blockly';
 export class Game {
   currentLevel: any;
   chars: Character[];
@@ -226,7 +226,37 @@ export class Game {
     this.draw(level ? level : 0);
   }
 
-  play() {}
+  play(simpleWorkspace) {
+    // // Prevent double-clicks or double-taps.
+    // if (BlocklyInterface.eventSpam(e)) {
+    //   return;
+    // }
+    // BlocklyDialogs.hideDialog(false);
+    // // Only allow a single top block on level 1.
+    // if (
+    //   BlocklyGames.LEVEL == 1 &&
+    //   BlocklyInterface.workspace.getTopBlocks(false).length > 1 &&
+    //   Maze.result != Maze.ResultType.SUCCESS &&
+    //   !BlocklyGames.loadFromLocalStorage(BlocklyGames.NAME, BlocklyGames.LEVEL)
+    // ) {
+    //   Maze.levelHelp();
+    //   return;
+    // }
+    // const runButton = document.getElementById('runButton');
+    // const resetButton = document.getElementById('resetButton');
+    // // Ensure that Reset button is at least as wide as Run button.
+    // if (!resetButton.style.minWidth) {
+    //   resetButton.style.minWidth = runButton.offsetWidth + 'px';
+    // }
+    // runButton.style.display = 'none';
+    // resetButton.style.display = 'inline';
+    // Maze.reset(false);
+    // Maze.execute();
+    console.log('PLAY Game');
+    // console.log('PLAY: ', simpleWorkspace);
+
+    console.log(Blockly.JavaScript.workspaceToCode(simpleWorkspace));
+  }
 
   getNode(n: any, v: any): any {
     n = document.createElementNS('http://www.w3.org/2000/svg', n);
@@ -301,6 +331,4 @@ export class Game {
     //   // canvas.width = window.innerWidth;
     // });
   }
-
-  play() {}
 }

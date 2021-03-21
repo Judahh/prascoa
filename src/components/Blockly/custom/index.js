@@ -50,9 +50,14 @@ Blockly.Blocks['start'] = {
   },
 };
 
+Blockly.JavaScript['start'] = (block) => {
+  var branch = Blockly.JavaScript.statementToCode(block, 'Content');
+  return branch;
+};
+
 Blockly.Blocks['while'] = {
   init: function () {
-    this.appendValueInput('NAME').appendField(
+    this.appendValueInput('VALUE').appendField(
       new Blockly.FieldLabel('⟳', 'blockType1')
     );
     this.appendStatementInput('Content').setCheck(null);
@@ -63,9 +68,20 @@ Blockly.Blocks['while'] = {
   },
 };
 
+Blockly.JavaScript['while'] = (block) => {
+  var field = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUE',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  var branch = Blockly.JavaScript.statementToCode(block, 'Content');
+  return block.type + ' (' + field + ') {\n' + branch + '}\n';
+};
+
 Blockly.Blocks['if'] = {
   init: function () {
-    this.appendValueInput('NAME').appendField(
+    this.appendValueInput('VALUE').appendField(
       new Blockly.FieldLabel(' ⇒', 'blockType2')
     );
     this.appendStatementInput('Content').setCheck(null);
@@ -74,6 +90,17 @@ Blockly.Blocks['if'] = {
     this.setNextStatement(true, null);
     this.setInputsInline(true);
   },
+};
+
+Blockly.JavaScript['if'] = (block) => {
+  var field = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUE',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  var branch = Blockly.JavaScript.statementToCode(block, 'Content');
+  return block.type + ' (' + field + ') {\n' + branch + '}\n';
 };
 
 Blockly.Blocks['and'] = {
@@ -119,6 +146,10 @@ Blockly.Blocks['number'] = {
     this.setInputsInline(true);
   },
 };
+Blockly.JavaScript['number'] = (block) => {
+  console.log(block);
+  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
+};
 
 Blockly.Blocks['block'] = {
   init: function () {
@@ -128,6 +159,9 @@ Blockly.Blocks['block'] = {
     this.setInputsInline(true);
   },
 };
+Blockly.JavaScript['block'] = (block) => {
+  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
+};
 
 Blockly.Blocks['carrot'] = {
   init: function () {
@@ -136,6 +170,10 @@ Blockly.Blocks['carrot'] = {
     this.setOutput(true, null);
     this.setInputsInline(true);
   },
+};
+
+Blockly.JavaScript['carrot'] = (block) => {
+  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['forward'] = {
@@ -150,6 +188,10 @@ Blockly.Blocks['forward'] = {
   },
 };
 
+Blockly.JavaScript['forward'] = (block) => {
+  return 'this.forward();\n';
+};
+
 Blockly.Blocks['left'] = {
   init: function () {
     this.appendDummyInput().appendField(
@@ -162,6 +204,10 @@ Blockly.Blocks['left'] = {
   },
 };
 
+Blockly.JavaScript['left'] = (block) => {
+  return 'this.turn(' + block.type + ');\n';
+};
+
 Blockly.Blocks['right'] = {
   init: function () {
     this.appendDummyInput().appendField(
@@ -172,4 +218,8 @@ Blockly.Blocks['right'] = {
     this.setNextStatement(true, null);
     this.setInputsInline(true);
   },
+};
+
+Blockly.JavaScript['right'] = (block) => {
+  return 'this.turn(' + block.type + ');\n';
 };

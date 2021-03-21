@@ -6,6 +6,7 @@ export class Audio {
   source?: MediaElementAudioSourceNode;
   sourceNode?: AudioBufferSourceNode;
   buffer?: AudioBuffer;
+  started?: boolean;
 
   constructor() {
     this.audio = document.createElement('audio');
@@ -17,7 +18,7 @@ export class Audio {
   }
 
   play() {
-    console.log('PLAY');
+    console.log('PLAY audio');
     if (!this.audioContext) {
       this.audioContext = new AudioContext();
       this.buffer = this.audioContext.createBuffer(
@@ -39,7 +40,8 @@ export class Audio {
       if (this.buffer) this.sourceNode.buffer = this.buffer;
       this.sourceNode.connect(this.audioContext.destination);
     }
-    this.sourceNode.start(0);
+    if (!this.started) this.sourceNode.start(0);
+    this.started = true;
 
     // this.sourceNode.buffer=this.audioContext.createBuffer(numberOfChannels, length, sampleRate)
   }
