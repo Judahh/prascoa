@@ -76,7 +76,7 @@ Blockly.JavaScript['while'] = (block) => {
   );
 
   var branch = Blockly.JavaScript.statementToCode(block, 'Content');
-  return block.type + ' (' + field + ') {\n' + branch + '}\n';
+  return block.type + ' (this.check(' + field + ')) {\n' + branch + '}\n';
 };
 
 Blockly.Blocks['if'] = {
@@ -100,43 +100,83 @@ Blockly.JavaScript['if'] = (block) => {
   );
 
   var branch = Blockly.JavaScript.statementToCode(block, 'Content');
-  return block.type + ' (' + field + ') {\n' + branch + '}\n';
+  return block.type + ' (this.check(' + field + ')) {\n' + branch + '}\n';
 };
 
 Blockly.Blocks['and'] = {
   init: function () {
-    this.appendValueInput('ContentA');
-    this.appendDummyInput().appendField('✖️ ');
-    this.appendValueInput('ContentB');
+    this.appendValueInput('VALUEA');
+    this.appendDummyInput().appendField('✖️');
+    this.appendValueInput('VALUEB');
     this.setColour('#FFF');
     this.setOutput(true, null);
     this.setInputsInline(true);
   },
 };
-//! TODO
+
+Blockly.JavaScript['and'] = (block) => {
+  var fielda = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEA',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  var fieldb = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEB',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  return [
+    'this.and(' + fielda + ',' + fieldb + ')',
+    Blockly.JavaScript.ORDER_NONE,
+  ];
+};
 
 Blockly.Blocks['or'] = {
   init: function () {
-    this.appendValueInput('ContentA');
-    this.appendDummyInput().appendField('➕ ');
-    this.appendValueInput('ContentB');
+    this.appendValueInput('VALUEA');
+    this.appendDummyInput().appendField('➕');
+    this.appendValueInput('VALUEB');
     this.setColour('#FFF');
     this.setOutput(true, null);
     this.setInputsInline(true);
   },
 };
-//! TODO
+
+Blockly.JavaScript['or'] = (block) => {
+  var fielda = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEA',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  var fieldb = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEB',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  return [
+    'this.or(' + fielda + ',' + fieldb + ')',
+    Blockly.JavaScript.ORDER_NONE,
+  ];
+};
 
 Blockly.Blocks['not'] = {
   init: function () {
     this.appendDummyInput().appendField('🚫 ');
-    this.appendValueInput('ContentA');
+    this.appendValueInput('VALUE');
     this.setColour('#FFF');
     this.setOutput(true, null);
     this.setInputsInline(true);
   },
 };
-//! TODO
+
+Blockly.JavaScript['not'] = (block) => {
+  var field = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUE',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  return ['this.not(' + field + ')', Blockly.JavaScript.ORDER_NONE];
+};
 
 Blockly.Blocks['number'] = {
   init: function () {
@@ -150,9 +190,8 @@ Blockly.Blocks['number'] = {
   },
 };
 Blockly.JavaScript['number'] = (block) => {
-  //! TODO
-  console.log(block);
-  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
+  var field = block.getFieldValue('number');
+  return [field, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['block'] = {
