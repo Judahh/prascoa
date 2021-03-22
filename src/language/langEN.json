@@ -12,8 +12,8 @@
   },
   "share": {
     "twitter": "https://twitter.com/intent/tweet?url=https%3A%2F%2Fprascoa.vercel.app%2F&text=Hi%2C%20I%20scored%20<<<X>>>%20on%20Prascoa%20(https%3A%2F%2Fprascoa.vercel.app%2F)%0DFollow%20%40nerd_stuff_tech%20(https%3A%2F%2Fwww.instagram.com%2Fnerd_stuff_tech)%0DSubscribe%20to%20Nerd%20Stuff%20(https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUCqcixwWXyd6VPGGgGPbeIFg)",
-    "facebook": "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprascoa.vercel.app%2F",
     "whatsapp": "https://api.whatsapp.com/send?text=Hi%2C%20I%20scored%20<<<X>>>%20on%20Prascoa%20(https%3A%2F%2Fprascoa.vercel.app%2F)%0DFollow%20%40nerd_stuff_tech%20(https%3A%2F%2Fwww.instagram.com%2Fnerd_stuff_tech)%0DSubscribe%20to%20Nerd%20Stuff%20(https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUCqcixwWXyd6VPGGgGPbeIFg)",
+    "facebook": "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprascoa.vercel.app%2F",
     "copy": "Hi, I scored X on Prascoa (https://prascoa.vercel.app/)\nFollow @nerd_stuff_tech (https://www.instagram.com/nerd_stuff_tech)\nSubscribe to Nerd Stuff (https://www.youtube.com/channel/UCqcixwWXyd6VPGGgGPbeIFg)",
     "youtube": "https://www.youtube.com/channel/UCqcixwWXyd6VPGGgGPbeIFg",
     "instagram": "https://www.instagram.com/nerd_stuff_tech"
