@@ -9,12 +9,15 @@ import { Element } from './element';
 import Blockly from 'blockly';
 import { levels } from './levels';
 import { default as skins } from './blockSkins.json';
+import { Audio } from './audio';
 export class Game {
   protected currentLevel: number;
   protected _scores: Array<number | undefined>;
   protected chars: Character[];
   protected canvas: HTMLCanvasElement;
   protected context?: CanvasRenderingContext2D;
+
+  protected audio: Audio;
 
   constructor(level?: number) {
     this.canvas = document.getElementsByClassName(
@@ -31,6 +34,7 @@ export class Game {
       this._scores[index] = undefined;
     }
     if (this.canvas) this.level = this.currentLevel;
+    this.audio = new Audio();
   }
 
   get scores(): Array<number | undefined> {

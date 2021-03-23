@@ -11,7 +11,6 @@ import '../Blockly/custom';
 // import Blockly from 'blockly';
 import { Game } from '../../game/game';
 import { Background, Play, Text, Score, SvgCanvas } from './styles';
-import { Audio } from '../../game/audio';
 
 const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block deletable="false" movable="false" id="blockStart" type="start" x="0" y="0"></block></xml>';
@@ -22,15 +21,7 @@ const Home = (props) => {
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState({});
   const [play, setPlay] = useState({});
-  const [audio, setAudio] = useState({});
   const [game, setGame] = useState({});
-
-  useEffect(() => {
-    if (audio instanceof Audio && setGame && !(game instanceof Game)) {
-      setGame(new Game());
-      (audio as Audio).play.bind(audio)();
-    }
-  }, [audio]);
 
   useEffect(() => {
     if (game instanceof Game) {
@@ -88,8 +79,8 @@ const Home = (props) => {
         ) : (
           <Play
             onClick={() => {
-              if (!(audio instanceof Audio)) {
-                setAudio(new Audio());
+              if (setGame && !(game instanceof Game)) {
+                setGame(new Game());
               }
             }}
           >

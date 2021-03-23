@@ -33,9 +33,9 @@ export class Audio {
     sourceNode.buffer = this.buffer;
     sourceNode.connect(this.audioContext.destination);
     sourceNode.loop = true;
-    sourceNode.loopStart = 5.6;
+    sourceNode.loopStart = 6;
     sourceNode.loopEnd = 70;
-    sourceNode.start(0, 5.6);
+    sourceNode.start(0, 6);
   }
 
   protected jump(buffer?) {
@@ -54,8 +54,28 @@ export class Audio {
     sourceNode.buffer = this.buffer;
     sourceNode.connect(this.audioContext.destination);
     sourceNode.loop = false;
-    sourceNode.start(0, 3, 1);
-    sourceNode.stop(1);
+    sourceNode.start(0, 3, 1.5);
+    sourceNode.stop(1.5);
+  }
+
+  protected fall(buffer?) {
+    const sourceNode = this.audioContext.createBufferSource();
+    if (buffer) this.buffer = buffer;
+    sourceNode.buffer = this.buffer;
+    sourceNode.connect(this.audioContext.destination);
+    sourceNode.loop = false;
+    sourceNode.start(0, 1.5, 1.5);
+    sourceNode.stop(1.5);
+  }
+
+  protected raise(buffer?) {
+    const sourceNode = this.audioContext.createBufferSource();
+    if (buffer) this.buffer = buffer;
+    sourceNode.buffer = this.buffer;
+    sourceNode.connect(this.audioContext.destination);
+    sourceNode.loop = false;
+    sourceNode.start(0, 0, 1.5);
+    sourceNode.stop(1.5);
   }
 
   onDecodeBufferError(error) {
