@@ -1,25 +1,41 @@
 [
   {
     "sprite": "sprites/rabbit.svg",
-    "startX": 0,
-    "startY": 20,
-    "width": 148,
-    "height": 148,
+    "startX": 10,
+    "startY": 0,
+    "width": 108,
+    "height": 200,
     "speed": 2.5,
-    "left": {
+    "rightJump": {
       "minFrame": 0,
-      "maxFrame": 18
-    },
-    "up": {
-      "minFrame": 19,
-      "maxFrame": 37
-    },
-    "down": {
-      "minFrame": 38,
-      "maxFrame": 56
+      "maxFrame": 9
     },
     "right": {
+      "minFrame": 10,
+      "maxFrame": 18
+    },
+    "upJump": {
+      "minFrame": 19,
+      "maxFrame": 28
+    },
+    "up": {
+      "minFrame": 29,
+      "maxFrame": 37
+    },
+    "downJump": {
+      "minFrame": 38,
+      "maxFrame": 47
+    },
+    "down": {
+      "minFrame": 48,
+      "maxFrame": 56
+    },
+    "leftJump": {
       "minFrame": 57,
+      "maxFrame": 66
+    },
+    "left": {
+      "minFrame": 67,
       "maxFrame": 75
     },
     "winSound": [

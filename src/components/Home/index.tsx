@@ -10,7 +10,15 @@ import { BlocklyComponent } from '../Blockly/blocklyComponent';
 import '../Blockly/custom';
 // import Blockly from 'blockly';
 import { Game } from '../../game/game';
-import { Background, Play, Text, Score, SvgCanvas } from './styles';
+import {
+  Background,
+  Play,
+  Text,
+  Score,
+  SvgCanvas,
+  SvgCanvas2,
+  Background2,
+} from './styles';
 
 const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block deletable="false" movable="false" id="blockStart" type="start" x="0" y="0"></block></xml>';
@@ -91,6 +99,12 @@ const Home = (props) => {
         <Background theme={props.theme}>
           <SvgCanvas className="svgCanvas"></SvgCanvas>
         </Background>
+        <Background2 theme={props.theme}>
+          <SvgCanvas2 className="svgCanvas2"></SvgCanvas2>
+        </Background2>
+        <Background2 theme={props.theme}>
+          <SvgCanvas2 className="svgCanvas3"></SvgCanvas2>
+        </Background2>
       </Layout>
     </>
   );

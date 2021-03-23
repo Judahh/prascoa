@@ -1,6 +1,11 @@
 import { Element } from './element';
 export const levels = [
   [
+    [1, 1, 1],
+    [1, Element.BA + Element.CharRight, Element.BB + Element.C],
+    [1, 1, 1],
+  ],
+  [
     // eslint-disable-next-line prettier/prettier
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     // eslint-disable-next-line prettier/prettier

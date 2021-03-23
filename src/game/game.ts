@@ -10,13 +10,14 @@ import Blockly from 'blockly';
 import { levels } from './levels';
 import { default as skins } from './blockSkins.json';
 import { Audio } from './audio';
+import { Item } from './item';
 export class Game {
   protected currentLevel: number;
   protected _scores: Array<number | undefined>;
   protected chars: Character[];
+  protected items: Item[];
   protected canvas: HTMLCanvasElement;
   protected context?: CanvasRenderingContext2D;
-
   protected audio: Audio;
 
   constructor(level?: number) {
@@ -27,6 +28,7 @@ export class Game {
     this.context = ctx !== null ? ctx : undefined;
     this.refreshCanvas();
     this.chars = [];
+    this.items = [];
     this.currentLevel = level ? level : 0;
     this._scores = [];
     this._scores[0] = 0;
@@ -58,7 +60,7 @@ export class Game {
   }
 
   refreshCanvas(): void {
-    const height = window.innerHeight;
+    const height = window.innerHeight - 70;
     const width = window.innerWidth - 140;
     const smaller = height <= width ? height : width;
     this.canvas.height = smaller;
@@ -122,31 +124,61 @@ export class Game {
     return a > b ? a : b;
   }
 
-  drawMap(currentLevel, map, blockSprite): void {
+  drawXY(
+    map,
+    blockSprite,
+    numberOfColumns: number,
+    numberOfRows: number,
+    addWidth: number,
+    addHeight: number,
+    x: number,
+    y: number
+  ): void {
+    this.context!.drawImage(
+      map,
+      blockSprite.startX,
+      blockSprite.startY,
+      blockSprite.width,
+      blockSprite.fullHeight,
+      (x * this.canvas.width) / (numberOfColumns * 2) -
+        (y * this.canvas.height) / (numberOfRows * 2) +
+        addWidth,
+      (y * this.canvas.height) / (numberOfRows * 4) +
+        (x * this.canvas.width) / (numberOfColumns * 4) +
+        addHeight,
+      this.canvas.width / numberOfColumns,
+      this.canvas.height / numberOfRows
+    );
+  }
+
+  clear(): void {
     this.context!.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  drawMap(currentLevel, map, blockSprite): void {
+    this.clear();
+
+    const realHeight =
+      ((this.canvas.height / currentLevel.length) * (currentLevel.length + 1)) /
+      2;
+    const addHeight = (this.canvas.height - realHeight) / 2;
+
     for (let y = 0; y < currentLevel.length; y++) {
       const line = currentLevel[y];
       for (let x = 0; x < line.length; x++) {
-        // const element = line[x];
-        // if (currentLevel[y][x])
-        // console.log(currentLevel.length);
-        // console.log(line.length);
-        // console.log(blockSprite);
+        const addWidth =
+          (this.canvas.width / line.length) * ((line.length - 1) / 2);
+
         if (currentLevel[y][x])
-          this.context!.drawImage(
+          this.drawXY(
             map,
-            blockSprite.startX,
-            blockSprite.startY,
-            blockSprite.width,
-            blockSprite.height,
-            (x * this.canvas.width) / (line.length * 2) -
-              (y * this.canvas.height) / (currentLevel.length * 2) +
-              this.canvas.width / 2.1111,
-            (y * this.canvas.height) / (currentLevel.length * 4) +
-              (x * this.canvas.width) / (line.length * 4) +
-              this.canvas.height / 4,
-            this.canvas.width / line.length,
-            this.canvas.height / currentLevel.length
+            blockSprite,
+            line.length,
+            currentLevel.length,
+            addWidth,
+            addHeight,
+            x,
+            y
           );
         if (
           currentLevel[y][x] >= Element.Char &&
@@ -154,8 +186,22 @@ export class Game {
         )
           this.chars.push(
             new Character(
-              { x, y, position: currentLevel[y][x] / Element.Char },
-              this.canvas,
+              { x, y, position: Math.trunc(currentLevel[y][x] / Element.Char) },
+              currentLevel,
+              {
+                height: currentLevel.length,
+                width: currentLevel.length,
+              }
+            )
+          );
+        if (currentLevel[y][x] >= Element.Carrot)
+          this.items.push(
+            new Item(
+              {
+                x,
+                y,
+                position: Math.trunc(currentLevel[y][x] / Element.Carrot),
+              },
               currentLevel,
               {
                 height: currentLevel.length,
@@ -165,6 +211,10 @@ export class Game {
           );
       }
     }
+  }
+
+  calcScore(carrots: number, blocks: number, steps: number) {
+    return (1000 * Math.pow(carrots, 2)) / (blocks * steps);
   }
 
   draw(level: number): void {

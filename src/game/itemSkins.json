@@ -1,0 +1,18 @@
+[
+  {
+    "sprite": "sprites/carrot.svg",
+    "startX": 0,
+    "startY": 0,
+    "width": 128,
+    "height": 121,
+    "speed": 2.5,
+    "none": {
+      "minFrame": 0,
+      "maxFrame": 0
+    },
+    "getSound": [
+      "sounds/get.mp3",
+      "sounds/get.ogg"
+    ]
+  }
+]
