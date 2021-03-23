@@ -14,12 +14,13 @@ const Map = (props) => {
       props.getGame instanceof Game
         ? (props.getGame as Game).scores.map((score, level) =>
             level === props.getGame.level ? (
-              <Level>
+              <Level key={level}>
                 <Rabbit src="/rabbit.svg" alt="V" />
                 <Box>{score === undefined ? 0 : score}</Box>
               </Level>
             ) : (
               <Level
+                key={level}
                 style={{
                   cursor: score === undefined ? 'default' : 'pointer',
                 }}

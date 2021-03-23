@@ -1,48 +1,74 @@
 export class Audio {
   type: string;
   audio: HTMLMediaElement;
-  gainNode?: GainNode;
-  audioContext?: AudioContext;
-  source?: MediaElementAudioSourceNode;
-  sourceNode?: AudioBufferSourceNode;
-  buffer?: AudioBuffer;
-  started?: boolean;
+  audioContext: AudioContext;
+  buffer: AudioBuffer;
 
   constructor() {
     this.audio = document.createElement('audio');
-    this.audio.loop = true;
-    this.audio.autoplay = true;
     this.type = this.audio.canPlayType('audio/ogg') ? '.ogg' : '.mp3';
-    //! fix
-    this.audio.src = 'http://localhost:3000/sounds/sounds' + this.type;
+
+    this.audioContext = new AudioContext();
+    this.buffer = this.audioContext.createBuffer(
+      1,
+      1,
+      this.audioContext.sampleRate
+    );
+
+    this.fetch('/sounds/sounds' + this.type, this.onSuccess.bind(this));
   }
 
-  play() {
-    console.log('PLAY audio');
-    if (!this.audioContext) {
-      this.audioContext = new AudioContext();
-      this.buffer = this.audioContext.createBuffer(
-        1,
-        1,
-        this.audioContext.sampleRate
-      );
-    }
-    if (!this.source) {
-      this.source = this.audioContext.createMediaElementSource(this.audio);
-    }
-    if (!this.gainNode) {
-      this.gainNode = this.audioContext.createGain();
-      this.source.connect(this.gainNode);
-      this.gainNode.connect(this.audioContext.destination);
-    }
-    if (!this.sourceNode) {
-      this.sourceNode = this.audioContext.createBufferSource();
-      if (this.buffer) this.sourceNode.buffer = this.buffer;
-      this.sourceNode.connect(this.audioContext.destination);
-    }
-    if (!this.started) this.sourceNode.start(0);
-    this.started = true;
+  onSuccess(request) {
+    const audioData = request.response;
+    this.audioContext.decodeAudioData(
+      audioData,
+      this.play.bind(this),
+      this.onDecodeBufferError.bind(this)
+    );
+  }
 
-    // this.sourceNode.buffer=this.audioContext.createBuffer(numberOfChannels, length, sampleRate)
+  protected play(buffer?) {
+    const sourceNode = this.audioContext.createBufferSource();
+    if (buffer) this.buffer = buffer;
+    sourceNode.buffer = this.buffer;
+    sourceNode.connect(this.audioContext.destination);
+    sourceNode.loop = true;
+    sourceNode.loopStart = 5.6;
+    sourceNode.loopEnd = 70;
+    sourceNode.start(0, 5.6);
+  }
+
+  protected jump(buffer?) {
+    const sourceNode = this.audioContext.createBufferSource();
+    if (buffer) this.buffer = buffer;
+    sourceNode.buffer = this.buffer;
+    sourceNode.connect(this.audioContext.destination);
+    sourceNode.loop = false;
+    sourceNode.start(0, 4.5, 1.5);
+    sourceNode.stop(1.5);
+  }
+
+  protected coin(buffer?) {
+    const sourceNode = this.audioContext.createBufferSource();
+    if (buffer) this.buffer = buffer;
+    sourceNode.buffer = this.buffer;
+    sourceNode.connect(this.audioContext.destination);
+    sourceNode.loop = false;
+    sourceNode.start(0, 3, 1);
+    sourceNode.stop(1);
+  }
+
+  onDecodeBufferError(error) {
+    console.error(error);
+  }
+
+  fetch(url, resolve) {
+    const request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer';
+    request.onload = function () {
+      resolve(request);
+    };
+    request.send();
   }
 }
