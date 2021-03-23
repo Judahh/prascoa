@@ -1,0 +1,9 @@
+[
+  {
+    "sprite": "sprites/block.svg",
+    "startX": 20,
+    "startY": 0,
+    "width": 128,
+    "height": 128
+  }
+]

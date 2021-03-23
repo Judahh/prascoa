@@ -21,8 +21,8 @@
     "integration:coveralls": "jest $npm_package_config_integration_config $npm_package_config_jest && coveralls < $npm_package_config_integration_coverall && rm -rf ./tests/integration/coverage/coverage"
   },
   "dependencies": {
-    "blockly": "latest",
     "axios": "latest",
+    "blockly": "latest",
     "clsx": "latest",
     "cors": "latest",
     "coveralls": "latest",
@@ -36,12 +36,13 @@
     "react-collapsible": "latest",
     "react-dom": "latest",
     "react-google-login": "latest",
-    "react-icons": "latest",
+    "react-icons": "^4.2.0",
     "react-reveal": "latest",
+    "react-social-icons": "^5.0.0",
     "styled-components": "latest",
+    "webpack": "^4.46.0",
     "workbox-precaching": "latest",
-    "workbox-window": "latest",
-    "webpack": "^4.46.0"
+    "workbox-window": "latest"
   },
   "devDependencies": {
     "@babel/preset-env": "latest",

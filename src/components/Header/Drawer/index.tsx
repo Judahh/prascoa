@@ -14,10 +14,8 @@ import { NavHolder } from '../../../components/Header/Nav/styles';
 import LanguageContext from '../../../language/context';
 import { default as map } from '../../../pages/map.json';
 import { ModalType } from './modalType';
-// import { default as lightTheme } from '../../../styles/themes/light.json';
-// import { LogoHolder, Logo } from '../../../components/Layout/styles';
-
-// const useOutsideAlerter = (ref, func) => {};
+import Share from '../../ModalPage/Share';
+import Map from '../../ModalPage/Map';
 
 const Drawer = (props) => {
   const { nav, languageAcronym } = useContext(LanguageContext);
@@ -141,11 +139,11 @@ const Drawer = (props) => {
         >
           <DrawerModal ref={wrapperRef}>
             <Modal className={modal === ModalType.Share ? 'open' : 'closed'}>
-              SHARE
+              <Share />
             </Modal>
 
             <Modal className={modal === ModalType.Map ? 'open' : 'closed'}>
-              MAP
+              <Map />
             </Modal>
           </DrawerModal>
         </DrawerModalHolder>

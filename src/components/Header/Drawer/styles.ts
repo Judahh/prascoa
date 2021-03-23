@@ -99,7 +99,7 @@ export const DrawerModalHolder = styled.div`
 export const DrawerModal = styled.div`
   position: relative;
   padding: 25px;
-  height: 30%;
+  // height: 30%;
   width: 100%;
   left: 0;
   top: 70px;

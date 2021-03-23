@@ -7,201 +7,14 @@ import { Character } from './character';
 import { Element } from './element';
 
 import Blockly from 'blockly';
+import { levels } from './levels';
+import { default as skins } from './blockSkins.json';
 export class Game {
-  currentLevel: any;
-  chars: Character[];
-
-  skins = [
-    {
-      sprite: 'sprites/block.svg',
-      startX: 20,
-      startY: 0,
-      width: 128,
-      height: 128,
-      // tiles: 'maze/tiles_pegman.png',
-      // marker: 'maze/marker.png',
-      // background: false,
-      // look: '#000',
-      // winSound: ['maze/win.mp3', 'maze/win.ogg'],
-      // crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
-      // crashType: Maze.CRASH_STOP
-    },
-  ];
-
-  levels = [
-    [
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, Element.BA + Element.CharRight, Element.BB + Element.C, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      // eslint-disable-next-line prettier/prettier
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ],
-    [
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, Element.BA + Element.CharRight, Element.BB + Element.C, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ],
-    // Level 2.
-    [
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, Element.BA + Element.CharRight, Element.BB + Element.C, Element.BA + Element.C, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ],
-    // Level 3.
-    [
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, Element.BA + Element.CU, Element.BB + Element.C, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      // eslint-disable-next-line prettier/prettier
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ], //,
-  ];
-  canvas: HTMLCanvasElement;
-  context?: CanvasRenderingContext2D;
+  protected currentLevel: number;
+  protected _scores: number[];
+  protected chars: Character[];
+  protected canvas: HTMLCanvasElement;
+  protected context?: CanvasRenderingContext2D;
 
   constructor(level?: number) {
     this.canvas = document.getElementsByClassName(
@@ -211,7 +24,23 @@ export class Game {
     this.context = ctx !== null ? ctx : undefined;
     this.refreshCanvas();
     this.chars = [];
-    if (this.canvas) this.setLevel(level);
+    this.currentLevel = level ? level : 0;
+    this._scores = [];
+    for (let index = 0; index < levels.length; index++) {
+      this._scores[index] = 0;
+    }
+    if (this.canvas) this.level = this.currentLevel;
+  }
+
+  get scores(): number[] {
+    return this.scores;
+  }
+
+  get score(): number {
+    return this.scores.reduce(
+      (previousValue: number, currentValue: number) =>
+        previousValue + currentValue
+    );
   }
 
   refreshCanvas(): void {
@@ -222,7 +51,12 @@ export class Game {
     this.canvas.width = smaller;
   }
 
-  setLevel(level?: number): void {
+  get level(): number {
+    return this.currentLevel;
+  }
+
+  set level(level: number) {
+    this.currentLevel = level;
     this.draw(level ? level : 0);
   }
 
@@ -322,10 +156,9 @@ export class Game {
   draw(level: number): void {
     // load images
     const images = { map: new Image() };
-    images.map.src = this.skins[0].sprite;
-    const currentLevel = this.levels[level];
-    images.map.onload = () =>
-      this.drawMap(currentLevel, images.map, this.skins[0]);
+    images.map.src = skins[0].sprite;
+    const currentLevel = levels[level];
+    images.map.onload = () => this.drawMap(currentLevel, images.map, skins[0]);
     // window.addEventListener('resize', () => {
     //   // canvas.height = window.innerHeight;
     //   // canvas.width = window.innerWidth;

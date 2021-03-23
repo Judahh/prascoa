@@ -1,0 +1,26 @@
+{
+  "twitter": [
+    "fab",
+    "fa-twitter"
+  ],
+  "whatsapp": [
+    "fab",
+    "fa-whatsapp"
+  ],
+  "facebook": [
+    "fab",
+    "fa-facebook-f"
+  ],
+  "clone": [
+    "far",
+    "fa-clone"
+  ],
+  "youtube": [
+    "fab",
+    "fa-youtube"
+  ],
+  "instagram": [
+    "fab",
+    "fa-instagram"
+  ]
+}

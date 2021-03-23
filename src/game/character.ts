@@ -5,41 +5,10 @@
 
 import { Action } from './action';
 import { Position } from './position';
+import { default as skins } from './characterSkins.json';
 
 // import Blockly from 'blockly';
 export class Character {
-  skins = [
-    // winSound: List of sounds (in various formats) to play when the player wins.
-    // crashSound: List of sounds (in various formats) for player crashes.
-    // crashType: Behaviour when player crashes (stop, spin, or fall).
-    {
-      sprite: 'sprites/rabbit.svg',
-      startX: 0,
-      startY: 20,
-      width: 148,
-      height: 148,
-      speed: 2.5,
-      left: {
-        minFrame: 0,
-        maxFrame: 18,
-      },
-      up: {
-        minFrame: 19,
-        maxFrame: 37,
-      },
-      down: {
-        minFrame: 38,
-        maxFrame: 56,
-      },
-      right: {
-        minFrame: 57,
-        maxFrame: 75,
-      },
-      // winSound: ['maze/win.mp3', 'maze/win.ogg'],
-      // crashSound: ['maze/fail_pegman.mp3', 'maze/fail_pegman.ogg'],
-      // crashType: Maze.CRASH_STOP
-    },
-  ];
   x: number;
   y: number;
   position: Position;
@@ -81,16 +50,16 @@ export class Character {
     }
     switch (this.position) {
       case Position.Left:
-        this.x -= this.skins[this.skin].speed;
+        this.x -= skins[this.skin].speed;
         break;
       case Position.Right:
-        this.x += this.skins[this.skin].speed;
+        this.x += skins[this.skin].speed;
         break;
       case Position.Down:
-        this.y -= this.skins[this.skin].speed;
+        this.y -= skins[this.skin].speed;
         break;
       case Position.Up:
-        this.y += this.skins[this.skin].speed;
+        this.y += skins[this.skin].speed;
         break;
       default:
         break;
@@ -101,7 +70,7 @@ export class Character {
   draw(): void {
     // load images
     const images = { char: new Image() };
-    images.char.src = this.skins[0].sprite;
+    images.char.src = skins[0].sprite;
     images.char.onload = () => this.drawChar(images.char);
     // window.addEventListener('resize', () => {
     //   // canvas.height = window.innerHeight;
@@ -111,12 +80,12 @@ export class Character {
   drawChar(sprite) {
     this.context!.drawImage(
       sprite,
-      this.skins[this.skin].startX,
-      this.skins[this.skin].startY +
-        this.skins[this.skin][Position[Position.left]].minFrame *
-          this.skins[this.skin].height,
-      this.skins[this.skin].width,
-      this.skins[this.skin].height,
+      skins[this.skin].startX,
+      skins[this.skin].startY +
+        skins[this.skin][Position[Position.left]].minFrame *
+          skins[this.skin].height,
+      skins[this.skin].width,
+      skins[this.skin].height,
       (this.x * this.canvas.width) / (this.currentLevel[0].length * 2) -
         (this.y * this.canvas.height) / (this.currentLevel.length * 2) +
         this.canvas.width / 2.1111 -
@@ -132,16 +101,16 @@ export class Character {
   update() {
     switch (this.position) {
       case Position.Left:
-        this.x -= this.skins[this.skin].speed;
+        this.x -= skins[this.skin].speed;
         break;
       case Position.Right:
-        this.x += this.skins[this.skin].speed;
+        this.x += skins[this.skin].speed;
         break;
       case Position.Down:
-        this.y -= this.skins[this.skin].speed;
+        this.y -= skins[this.skin].speed;
         break;
       case Position.Up:
-        this.y += this.skins[this.skin].speed;
+        this.y += skins[this.skin].speed;
         break;
       default:
         break;

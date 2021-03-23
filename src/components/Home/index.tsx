@@ -26,7 +26,7 @@ const Home = (props) => {
   const [audio, setAudio] = useState({});
 
   useEffect(() => {
-    if (game instanceof Game) game.setLevel(level);
+    if (game instanceof Game) game.level = level;
   }, [level]);
 
   useEffect(() => {
