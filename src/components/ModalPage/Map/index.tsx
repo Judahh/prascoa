@@ -6,7 +6,7 @@ import { Score, Levels, Level, Rabbit, Box } from './styles';
 import { FaLock } from 'react-icons/fa';
 
 const Map = (props) => {
-  console.log(props);
+  // console.log(props);
   const [levels, setLevels] = useState<JSX.Element[]>([]);
   const [score, setScore] = useState<number>(0);
   useEffect(() => {

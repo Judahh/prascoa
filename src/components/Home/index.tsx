@@ -10,7 +10,7 @@ import { BlocklyComponent } from '../Blockly/blocklyComponent';
 import '../Blockly/custom';
 // import Blockly from 'blockly';
 import { Game } from '../../game/game';
-import { Background, SvgCanvas } from './styles';
+import { Background, Play, Text, Score, SvgCanvas } from './styles';
 import { Audio } from '../../game/audio';
 
 const initialXml =
@@ -28,6 +28,7 @@ const Home = (props) => {
   useEffect(() => {
     if (audio instanceof Audio && setGame && !(game instanceof Game)) {
       setGame(new Game());
+      (audio as Audio).play.bind(audio)();
     }
   }, [audio]);
 
@@ -39,16 +40,9 @@ const Home = (props) => {
 
   useEffect(() => {
     (play as HTMLElement).onclick = () => {
-      (audio as Audio).play.bind(audio)();
       (game as Game).play.bind(game)(simpleWorkspace.current.primaryWorkspace);
     };
   }, [play]);
-
-  useEffect(() => {
-    if (!(audio instanceof Audio)) {
-      setAudio(new Audio());
-    }
-  }, []);
 
   return (
     <>
@@ -61,32 +55,48 @@ const Home = (props) => {
         theme={props.theme}
         language={lang}
       >
-        <BlocklyComponent
-          host={props.host}
-          ref={simpleWorkspace}
-          readOnly={false}
-          trashcan={false}
-          initialXml={initialXml}
-          renderer={'zelos'}
-          grid={{
-            spacing: 50,
-            length: 0,
-            snap: true,
-            colour: 'transparent',
-          }}
-        >
-          <Block type="forward" />
-          <Block type="left" />
-          <Block type="right" />
-          <Block type="if" />
-          <Block type="while" />
-          <Block type="block" />
-          <Block type="carrot" />
-          <Block type="number" />
-          <Block type="and" />
-          <Block type="or" />
-          <Block type="not" />
-        </BlocklyComponent>
+        {game instanceof Game ? (
+          <>
+            <Score>{game instanceof Game ? game.currentScore : 0}</Score>
+            <BlocklyComponent
+              host={props.host}
+              ref={simpleWorkspace}
+              readOnly={false}
+              trashcan={false}
+              initialXml={initialXml}
+              renderer={'zelos'}
+              grid={{
+                spacing: 50,
+                length: 0,
+                snap: true,
+                colour: 'transparent',
+              }}
+            >
+              <Block type="forward" />
+              <Block type="left" />
+              <Block type="right" />
+              <Block type="if" />
+              <Block type="while" />
+              <Block type="block" />
+              <Block type="carrot" />
+              <Block type="number" />
+              <Block type="and" />
+              <Block type="or" />
+              <Block type="not" />
+            </BlocklyComponent>
+          </>
+        ) : (
+          <Play
+            onClick={() => {
+              if (!(audio instanceof Audio)) {
+                setAudio(new Audio());
+              }
+            }}
+          >
+            <Text>▶</Text>
+          </Play>
+        )}
+
         <Background theme={props.theme}>
           <SvgCanvas className="svgCanvas"></SvgCanvas>
         </Background>

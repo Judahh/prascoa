@@ -48,6 +48,11 @@ export class Game {
     return score === undefined ? 0 : score;
   }
 
+  get currentScore(): number {
+    const score = this.scores[this.level];
+    return score === undefined ? 0 : score;
+  }
+
   refreshCanvas(): void {
     const height = window.innerHeight;
     const width = window.innerWidth - 140;

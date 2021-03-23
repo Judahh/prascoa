@@ -7,6 +7,42 @@ export const Background = styled.div`
   padding-left: 140px;
   position: absolute;
 `;
+
+export const Text = styled.span`
+  font-size: x-large;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 500px;
+  font-weight: bolder;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+`;
+export const Score = styled.div`
+  position: absolute;
+  top: 70px;
+  margin: 25px;
+  right: 0px;
+  color: ${(props) => props.theme.menu};
+  font-size: x-large;
+`;
+
+export const Play = styled.div`
+  width: 100%;
+  height: 100vh;
+  cursor: pointer;
+  position: relative;
+  color: ${(props) => props.theme.menu};
+  font-size: x-large;
+  justify-content: center;
+  text-align: center;
+`;
+
 export const SvgCanvas = styled.canvas`
   // transition: none;
   // animation: none;
