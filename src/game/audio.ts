@@ -18,7 +18,20 @@ export class Audio {
     this.fetch('/sounds/sounds' + this.type, this.onSuccess.bind(this));
   }
 
-  onSuccess(request) {
+  protected fetch(
+    url: string,
+    // eslint-disable-next-line no-unused-vars
+    resolve: (request: XMLHttpRequest) => void
+  ): void {
+    const request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer';
+    request.onload = () => {
+      resolve(request);
+    };
+    request.send();
+  }
+  protected onSuccess(request: XMLHttpRequest): void {
     const audioData = request.response;
     this.audioContext.decodeAudioData(
       audioData,
@@ -26,69 +39,51 @@ export class Audio {
       this.onDecodeBufferError.bind(this)
     );
   }
+  protected onDecodeBufferError(error: DOMException): void {
+    console.error(error);
+  }
 
-  protected play(buffer?) {
+  protected initSourceNode(buffer?: AudioBuffer): AudioBufferSourceNode {
     const sourceNode = this.audioContext.createBufferSource();
     if (buffer) this.buffer = buffer;
     sourceNode.buffer = this.buffer;
     sourceNode.connect(this.audioContext.destination);
+    return sourceNode;
+  }
+
+  protected play(buffer?: AudioBuffer): void {
+    const sourceNode = this.initSourceNode(buffer);
     sourceNode.loop = true;
     sourceNode.loopStart = 6;
     sourceNode.loopEnd = 70;
     sourceNode.start(0, 6);
   }
 
-  jump(buffer?) {
-    const sourceNode = this.audioContext.createBufferSource();
-    if (buffer) this.buffer = buffer;
-    sourceNode.buffer = this.buffer;
-    sourceNode.connect(this.audioContext.destination);
+  jump(buffer?: AudioBuffer): void {
+    const sourceNode = this.initSourceNode(buffer);
     sourceNode.loop = false;
     sourceNode.start(0, 4.5, 1.5);
     sourceNode.stop(1.5);
   }
 
-  coin(buffer?) {
-    const sourceNode = this.audioContext.createBufferSource();
-    if (buffer) this.buffer = buffer;
-    sourceNode.buffer = this.buffer;
-    sourceNode.connect(this.audioContext.destination);
+  coin(buffer?: AudioBuffer): void {
+    const sourceNode = this.initSourceNode(buffer);
     sourceNode.loop = false;
     sourceNode.start(0, 3, 1.5);
     sourceNode.stop(1.5);
   }
 
-  fall(buffer?) {
-    const sourceNode = this.audioContext.createBufferSource();
-    if (buffer) this.buffer = buffer;
-    sourceNode.buffer = this.buffer;
-    sourceNode.connect(this.audioContext.destination);
+  fall(buffer?: AudioBuffer): void {
+    const sourceNode = this.initSourceNode(buffer);
     sourceNode.loop = false;
     sourceNode.start(0, 1.5, 1.5);
     sourceNode.stop(1.5);
   }
 
-  raise(buffer?) {
-    const sourceNode = this.audioContext.createBufferSource();
-    if (buffer) this.buffer = buffer;
-    sourceNode.buffer = this.buffer;
-    sourceNode.connect(this.audioContext.destination);
+  raise(buffer?: AudioBuffer): void {
+    const sourceNode = this.initSourceNode(buffer);
     sourceNode.loop = false;
     sourceNode.start(0, 0, 1.5);
     sourceNode.stop(1.5);
-  }
-
-  onDecodeBufferError(error) {
-    console.error(error);
-  }
-
-  fetch(url, resolve) {
-    const request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer';
-    request.onload = function () {
-      resolve(request);
-    };
-    request.send();
   }
 }
