@@ -38,7 +38,7 @@ export class Audio {
     sourceNode.start(0, 6);
   }
 
-  protected jump(buffer?) {
+  jump(buffer?) {
     const sourceNode = this.audioContext.createBufferSource();
     if (buffer) this.buffer = buffer;
     sourceNode.buffer = this.buffer;
@@ -48,7 +48,7 @@ export class Audio {
     sourceNode.stop(1.5);
   }
 
-  protected coin(buffer?) {
+  coin(buffer?) {
     const sourceNode = this.audioContext.createBufferSource();
     if (buffer) this.buffer = buffer;
     sourceNode.buffer = this.buffer;
@@ -58,7 +58,7 @@ export class Audio {
     sourceNode.stop(1.5);
   }
 
-  protected fall(buffer?) {
+  fall(buffer?) {
     const sourceNode = this.audioContext.createBufferSource();
     if (buffer) this.buffer = buffer;
     sourceNode.buffer = this.buffer;
@@ -68,7 +68,7 @@ export class Audio {
     sourceNode.stop(1.5);
   }
 
-  protected raise(buffer?) {
+  raise(buffer?) {
     const sourceNode = this.audioContext.createBufferSource();
     if (buffer) this.buffer = buffer;
     sourceNode.buffer = this.buffer;
