@@ -11,7 +11,7 @@ import { levels } from './levels';
 import { default as skins } from './blockSkins.json';
 export class Game {
   protected currentLevel: number;
-  protected _scores: number[];
+  protected _scores: Array<number | undefined>;
   protected chars: Character[];
   protected canvas: HTMLCanvasElement;
   protected context?: CanvasRenderingContext2D;
@@ -26,21 +26,26 @@ export class Game {
     this.chars = [];
     this.currentLevel = level ? level : 0;
     this._scores = [];
-    for (let index = 0; index < levels.length; index++) {
-      this._scores[index] = 0;
+    this._scores[0] = 0;
+    for (let index = 1; index < levels.length; index++) {
+      this._scores[index] = undefined;
     }
     if (this.canvas) this.level = this.currentLevel;
   }
 
-  get scores(): number[] {
+  get scores(): Array<number | undefined> {
     return this._scores;
   }
 
   get score(): number {
-    return this.scores.reduce(
-      (previousValue: number, currentValue: number) =>
-        previousValue + currentValue
+    const score = this.scores.reduce(
+      (previousValue: number | undefined, currentValue: number | undefined) => {
+        const p: number = previousValue === undefined ? 0 : previousValue;
+        const c: number = currentValue === undefined ? 0 : currentValue;
+        return p + c;
+      }
     );
+    return score === undefined ? 0 : score;
   }
 
   refreshCanvas(): void {

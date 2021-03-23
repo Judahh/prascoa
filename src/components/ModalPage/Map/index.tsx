@@ -13,9 +13,9 @@ const Map = (props) => {
       props.getGame instanceof Game
         ? (props.getGame as Game).scores.map((score, level) =>
             level === props.getGame.level ? (
-              <Level>current level {score}</Level>
+              <Level>current level {score === undefined ? 0 : score}</Level>
             ) : (
-              <Level>{score > 0 ? 'level ' + score : 'lock'}</Level>
+              <Level>{score === undefined ? 'lock' : 'level ' + score}</Level>
             )
           )
         : []
