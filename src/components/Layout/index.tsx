@@ -16,8 +16,9 @@ import Header from '../../components/Header';
 import { LayoutWrapper } from './styles';
 
 // eslint-disable-next-line no-unused-vars
-const Layout = ({ language, children, ...rest }) => {
+const Layout = ({ language, children, getGame, setGame, ...rest }) => {
   //! TODO: Menu
+  // console.log('Layout:', { language, children, getGame, setGame, ...rest });
   const menu = ['regular', 'transparent', 'inverted'];
   const [token, setToken] = useState();
   const [currentLanguage, setCurrentLanguage] = useState(langBR);
@@ -92,6 +93,8 @@ const Layout = ({ language, children, ...rest }) => {
     return React.cloneElement(child, {
       theme: currentTheme,
       handleToken,
+      setGame,
+      getGame,
     });
   });
 
@@ -104,6 +107,8 @@ const Layout = ({ language, children, ...rest }) => {
           <Header
             handleToken={handleToken}
             handleLanguage={handleLanguage}
+            setGame={setGame}
+            getGame={getGame}
             theme={currentTheme}
             menu={currentMenu}
           />
@@ -111,6 +116,8 @@ const Layout = ({ language, children, ...rest }) => {
           <LayoutWrapper
             id="mainLayoutWrapper"
             language={currentLanguage}
+            setGame={setGame}
+            getGame={getGame}
             theme={currentTheme}
             {...rest}
           >

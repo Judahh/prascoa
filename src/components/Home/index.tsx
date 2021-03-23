@@ -8,7 +8,7 @@ import { Block } from '../Blockly';
 import { BlocklyComponent } from '../Blockly/blocklyComponent';
 
 import '../Blockly/custom';
-import Blockly from 'blockly';
+// import Blockly from 'blockly';
 import { Game } from '../../game/game';
 import { Background, SvgCanvas } from './styles';
 import { Audio } from '../../game/audio';
@@ -18,19 +18,15 @@ const initialXml =
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Home = (props) => {
+  // console.log('Home:', props);
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState({});
   const [play, setPlay] = useState({});
-  const [level, setLevel] = useState(0);
-  const [game, setGame] = useState({});
   const [audio, setAudio] = useState({});
+  const [game, setGame] = useState({});
 
   useEffect(() => {
-    if (game instanceof Game) game.level = level;
-  }, [level]);
-
-  useEffect(() => {
-    if (audio instanceof Audio && !(game instanceof Game)) {
+    if (audio instanceof Audio && setGame && !(game instanceof Game)) {
       setGame(new Game());
     }
   }, [audio]);
@@ -59,7 +55,12 @@ const Home = (props) => {
       <Head>
         <title>PRÁSCOA</title>
       </Head>
-      <Layout theme={props.theme} language={lang}>
+      <Layout
+        setGame={setGame}
+        getGame={game}
+        theme={props.theme}
+        language={lang}
+      >
         <BlocklyComponent
           host={props.host}
           ref={simpleWorkspace}

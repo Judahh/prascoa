@@ -18,6 +18,8 @@ import Share from '../../ModalPage/Share';
 import Map from '../../ModalPage/Map';
 
 const Drawer = (props) => {
+  // console.log(props);
+
   const { nav, languageAcronym } = useContext(LanguageContext);
   const [open, setOpen] = useState(false);
   const [modal, setModal] = useState(ModalType.None);
@@ -138,12 +140,12 @@ const Drawer = (props) => {
           className={modal !== ModalType.None ? 'open' : 'closed'}
         >
           <DrawerModal ref={wrapperRef}>
-            <Modal className={modal === ModalType.Share ? 'open' : 'closed'}>
-              <Share />
-            </Modal>
-
-            <Modal className={modal === ModalType.Map ? 'open' : 'closed'}>
-              <Map />
+            <Modal className="open">
+              {modal === ModalType.Share ? (
+                <Share />
+              ) : (
+                <Map setGame={props.setGame} getGame={props.getGame} />
+              )}
             </Modal>
           </DrawerModal>
         </DrawerModalHolder>

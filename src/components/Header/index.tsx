@@ -4,12 +4,16 @@ import Drawer from './Drawer/index';
 import Scroll from '../../components/Scroll';
 
 const Header = (props) => {
+  // console.log(props);
+
   return (
     <HeaderWrapper menu={props.menu}>
       <Drawer
         theme={props.theme}
         handleLanguage={props.handleLanguage}
         menu={props.menu}
+        setGame={props.setGame}
+        getGame={props.getGame}
       />
 
       <Scroll />

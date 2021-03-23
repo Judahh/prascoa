@@ -33,7 +33,7 @@ export class Game {
   }
 
   get scores(): number[] {
-    return this.scores;
+    return this._scores;
   }
 
   get score(): number {

@@ -1,6 +1,5 @@
 // file deepcode ignore no-any: any needed
 import React, { useContext, useRef } from 'react';
-import { default as shareIcon } from '../../../language/share.json';
 import { ModalPageWrapper } from '../styles';
 import LanguageContext from '../../../language/context';
 import { SocialIcon } from 'react-social-icons';
@@ -26,24 +25,9 @@ const Share = (props) => {
     setTimeout(() => ReactTooltip.hide(tooltipRef.current), 1500);
   };
 
-  for (const key in shareIcon) {
-    if (shareIcon.hasOwnProperty(key)) {
-      const element = shareIcon[key];
-      console.log(element);
-      console.log(share[key]);
-      if (key !== 'clone')
-        navItems.push(
-          <SocialIcon
-            // prefix={element[0]}
-            key={key}
-            network={key}
-            bgColor="transparent"
-            fgColor="#fff"
-            url={share[key]}
-            target="_blank"
-          />
-        );
-      else
+  for (const key in share) {
+    if (share.hasOwnProperty(key)) {
+      if (key === 'clone')
         navItems.push(
           <div
             key={key}
@@ -66,6 +50,18 @@ const Share = (props) => {
               }}
             ></FaRegClone>
           </div>
+        );
+      else
+        navItems.push(
+          <SocialIcon
+            // prefix={element[0]}
+            key={key}
+            network={key}
+            bgColor="transparent"
+            fgColor="#fff"
+            url={share[key]}
+            target="_blank"
+          />
         );
     }
   }

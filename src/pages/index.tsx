@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { GetStaticProps } from 'next';
 import React from 'react';
-/* @ts-ignore*/
 import Home from '../components/Home';
 
 const App = (props) => {
-  /* @ts-ignore*/
-  return <Home theme={props.theme} google={props.google} host={props.host} />;
+  // console.log('APP:', props);
+
+  return <Home google={props.google} host={props.host} />;
 };
 
 export const getStaticProps: GetStaticProps = async () => {
