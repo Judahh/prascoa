@@ -105,6 +105,8 @@ export class Game {
     console.log('PLAY Game');
     // console.log('PLAY: ', simpleWorkspace);
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     console.log(Blockly.JavaScript.workspaceToCode(simpleWorkspace));
   }
 

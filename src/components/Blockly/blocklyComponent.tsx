@@ -21,13 +21,13 @@ export class BlocklyComponent extends Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-unused-vars
-    const { initialXml, children, ...rest } = this.props;
+    const { children, ...rest } = this.props;
+    const initialXml = this.props['initialXml'];
     this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
       toolbox: this.toolbox.current,
       ...rest,
     });
 
-    // @ts-ignore
     if (initialXml) {
       Blockly.Xml.domToWorkspace(
         Blockly.Xml.textToDom(initialXml),
