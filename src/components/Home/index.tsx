@@ -27,7 +27,7 @@ const initialXml =
 const Home = (props) => {
   // console.log('Home:', props);
   const lang = useContext(LanguageContext);
-  const [simpleWorkspace] = useState({});
+  const [simpleWorkspace] = useState<any>({});
   const [play, setPlay] = useState({});
   const [game, setGame] = useState({});
 
@@ -58,6 +58,8 @@ const Home = (props) => {
           <>
             <Score>{game instanceof Game ? game.currentScore : 0}</Score>
             <BlocklyComponent
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               host={props.host}
               ref={simpleWorkspace}
               readOnly={false}

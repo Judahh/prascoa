@@ -6,9 +6,9 @@ import { SocialIcon } from 'react-social-icons';
 import { FaRegClone } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
 
-const Share = (props) => {
+const Share = () => {
   const { share } = useContext(LanguageContext);
-  const tooltipRef = useRef<React.RefObject<HTMLElement>>(null);
+  const tooltipRef = useRef<HTMLParagraphElement>(null);
 
   const navItems: JSX.Element[] = [];
 
@@ -21,7 +21,11 @@ const Share = (props) => {
     temp.select();
     document.execCommand('copy');
     temp.remove();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     ReactTooltip.show(tooltipRef.current);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     setTimeout(() => ReactTooltip.hide(tooltipRef.current), 1500);
   };
 

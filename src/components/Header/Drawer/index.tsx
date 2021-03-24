@@ -25,7 +25,7 @@ const Drawer = (props) => {
   const [modal, setModal] = useState(ModalType.None);
   const [collapsed, setCollapsed] = useState(false);
   const navItems: Array<{ href: any; content: any; modal: ModalType }> = [];
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<any>(null);
 
   const svg = {
     map: (

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 /**
  * Go to the next level.  Add skin parameter.
  * @suppress {duplicate}
@@ -52,7 +54,7 @@ export class GameObject {
 
   action(
     location?: { x: number; y: number; position: Position },
-    action?: Action
+    _action?: Action
   ): { x: number; y: number; position: Position } {
     if (location) {
       this.x = location.x;
