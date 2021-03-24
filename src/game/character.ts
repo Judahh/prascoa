@@ -25,4 +25,48 @@ export class Character extends GameObject {
     );
     this.draw();
   }
+
+  execute(code: string): void {
+    eval(code);
+  }
+
+  action(action): void {
+    console.log('ACTION:', action);
+  }
+
+  is(action) {
+    console.log('IS:', action);
+    switch (this.position) {
+      case Position.Down:
+        return this.currentLevel[this.y + 1][this.x] >= action;
+      case Position.up:
+        return this.currentLevel[this.y - 1][this.x] >= action;
+      case Position.Right:
+        return this.currentLevel[this.y][this.x + 1] >= action;
+      case Position.Left:
+        return this.currentLevel[this.y][this.x - 1] >= action;
+      default:
+        return this.currentLevel[this.y][this.x] >= action;
+    }
+  }
+
+  not(action) {
+    console.log('NOT:', action);
+    return !this.is(action);
+  }
+
+  check(action) {
+    console.log('CHECK:', action);
+    return action;
+  }
+
+  and(action1, action2) {
+    console.log('AND:', action1, action2);
+    return action1 * action2;
+  }
+
+  or(action1, action2) {
+    console.log('OR:', action1, action2);
+    return action1 + action2;
+  }
 }

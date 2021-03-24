@@ -1,4 +1,6 @@
 import Blockly from 'blockly';
+import { Action } from '../../../game/action';
+import { Element } from '../../../game/element';
 import './renderers/constants';
 
 // Blockly.WidgetDiv.createDom = () => {
@@ -77,7 +79,9 @@ Blockly.JavaScript['while'] = (block) => {
   );
 
   var branch = Blockly.JavaScript.statementToCode(block, 'Content');
-  return block.type + ' (this.check(' + field + ')) {\n' + branch + '}\n';
+  return (
+    'for(let i = 0; i<this.check(' + field + '); i++) {\n' + branch + '}\n'
+  );
 };
 
 Blockly.Blocks['if'] = {
@@ -204,7 +208,10 @@ Blockly.Blocks['block'] = {
   },
 };
 Blockly.JavaScript['block'] = (block) => {
-  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
+  return [
+    'this.is(' + Element[block.type] + ')',
+    Blockly.JavaScript.ORDER_NONE,
+  ];
 };
 
 Blockly.Blocks['carrot'] = {
@@ -217,7 +224,10 @@ Blockly.Blocks['carrot'] = {
 };
 
 Blockly.JavaScript['carrot'] = (block) => {
-  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
+  return [
+    'this.is(' + Element[block.type] + ')',
+    Blockly.JavaScript.ORDER_NONE,
+  ];
 };
 
 Blockly.Blocks['forward'] = {
@@ -233,7 +243,7 @@ Blockly.Blocks['forward'] = {
 };
 
 Blockly.JavaScript['forward'] = (block) => {
-  return 'this.action(' + block.type + ');\n';
+  return 'this.action(' + Action[block.type] + ');\n';
 };
 
 Blockly.Blocks['left'] = {
@@ -249,7 +259,7 @@ Blockly.Blocks['left'] = {
 };
 
 Blockly.JavaScript['left'] = (block) => {
-  return 'this.turn(' + block.type + ');\n';
+  return 'this.action(' + Action[block.type] + ');\n';
 };
 
 Blockly.Blocks['right'] = {
@@ -265,5 +275,5 @@ Blockly.Blocks['right'] = {
 };
 
 Blockly.JavaScript['right'] = (block) => {
-  return 'this.turn(' + block.type + ');\n';
+  return 'this.action(' + Action[block.type] + ');\n';
 };

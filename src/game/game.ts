@@ -79,37 +79,14 @@ export class Game {
   }
 
   play(simpleWorkspace: any): void {
-    // // Prevent double-clicks or double-taps.
-    // if (BlocklyInterface.eventSpam(e)) {
-    //   return;
-    // }
-    // BlocklyDialogs.hideDialog(false);
-    // // Only allow a single top block on level 1.
-    // if (
-    //   BlocklyGames.LEVEL == 1 &&
-    //   BlocklyInterface.workspace.getTopBlocks(false).length > 1 &&
-    //   Maze.result != Maze.ResultType.SUCCESS &&
-    //   !BlocklyGames.loadFromLocalStorage(BlocklyGames.NAME, BlocklyGames.LEVEL)
-    // ) {
-    //   Maze.levelHelp();
-    //   return;
-    // }
-    // const runButton = document.getElementById('runButton');
-    // const resetButton = document.getElementById('resetButton');
-    // // Ensure that Reset button is at least as wide as Run button.
-    // if (!resetButton.style.minWidth) {
-    //   resetButton.style.minWidth = runButton.offsetWidth + 'px';
-    // }
-    // runButton.style.display = 'none';
-    // resetButton.style.display = 'inline';
-    // Maze.reset(false);
-    // Maze.execute();
     console.log('PLAY Game');
-    // console.log('PLAY: ', simpleWorkspace);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    console.log(Blockly.JavaScript.workspaceToCode(simpleWorkspace));
+    const code = Blockly.JavaScript.workspaceToCode(simpleWorkspace);
+    for (const char of this.chars) {
+      char.execute(code);
+    }
   }
 
   getNode(n: any, v: any): any {
