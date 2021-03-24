@@ -1,3 +1,6 @@
+// file deepcode ignore no-any: any needed
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Go to the next level.  Add skin parameter.
  * @suppress {duplicate}
@@ -11,7 +14,7 @@ import { GameObject } from './gameObject';
 export class Item extends GameObject {
   constructor(
     location: { x: number; y: number; position: Position },
-    currentLevel,
+    currentLevel: number[][],
     block: { height: number; width: number },
     skin?: number
   ) {
@@ -25,7 +28,7 @@ export class Item extends GameObject {
     );
     this.draw();
   }
-  drawChar(canvas) {
+  drawChar(canvas: any): void {
     const line = this.currentLevel[this.y];
 
     const realHeight =
@@ -54,7 +57,7 @@ export class Item extends GameObject {
   ): void {
     console.log(this.position);
 
-    this.context!.drawImage(
+    this.context?.drawImage(
       canvas,
       this.skins[this.skin].startX,
       this.skins[this.skin].startY +

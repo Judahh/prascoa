@@ -8,6 +8,7 @@ import './renderers/constants';
 //   }
 //   console.log('B');
 // };
+// eslint-disable-next-line no-unused-vars
 Blockly.Workspace.prototype.undo = (redo) => {
   // var inputStack = redo ? this.redoStack_ : this.undoStack_;
   // var outputStack = redo ? this.undoStack_ : this.redoStack_;
@@ -46,7 +47,7 @@ Blockly.Blocks['start'] = {
     this.setColour('#4285F4');
     this.appendStatementInput('Content').setCheck(null);
     this.setInputsInline(true);
-    this.event;
+    // this.event;
   },
 };
 

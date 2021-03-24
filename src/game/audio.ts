@@ -3,8 +3,9 @@ export class Audio {
   audio: HTMLMediaElement;
   audioContext: AudioContext;
   buffer: AudioBuffer;
+  url: string;
 
-  constructor() {
+  constructor(url: string) {
     this.audio = document.createElement('audio');
     this.type = this.audio.canPlayType('audio/ogg') ? '.ogg' : '.mp3';
 
@@ -15,7 +16,13 @@ export class Audio {
       this.audioContext.sampleRate
     );
 
-    this.fetch('/sounds/sounds' + this.type, this.onSuccess.bind(this));
+    this.url = url;
+  }
+
+  playSound(delay: number, loop: boolean, start: number, end: number): void {
+    this.fetch(this.url + this.type, (request: XMLHttpRequest) => {
+      this.onSuccess.bind(this)(request, delay, loop, start, end);
+    });
   }
 
   protected fetch(
@@ -31,11 +38,19 @@ export class Audio {
     };
     request.send();
   }
-  protected onSuccess(request: XMLHttpRequest): void {
+  protected onSuccess(
+    request: XMLHttpRequest,
+    delay: number,
+    loop: boolean,
+    start: number,
+    end: number
+  ): void {
     const audioData = request.response;
     this.audioContext.decodeAudioData(
       audioData,
-      this.play.bind(this),
+      (buffer) => {
+        this.play.bind(this)(buffer, delay, loop, start, end);
+      },
       this.onDecodeBufferError.bind(this)
     );
   }
@@ -51,39 +66,22 @@ export class Audio {
     return sourceNode;
   }
 
-  protected play(buffer?: AudioBuffer): void {
+  protected play(
+    buffer: AudioBuffer,
+    delay: number,
+    loop: boolean,
+    start: number,
+    end: number
+  ): void {
     const sourceNode = this.initSourceNode(buffer);
-    sourceNode.loop = true;
-    sourceNode.loopStart = 6;
-    sourceNode.loopEnd = 70;
-    sourceNode.start(0, 6);
-  }
-
-  jump(buffer?: AudioBuffer): void {
-    const sourceNode = this.initSourceNode(buffer);
-    sourceNode.loop = false;
-    sourceNode.start(0, 4.5, 1.5);
-    sourceNode.stop(1.5);
-  }
-
-  coin(buffer?: AudioBuffer): void {
-    const sourceNode = this.initSourceNode(buffer);
-    sourceNode.loop = false;
-    sourceNode.start(0, 3, 1.5);
-    sourceNode.stop(1.5);
-  }
-
-  fall(buffer?: AudioBuffer): void {
-    const sourceNode = this.initSourceNode(buffer);
-    sourceNode.loop = false;
-    sourceNode.start(0, 1.5, 1.5);
-    sourceNode.stop(1.5);
-  }
-
-  raise(buffer?: AudioBuffer): void {
-    const sourceNode = this.initSourceNode(buffer);
-    sourceNode.loop = false;
-    sourceNode.start(0, 0, 1.5);
-    sourceNode.stop(1.5);
+    sourceNode.loop = loop;
+    if (loop) {
+      sourceNode.loopStart = start;
+      sourceNode.loopEnd = end;
+      sourceNode.start(delay, start);
+    } else {
+      sourceNode.start(delay, start, end);
+      sourceNode.stop(end);
+    }
   }
 }

@@ -10,9 +10,12 @@
       "minFrame": 0,
       "maxFrame": 0
     },
-    "getSound": [
-      "sounds/get.mp3",
-      "sounds/get.ogg"
-    ]
+    "getSound": {
+      "url": "sounds/rabbit",
+      "delay": 0,
+      "loop": false,
+      "start": 3,
+      "end": 1.5
+    }
   }
 ]

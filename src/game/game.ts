@@ -1,3 +1,6 @@
+// file deepcode ignore no-any: any needed
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Go to the next level.  Add skin parameter.
  * @suppress {duplicate}
@@ -9,7 +12,6 @@ import { Element } from './element';
 import Blockly from 'blockly';
 import { levels } from './levels';
 import { default as skins } from './blockSkins.json';
-import { Audio } from './audio';
 import { Item } from './item';
 export class Game {
   protected currentLevel: number;
@@ -18,7 +20,7 @@ export class Game {
   protected items: Item[];
   protected canvas: HTMLCanvasElement;
   protected context?: CanvasRenderingContext2D;
-  protected audio: Audio;
+  protected started: boolean;
 
   constructor(level?: number) {
     this.canvas = document.getElementsByClassName(
@@ -32,11 +34,11 @@ export class Game {
     this.currentLevel = level ? level : 0;
     this._scores = [];
     this._scores[0] = 0;
+    this.started = false;
     for (let index = 1; index < levels.length; index++) {
       this._scores[index] = undefined;
     }
     if (this.canvas) this.level = this.currentLevel;
-    this.audio = new Audio();
   }
 
   get scores(): Array<number | undefined> {
@@ -76,7 +78,7 @@ export class Game {
     this.draw(level ? level : 0);
   }
 
-  play(simpleWorkspace) {
+  play(simpleWorkspace: any): void {
     // // Prevent double-clicks or double-taps.
     // if (BlocklyInterface.eventSpam(e)) {
     //   return;
@@ -136,7 +138,7 @@ export class Game {
     x: number,
     y: number
   ): void {
-    this.context!.drawImage(
+    this.context?.drawImage(
       map,
       blockSprite.startX,
       blockSprite.startY,
@@ -154,7 +156,7 @@ export class Game {
   }
 
   clear(): void {
-    this.context!.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   drawMap(currentLevel, map, blockSprite): void {
@@ -212,6 +214,11 @@ export class Game {
             )
           );
       }
+    }
+
+    if (!this.started) {
+      this.chars[0].play('themeSound');
+      this.started = true;
     }
   }
 
