@@ -192,3 +192,4 @@ $RECYCLE.BIN/
 .dccache
 .pem
 *.pem
+/public/sw.js
