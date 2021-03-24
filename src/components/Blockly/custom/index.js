@@ -1,5 +1,6 @@
-import Blockly from 'blockly';
 import './renderers/constants';
+
+import Blockly from 'blockly';
 
 // Blockly.WidgetDiv.createDom = () => {
 //   if (Blockly.WidgetDiv.DIV) {
