@@ -20,6 +20,7 @@ export class Game {
   protected items: Item[];
   protected canvas: HTMLCanvasElement;
   protected context?: CanvasRenderingContext2D;
+  protected started: boolean;
 
   constructor(level?: number) {
     this.canvas = document.getElementsByClassName(
@@ -33,6 +34,7 @@ export class Game {
     this.currentLevel = level ? level : 0;
     this._scores = [];
     this._scores[0] = 0;
+    this.started = false;
     for (let index = 1; index < levels.length; index++) {
       this._scores[index] = undefined;
     }
@@ -74,14 +76,6 @@ export class Game {
   set level(level: number) {
     this.currentLevel = level;
     this.draw(level ? level : 0);
-    for (const row of levels[level]) {
-      for (const element of row) {
-        if (element >= Element.Char && element < Element.Carrot) {
-          this.chars[0].play('themeSound');
-          return;
-        }
-      }
-    }
   }
 
   play(simpleWorkspace: any): void {
@@ -220,6 +214,11 @@ export class Game {
             )
           );
       }
+    }
+
+    if (!this.started) {
+      this.chars[0].play('themeSound');
+      this.started = true;
     }
   }
 

@@ -1,6 +1,5 @@
-import './renderers/constants';
-
 import Blockly from 'blockly';
+import './renderers/constants';
 
 // Blockly.WidgetDiv.createDom = () => {
 //   if (Blockly.WidgetDiv.DIV) {
@@ -9,6 +8,7 @@ import Blockly from 'blockly';
 //   }
 //   console.log('B');
 // };
+// eslint-disable-next-line no-unused-vars
 Blockly.Workspace.prototype.undo = (redo) => {
   // var inputStack = redo ? this.redoStack_ : this.undoStack_;
   // var outputStack = redo ? this.undoStack_ : this.redoStack_;

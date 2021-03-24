@@ -1,3 +1,5 @@
+// file deepcode ignore no-any: any needed
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useContext, useState } from 'react';
 import Head from 'next/head';
 import LanguageContext from '../../language/context';
