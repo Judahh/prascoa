@@ -41,7 +41,7 @@ Blockly.Workspace.prototype.undo = (redo) => {
 };
 
 Blockly.Blocks['start'] = {
-  init : function() {
+  init: function () {
     this.setMovable(false);
     this.setDeletable(false);
     this.appendDummyInput().appendField('       ▶      ');
@@ -58,9 +58,10 @@ Blockly.JavaScript['start'] = (block) => {
 };
 
 Blockly.Blocks['while'] = {
-  init : function() {
+  init: function () {
     this.appendValueInput('VALUE').appendField(
-        new Blockly.FieldLabel('⟳', 'blockType1'));
+      new Blockly.FieldLabel('⟳', 'blockType1')
+    );
     this.appendStatementInput('Content').setCheck(null);
     this.setPreviousStatement(true, null);
     this.setColour('#FBBC05');
@@ -70,17 +71,21 @@ Blockly.Blocks['while'] = {
 };
 
 Blockly.JavaScript['while'] = (block) => {
-  var field = Blockly.JavaScript.valueToCode(block, 'VALUE',
-                                             Blockly.JavaScript.ORDER_ATOMIC);
+  var field = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUE',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
 
   var branch = Blockly.JavaScript.statementToCode(block, 'Content');
   return block.type + ' (this.check(' + field + ')) {\n' + branch + '}\n';
 };
 
 Blockly.Blocks['if'] = {
-  init : function() {
+  init: function () {
     this.appendValueInput('VALUE').appendField(
-        new Blockly.FieldLabel(' ⇒', 'blockType2'));
+      new Blockly.FieldLabel(' ⇒', 'blockType2')
+    );
     this.appendStatementInput('Content').setCheck(null);
     this.setPreviousStatement(true, null);
     this.setColour('#FBBC05');
@@ -90,15 +95,18 @@ Blockly.Blocks['if'] = {
 };
 
 Blockly.JavaScript['if'] = (block) => {
-  var field = Blockly.JavaScript.valueToCode(block, 'VALUE',
-                                             Blockly.JavaScript.ORDER_ATOMIC);
+  var field = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUE',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
 
   var branch = Blockly.JavaScript.statementToCode(block, 'Content');
   return block.type + ' (this.check(' + field + ')) {\n' + branch + '}\n';
 };
 
 Blockly.Blocks['and'] = {
-  init : function() {
+  init: function () {
     this.appendValueInput('VALUEA');
     this.appendDummyInput().appendField('✖️');
     this.appendValueInput('VALUEB');
@@ -109,10 +117,16 @@ Blockly.Blocks['and'] = {
 };
 
 Blockly.JavaScript['and'] = (block) => {
-  var fielda = Blockly.JavaScript.valueToCode(block, 'VALUEA',
-                                              Blockly.JavaScript.ORDER_ATOMIC);
-  var fieldb = Blockly.JavaScript.valueToCode(block, 'VALUEB',
-                                              Blockly.JavaScript.ORDER_ATOMIC);
+  var fielda = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEA',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  var fieldb = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEB',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
   return [
     'this.and(' + fielda + ',' + fieldb + ')',
     Blockly.JavaScript.ORDER_NONE,
@@ -120,7 +134,7 @@ Blockly.JavaScript['and'] = (block) => {
 };
 
 Blockly.Blocks['or'] = {
-  init : function() {
+  init: function () {
     this.appendValueInput('VALUEA');
     this.appendDummyInput().appendField('➕');
     this.appendValueInput('VALUEB');
@@ -131,10 +145,16 @@ Blockly.Blocks['or'] = {
 };
 
 Blockly.JavaScript['or'] = (block) => {
-  var fielda = Blockly.JavaScript.valueToCode(block, 'VALUEA',
-                                              Blockly.JavaScript.ORDER_ATOMIC);
-  var fieldb = Blockly.JavaScript.valueToCode(block, 'VALUEB',
-                                              Blockly.JavaScript.ORDER_ATOMIC);
+  var fielda = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEA',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  var fieldb = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUEB',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
   return [
     'this.or(' + fielda + ',' + fieldb + ')',
     Blockly.JavaScript.ORDER_NONE,
@@ -142,7 +162,7 @@ Blockly.JavaScript['or'] = (block) => {
 };
 
 Blockly.Blocks['not'] = {
-  init : function() {
+  init: function () {
     this.appendDummyInput().appendField('🚫 ');
     this.appendValueInput('VALUE');
     this.setColour('#FFF');
@@ -152,15 +172,20 @@ Blockly.Blocks['not'] = {
 };
 
 Blockly.JavaScript['not'] = (block) => {
-  var field = Blockly.JavaScript.valueToCode(block, 'VALUE',
-                                             Blockly.JavaScript.ORDER_ATOMIC);
-  return [ 'this.not(' + field + ')', Blockly.JavaScript.ORDER_NONE ];
+  var field = Blockly.JavaScript.valueToCode(
+    block,
+    'VALUE',
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  return ['this.not(' + field + ')', Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['number'] = {
-  init : function() {
-    this.appendDummyInput().appendField(new Blockly.FieldNumber(5, 0, 1000, 1),
-                                        'number');
+  init: function () {
+    this.appendDummyInput().appendField(
+      new Blockly.FieldNumber(5, 0, 1000, 1),
+      'number'
+    );
     this.setColour('#FFF');
     this.setOutput(true, null);
     this.setInputsInline(true);
@@ -168,11 +193,11 @@ Blockly.Blocks['number'] = {
 };
 Blockly.JavaScript['number'] = (block) => {
   var field = block.getFieldValue('number');
-  return [ field, Blockly.JavaScript.ORDER_NONE ];
+  return [field, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['block'] = {
-  init : function() {
+  init: function () {
     this.appendDummyInput().appendField('🧱');
     this.setColour('#FFF');
     this.setOutput(true, null);
@@ -180,11 +205,11 @@ Blockly.Blocks['block'] = {
   },
 };
 Blockly.JavaScript['block'] = (block) => {
-  return [ 'this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE ];
+  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['carrot'] = {
-  init : function() {
+  init: function () {
     this.appendDummyInput().appendField('🥕');
     this.setColour('#FFF');
     this.setOutput(true, null);
@@ -193,13 +218,14 @@ Blockly.Blocks['carrot'] = {
 };
 
 Blockly.JavaScript['carrot'] = (block) => {
-  return [ 'this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE ];
+  return ['this.is(' + block.type + ')', Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['forward'] = {
-  init : function() {
+  init: function () {
     this.appendDummyInput().appendField(
-        new Blockly.FieldLabel('  ➟', 'blockType2'));
+      new Blockly.FieldLabel('  ➟', 'blockType2')
+    );
     this.setColour('#34A853');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -207,13 +233,15 @@ Blockly.Blocks['forward'] = {
   },
 };
 
-Blockly.JavaScript['forward'] =
-    (block) => { return 'this.action(' + block.type + ');\n'; };
+Blockly.JavaScript['forward'] = (block) => {
+  return 'this.action(' + block.type + ');\n';
+};
 
 Blockly.Blocks['left'] = {
-  init : function() {
+  init: function () {
     this.appendDummyInput().appendField(
-        new Blockly.FieldLabel(' ↺', 'blockType1'));
+      new Blockly.FieldLabel(' ↺', 'blockType1')
+    );
     this.setColour('#34A853');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -221,13 +249,15 @@ Blockly.Blocks['left'] = {
   },
 };
 
-Blockly.JavaScript['left'] =
-    (block) => { return 'this.turn(' + block.type + ');\n'; };
+Blockly.JavaScript['left'] = (block) => {
+  return 'this.turn(' + block.type + ');\n';
+};
 
 Blockly.Blocks['right'] = {
-  init : function() {
+  init: function () {
     this.appendDummyInput().appendField(
-        new Blockly.FieldLabel(' ↻', 'blockType1'));
+      new Blockly.FieldLabel(' ↻', 'blockType1')
+    );
     this.setColour('#34A853');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -235,5 +265,6 @@ Blockly.Blocks['right'] = {
   },
 };
 
-Blockly.JavaScript['right'] =
-    (block) => { return 'this.turn(' + block.type + ');\n'; };
+Blockly.JavaScript['right'] = (block) => {
+  return 'this.turn(' + block.type + ');\n';
+};
