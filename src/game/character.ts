@@ -35,7 +35,6 @@ export class Character extends GameObject {
   }
 
   is(action) {
-    console.log('IS:', action);
     switch (this.position) {
       case Position.Down:
         return this.currentLevel[this.y + 1][this.x] >= action;
@@ -51,22 +50,18 @@ export class Character extends GameObject {
   }
 
   not(action) {
-    console.log('NOT:', action);
-    return !this.is(action);
+    return !action;
   }
 
   check(action) {
-    console.log('CHECK:', action);
     return action;
   }
 
   and(action1, action2) {
-    console.log('AND:', action1, action2);
     return action1 * action2;
   }
 
   or(action1, action2) {
-    console.log('OR:', action1, action2);
     return action1 + action2;
   }
 }
