@@ -46,7 +46,7 @@ Blockly.Blocks['start'] = {
     this.setColour('#4285F4');
     this.appendStatementInput('Content').setCheck(null);
     this.setInputsInline(true);
-    this.event;
+    // this.event;
   },
 };
 

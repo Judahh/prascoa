@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Go to the next level.  Add skin parameter.
  * @suppress {duplicate}
@@ -9,7 +11,6 @@ import { Element } from './element';
 import Blockly from 'blockly';
 import { levels } from './levels';
 import { default as skins } from './blockSkins.json';
-import { Audio } from './audio';
 import { Item } from './item';
 export class Game {
   protected currentLevel: number;
@@ -18,7 +19,6 @@ export class Game {
   protected items: Item[];
   protected canvas: HTMLCanvasElement;
   protected context?: CanvasRenderingContext2D;
-  protected audio: Audio;
 
   constructor(level?: number) {
     this.canvas = document.getElementsByClassName(
@@ -36,7 +36,6 @@ export class Game {
       this._scores[index] = undefined;
     }
     if (this.canvas) this.level = this.currentLevel;
-    this.audio = new Audio();
   }
 
   get scores(): Array<number | undefined> {
@@ -74,9 +73,17 @@ export class Game {
   set level(level: number) {
     this.currentLevel = level;
     this.draw(level ? level : 0);
+    for (const row of levels[level]) {
+      for (const element of row) {
+        if (element >= Element.Char && element < Element.Carrot) {
+          this.chars[0].play('themeSound');
+          return;
+        }
+      }
+    }
   }
 
-  play(simpleWorkspace) {
+  play(simpleWorkspace: any): void {
     // // Prevent double-clicks or double-taps.
     // if (BlocklyInterface.eventSpam(e)) {
     //   return;
@@ -136,7 +143,7 @@ export class Game {
     x: number,
     y: number
   ): void {
-    this.context!.drawImage(
+    this.context?.drawImage(
       map,
       blockSprite.startX,
       blockSprite.startY,
@@ -154,7 +161,7 @@ export class Game {
   }
 
   clear(): void {
-    this.context!.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   drawMap(currentLevel, map, blockSprite): void {

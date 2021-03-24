@@ -11,7 +11,7 @@ import { Position } from './position';
 export class Character extends GameObject {
   constructor(
     location: { x: number; y: number; position: Position },
-    currentLevel,
+    currentLevel: number[][],
     block: { height: number; width: number },
     skin?: number
   ) {

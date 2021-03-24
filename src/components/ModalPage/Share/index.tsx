@@ -6,7 +6,7 @@ import { SocialIcon } from 'react-social-icons';
 import { FaRegClone } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
 
-const Share = () => {
+const Share = (): JSX.Element => {
   const { share } = useContext(LanguageContext);
   const tooltipRef = useRef<HTMLParagraphElement>(null);
 
