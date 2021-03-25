@@ -3,6 +3,7 @@ import { Position } from './position';
 export enum Element {
   Empty = 0,
   E = 0,
+  block = 1,
   BlockA = 1,
   BA = 1,
   BlockB = 2,
@@ -21,6 +22,7 @@ export enum Element {
   CharUp = 100 * Position.Up,
   CU = 100 * Position.Up,
   Carrot = 10000,
+  carrot = 10000,
   C = 10000,
   Tree = 20000,
   T = 20000,

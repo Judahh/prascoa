@@ -32,7 +32,7 @@ export default class MyApp extends App {
     loading: true,
   };
 
-  async componentDidMount() {
+  async componentDidMount(): Promise<void> {
     this.setState(() => ({
       loading: false,
     }));
@@ -93,40 +93,25 @@ export default class MyApp extends App {
             defer
           ></script>
           {/* @ts-ignore*/}
-          <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-          {/* @ts-ignore*/}
           <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-icon-180x180.png"
+            rel="icon"
+            type="image/x-icon"
+            sizes="64x64 32x32 24x24 16x16"
+            href="/favicon.ico"
           />
           {/* @ts-ignore*/}
           <link
             rel="icon"
             type="image/png"
             sizes="192x192"
-            href="/android-icon-192x192.png"
+            href="/android-chrome-192x192.png"
           />
           {/* @ts-ignore*/}
           <link
             rel="icon"
             type="image/png"
             sizes="512x512"
-            href="/android-icon-512x512.png"
-          />
-          {/* @ts-ignore*/}
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          />
-          {/* @ts-ignore*/}
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
+            href="/android-chrome-512x512.png"
           />
           {/* @ts-ignore*/}
           <link rel="manifest" href="/manifest.json" />
@@ -199,12 +184,12 @@ export default class MyApp extends App {
           {/* @ts-ignore*/}
           <meta
             name="keywords"
-            content="jl, consulting, jl consulting, consultoria, jl business, it consulting, consultoria de ti, tecnologia, consultoria em tecnologia, consultoria em governança, cobit, itil, cmmi, devops, devsecops, gestão, gerenciamento, governança, tecnologia, technology, ti, it"
+            content="páscoa, programação, aprender a programar, pascoa, programacao, jogo, easter, coding, learn to code, game"
           />
           {/* @ts-ignore*/}
           <meta
             name="description"
-            content="JL CONSULTING is a company focused on business improvement, growth and problem solving. Our customer's satisfaction with the results is just a consequence. Do you want to unleash your company truly potential?"
+            content="Coding For Carrots redesign - PR(ogramando na p)ÁSCOA"
           />
           {/* @ts-ignore*/}
           <meta name="language" content="Portuguese" />

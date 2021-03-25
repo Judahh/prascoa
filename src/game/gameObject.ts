@@ -58,7 +58,7 @@ export class GameObject {
     this.canvas.width = smaller;
   }
 
-  action(
+  doAction(
     location?: { x: number; y: number; position: Position },
     _action?: Action
   ): { x: number; y: number; position: Position } {

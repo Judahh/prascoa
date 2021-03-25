@@ -1,3 +1,8 @@
 export enum Action {
-  Jump = 0,
+  Forward = 0,
+  forward = 0,
+  Left = 1,
+  left = 1,
+  Right = 2,
+  right = 2,
 }

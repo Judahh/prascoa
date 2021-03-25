@@ -11,7 +11,6 @@ import { default as lightTheme } from '../../styles/themes/light.json';
 import { default as darkTheme } from '../../styles/themes/dark.json';
 
 import Header from '../../components/Header';
-// import Footer from '../../components/Footer';
 
 import { LayoutWrapper } from './styles';
 
@@ -66,29 +65,6 @@ const Layout = ({ language, children, getGame, setGame, ...rest }) => {
     return token;
   };
 
-  // const handleTheme = () => {
-  //   switch (currentTheme) {
-  //     case lightTheme:
-  //       setCurrentTheme(darkTheme);
-  //       break;
-  //     case darkTheme:
-  //       setCurrentTheme(lightTheme);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
-
-  // const handleMenu = () => {
-  //   if (currentMenu < menu.length - 1) setCurrentMenu(currentMenu + 1);
-  //   else setCurrentMenu(0);
-  // };
-
-  // console.log(children);
-  // for (const child of children) {
-  //   child.props.theme = currentTheme;
-  // }
-
   const childrenWithProps = React.Children.map(children, (child) => {
     return React.cloneElement(child, {
       theme: currentTheme,
@@ -123,14 +99,6 @@ const Layout = ({ language, children, getGame, setGame, ...rest }) => {
           >
             {childrenWithProps}
           </LayoutWrapper>
-
-          {/* <Footer
-            handleToken={handleToken}
-            handleTheme={handleTheme}
-            theme={currentTheme}
-            handleMenu={handleMenu}
-            menu={currentMenu}
-          /> */}
         </TokenContext.Provider>
       </LanguageContext.Provider>
     </ThemeProvider>

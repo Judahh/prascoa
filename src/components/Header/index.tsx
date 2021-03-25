@@ -4,8 +4,6 @@ import Drawer from './Drawer/index';
 import Scroll from '../../components/Scroll';
 
 const Header = (props) => {
-  // console.log(props);
-
   return (
     <HeaderWrapper menu={props.menu}>
       <Drawer
