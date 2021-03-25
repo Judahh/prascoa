@@ -80,15 +80,16 @@ export class Game {
     this.draw();
   }
 
-  play(simpleWorkspace: any): void {
+  async play(simpleWorkspace: any): Promise<void> {
     console.log('PLAY Game');
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const code = Blockly.JavaScript.workspaceToCode(simpleWorkspace);
     for (const char of this.chars) {
-      char.execute(code);
+      await char.execute(code);
     }
+    console.log('DONE');
   }
 
   getNode(n: any, v: any): any {
@@ -213,8 +214,9 @@ export class Game {
     return (1000 * Math.pow(carrots, 2)) / (blocks * steps);
   }
 
+  //! TODO: use sharedCanvas
   draw(): void {
-    const images = { map: new Image() };
+    const images = { map: new Image() }; // save image and do not load again
     images.map.src = skins[0].sprite;
     images.map.onload = () => this.drawMap(images.map, skins[0]);
   }

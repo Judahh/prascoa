@@ -67,8 +67,7 @@ export class GameObject {
   }
 
   doAction(action?: Action): boolean {
-    console.log('DO');
-
+    // console.log('DO');
     if (action === Action.Forward)
       switch (this.position) {
         case Position.Left:
@@ -86,7 +85,7 @@ export class GameObject {
         default:
           break;
       }
-    console.log(Position[this.position]);
+    // console.log(Position[this.position]);
 
     this.draw(true);
 
@@ -97,8 +96,9 @@ export class GameObject {
     return xResult == 0 && yResult == 0;
   }
 
+  //! TODO: use sharedCanvas
   draw(action?: boolean): void {
-    const images = { char: new Image() };
+    const images = { char: new Image() }; // save image and do not load again
     images.char.src = this.skins[0].sprite;
     images.char.onload = () => this.drawChar(images.char, action);
     // window.addEventListener('resize', () => {
@@ -159,7 +159,7 @@ export class GameObject {
           : this.sprite + 1;
       if (this.sprite === max) clearInterval(this.idleId);
     }
-    console.log(this.sprite);
+    // console.log(this.sprite);
 
     this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context?.drawImage(

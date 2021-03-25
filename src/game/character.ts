@@ -11,6 +11,7 @@ import { Action } from './action';
 
 // import Blockly from 'blockly';
 export class Character extends GameObject {
+  protected _code;
   constructor(
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
@@ -28,22 +29,35 @@ export class Character extends GameObject {
     this.draw();
   }
 
-  execute(code: string): void {
-    eval(code);
+  async execute(code: string): Promise<void> {
+    this._code = '(async () => {' + code + '})()';
+    await eval(this._code);
   }
 
-  action(action: Action): void {
+  promiseAction(action: Action): Promise<boolean> {
+    return new Promise((resolve) => {
+      const doTheAction = this.doAction.bind(this);
+      const id = setInterval(() => {
+        clearInterval(this.idleId);
+        const done = doTheAction(action);
+        // console.log(done);
+        if (done) {
+          clearInterval(id);
+          this.idleId = setInterval(this.draw.bind(this), 100);
+          resolve(true);
+        }
+      }, 100);
+    });
+  }
+
+  async action(action: Action): Promise<void> {
     console.log('ACTION:', action);
-    const doTheAction = this.doAction.bind(this);
-    const id = setInterval(() => {
-      clearInterval(this.idleId);
-      const done = doTheAction(action);
-      console.log(done);
-      if (done) {
-        clearInterval(id);
-        this.idleId = setInterval(this.draw.bind(this), 100);
-      }
-    }, 100);
+
+    if (action === Action.Forward) {
+      console.log('PLAY: actionSound');
+      this.play('actionSound');
+    }
+    await this.promiseAction(action);
   }
 
   is(element: Element): boolean {
