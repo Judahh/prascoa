@@ -6,6 +6,8 @@
 import { default as charSkins } from './characterSkins.json';
 import { GameObject } from './gameObject';
 import { Position } from './position';
+import { Element } from './element';
+import { Action } from './action';
 
 // import Blockly from 'blockly';
 export class Character extends GameObject {
@@ -30,26 +32,36 @@ export class Character extends GameObject {
     eval(code);
   }
 
-  action(action): void {
+  action(action: Action): void {
     console.log('ACTION:', action);
+    const doTheAction = this.doAction.bind(this);
+    const id = setInterval(() => {
+      clearInterval(this.idleId);
+      const done = doTheAction(action);
+      console.log(done);
+      if (done) {
+        clearInterval(id);
+        this.idleId = setInterval(this.draw.bind(this), 100);
+      }
+    }, 100);
   }
 
-  is(action) {
+  is(element: Element): boolean {
     switch (this.position) {
       case Position.Down:
-        return this.currentLevel[this.y + 1][this.x] >= action;
+        return this.currentLevel[this.y + 1][this.x] >= element;
       case Position.up:
-        return this.currentLevel[this.y - 1][this.x] >= action;
+        return this.currentLevel[this.y - 1][this.x] >= element;
       case Position.Right:
-        return this.currentLevel[this.y][this.x + 1] >= action;
+        return this.currentLevel[this.y][this.x + 1] >= element;
       case Position.Left:
-        return this.currentLevel[this.y][this.x - 1] >= action;
+        return this.currentLevel[this.y][this.x - 1] >= element;
       default:
-        return this.currentLevel[this.y][this.x] >= action;
+        return this.currentLevel[this.y][this.x] >= element;
     }
   }
 
-  not(action) {
+  not(action): boolean {
     return !action;
   }
 

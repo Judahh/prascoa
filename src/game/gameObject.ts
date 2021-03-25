@@ -25,6 +25,8 @@ export class GameObject {
   block: { height: number; width: number };
   skins = charSkins;
   protected audio: any;
+  protected sprite: number;
+  protected idleId;
   constructor(
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
@@ -47,7 +49,8 @@ export class GameObject {
     this.currentLevel = currentLevel;
     this.block = block;
     this.audio = {};
-    this.draw();
+    this.sprite = this.skin;
+    this.idleId = setInterval(this.draw.bind(this), 100);
   }
 
   refreshCanvas(): void {
@@ -58,45 +61,52 @@ export class GameObject {
     this.canvas.width = smaller;
   }
 
-  doAction(
-    location?: { x: number; y: number; position: Position },
-    _action?: Action
-  ): { x: number; y: number; position: Position } {
-    if (location) {
-      this.x = location.x;
-      this.y = location.y;
-      this.position = location.position;
-    }
-    switch (this.position) {
-      case Position.Left:
-        this.x -= this.skins[this.skin].speed;
-        break;
-      case Position.Right:
-        this.x += this.skins[this.skin].speed;
-        break;
-      case Position.Down:
-        this.y -= this.skins[this.skin].speed;
-        break;
-      case Position.Up:
-        this.y += this.skins[this.skin].speed;
-        break;
-      default:
-        break;
-    }
-    return { x: this.x, y: this.y, position: this.position };
+  getDecimalPart(number: number): number {
+    const decimal = number % 1;
+    return Math.round(decimal * 100000000) / 100000000;
   }
 
-  draw(): void {
-    // load images
+  doAction(action?: Action): boolean {
+    console.log('DO');
+
+    if (action === Action.Forward)
+      switch (this.position) {
+        case Position.Left:
+          this.x -= this.skins[this.skin].speed;
+          break;
+        case Position.Right:
+          this.x += this.skins[this.skin].speed;
+          break;
+        case Position.Down:
+          this.y -= this.skins[this.skin].speed;
+          break;
+        case Position.Up:
+          this.y += this.skins[this.skin].speed;
+          break;
+        default:
+          break;
+      }
+    console.log(Position[this.position]);
+
+    this.draw(true);
+
+    const xResult = this.getDecimalPart(this.x);
+    const yResult = this.getDecimalPart(this.y);
+
+    //! TODO: TURN
+    return xResult == 0 && yResult == 0;
+  }
+
+  draw(action?: boolean): void {
     const images = { char: new Image() };
     images.char.src = this.skins[0].sprite;
-    images.char.onload = () => this.drawChar(images.char);
+    images.char.onload = () => this.drawChar(images.char, action);
     // window.addEventListener('resize', () => {
     //   // canvas.height = window.innerHeight;
     //   // canvas.width = window.innerWidth;
     // });
   }
-  drawChar(canvas): void {
+  drawChar(canvas, action?: boolean): void {
     const line = this.currentLevel[this.y];
 
     const realHeight =
@@ -112,7 +122,8 @@ export class GameObject {
       line.length,
       this.currentLevel.length,
       addWidth,
-      addHeight
+      addHeight,
+      action
     );
   }
 
@@ -121,14 +132,40 @@ export class GameObject {
     numberOfColumns: number,
     numberOfRows: number,
     addWidth: number,
-    addHeight: number
+    addHeight: number,
+    action?: boolean
   ): void {
+    const skin = this.skins[this.skin][Position[this.position]];
+    const min = action ? skin.action.minFrame : skin.minFrame;
+    const max = action ? skin.action.maxFrame : skin.maxFrame;
+
+    if (action)
+      this.sprite =
+        this.sprite < min
+          ? min
+          : this.sprite > max
+          ? max
+          : this.sprite === max
+          ? (this.sprite = min)
+          : this.sprite + 1;
+    else {
+      this.sprite =
+        this.sprite < min
+          ? min
+          : this.sprite > max
+          ? max
+          : this.sprite === max
+          ? (this.sprite = max)
+          : this.sprite + 1;
+      if (this.sprite === max) clearInterval(this.idleId);
+    }
+    console.log(this.sprite);
+
+    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context?.drawImage(
       canvas,
       this.skins[this.skin].startX,
-      this.skins[this.skin].startY +
-        this.skins[this.skin][Position[this.position]].minFrame *
-          this.skins[this.skin].height,
+      this.skins[this.skin].startY + this.sprite * this.skins[this.skin].height,
       this.skins[this.skin].width,
       this.skins[this.skin].height,
       (this.x * this.canvas.width) / (numberOfColumns * 2) -
@@ -140,31 +177,6 @@ export class GameObject {
       this.canvas.width / numberOfColumns,
       this.canvas.height / numberOfRows
     );
-  }
-
-  update(): void {
-    switch (this.position) {
-      case Position.Left:
-        this.x -= this.skins[this.skin].speed;
-        break;
-      case Position.Right:
-        this.x += this.skins[this.skin].speed;
-        break;
-      case Position.Down:
-        this.y -= this.skins[this.skin].speed;
-        break;
-      case Position.Up:
-        this.y += this.skins[this.skin].speed;
-        break;
-      default:
-        break;
-    }
-  }
-
-  animate(): void {
-    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.draw();
-    this.update();
   }
 
   play(soundName: string): void {

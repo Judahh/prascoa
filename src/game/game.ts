@@ -14,7 +14,8 @@ import { levels } from './levels';
 import { default as skins } from './blockSkins.json';
 import { Item } from './item';
 export class Game {
-  protected currentLevel: number;
+  protected _level: number;
+  protected _currentLevel?: number[][];
   protected _scores: Array<number | undefined>;
   protected chars: Character[];
   protected items: Item[];
@@ -31,14 +32,14 @@ export class Game {
     this.refreshCanvas();
     this.chars = [];
     this.items = [];
-    this.currentLevel = level ? level : 0;
+    this._level = level ? level : 0;
     this._scores = [];
     this._scores[0] = 0;
     this.started = false;
     for (let index = 1; index < levels.length; index++) {
       this._scores[index] = undefined;
     }
-    if (this.canvas) this.level = this.currentLevel;
+    if (this.canvas) this.level = this._level;
   }
 
   get scores(): Array<number | undefined> {
@@ -70,12 +71,13 @@ export class Game {
   }
 
   get level(): number {
-    return this.currentLevel;
+    return this._level;
   }
 
   set level(level: number) {
-    this.currentLevel = level;
-    this.draw(level ? level : 0);
+    this._level = level;
+    this._currentLevel = JSON.parse(JSON.stringify(levels[level]));
+    this.draw();
   }
 
   play(simpleWorkspace: any): void {
@@ -136,60 +138,68 @@ export class Game {
     this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  drawMap(currentLevel, map, blockSprite): void {
+  drawMap(map, blockSprite): void {
     this.clear();
+    if (this._currentLevel) {
+      const realHeight =
+        ((this.canvas.height / this._currentLevel.length) *
+          (this._currentLevel.length + 1)) /
+        2;
+      const addHeight = (this.canvas.height - realHeight) / 2;
 
-    const realHeight =
-      ((this.canvas.height / currentLevel.length) * (currentLevel.length + 1)) /
-      2;
-    const addHeight = (this.canvas.height - realHeight) / 2;
+      for (let y = 0; y < this._currentLevel.length; y++) {
+        const line = this._currentLevel[y];
+        for (let x = 0; x < line.length; x++) {
+          const addWidth =
+            (this.canvas.width / line.length) * ((line.length - 1) / 2);
 
-    for (let y = 0; y < currentLevel.length; y++) {
-      const line = currentLevel[y];
-      for (let x = 0; x < line.length; x++) {
-        const addWidth =
-          (this.canvas.width / line.length) * ((line.length - 1) / 2);
-
-        if (currentLevel[y][x])
-          this.drawXY(
-            map,
-            blockSprite,
-            line.length,
-            currentLevel.length,
-            addWidth,
-            addHeight,
-            x,
-            y
-          );
-        if (
-          currentLevel[y][x] >= Element.Char &&
-          currentLevel[y][x] < Element.Carrot
-        )
-          this.chars.push(
-            new Character(
-              { x, y, position: Math.trunc(currentLevel[y][x] / Element.Char) },
-              currentLevel,
-              {
-                height: currentLevel.length,
-                width: currentLevel.length,
-              }
-            )
-          );
-        if (currentLevel[y][x] >= Element.Carrot)
-          this.items.push(
-            new Item(
-              {
-                x,
-                y,
-                position: Math.trunc(currentLevel[y][x] / Element.Carrot),
-              },
-              currentLevel,
-              {
-                height: currentLevel.length,
-                width: currentLevel.length,
-              }
-            )
-          );
+          if (this._currentLevel[y][x])
+            this.drawXY(
+              map,
+              blockSprite,
+              line.length,
+              this._currentLevel.length,
+              addWidth,
+              addHeight,
+              x,
+              y
+            );
+          if (
+            this._currentLevel[y][x] >= Element.Char &&
+            this._currentLevel[y][x] < Element.Carrot
+          )
+            this.chars.push(
+              new Character(
+                {
+                  x,
+                  y,
+                  position: Math.trunc(this._currentLevel[y][x] / Element.Char),
+                },
+                this._currentLevel,
+                {
+                  height: this._currentLevel.length,
+                  width: this._currentLevel.length,
+                }
+              )
+            );
+          if (this._currentLevel[y][x] >= Element.Carrot)
+            this.items.push(
+              new Item(
+                {
+                  x,
+                  y,
+                  position: Math.trunc(
+                    this._currentLevel[y][x] / Element.Carrot
+                  ),
+                },
+                this._currentLevel,
+                {
+                  height: this._currentLevel.length,
+                  width: this._currentLevel.length,
+                }
+              )
+            );
+        }
       }
     }
 
@@ -203,15 +213,9 @@ export class Game {
     return (1000 * Math.pow(carrots, 2)) / (blocks * steps);
   }
 
-  draw(level: number): void {
-    // load images
+  draw(): void {
     const images = { map: new Image() };
     images.map.src = skins[0].sprite;
-    const currentLevel = levels[level];
-    images.map.onload = () => this.drawMap(currentLevel, images.map, skins[0]);
-    // window.addEventListener('resize', () => {
-    //   // canvas.height = window.innerHeight;
-    //   // canvas.width = window.innerWidth;
-    // });
+    images.map.onload = () => this.drawMap(images.map, skins[0]);
   }
 }
