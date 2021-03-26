@@ -84,7 +84,7 @@ export class Character extends GameObject {
       const xResult = this.getDecimalPart(this.x);
       const yResult = this.getDecimalPart(this.y);
 
-      done = xResult == 0 && yResult == 0;
+      done = xResult === 0 && yResult === 0;
 
       if (done) {
         this.x = Math.floor(this.x);

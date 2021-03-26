@@ -61,8 +61,8 @@ export class GameObject {
     this.canvas.clear();
     await this.draw(action, waitIdle);
   }
-  getDecimalPart(number: number): number {
-    const decimal = number % 1;
+  getDecimalPart(currentNumber: number): number {
+    const decimal = currentNumber % 1;
     return Math.round(decimal * 100000000) / 100000000;
   }
 
