@@ -125,7 +125,7 @@ export class Game {
   }
 
   async died() {
-    // animação de queda
+    //! TODO: Fall animation
     await this.reset();
   }
 
@@ -237,6 +237,10 @@ export class Game {
           }
         }
       }
+      if (!this.started) {
+        this.chars[0].play('themeSound');
+        this.started = true;
+      }
     }
   }
 
@@ -269,11 +273,6 @@ export class Game {
           }
         }
       }
-    }
-
-    if (!this.started) {
-      this.chars[0].play('themeSound');
-      this.started = true;
     }
 
     this.totalNumOfItems = this.items.length;
