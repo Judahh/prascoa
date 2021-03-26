@@ -27,11 +27,27 @@ const initialXml =
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Home = (props) => {
-  // console.log('Home:', props);
+  console.log('Home:', props);
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState<any>({});
   const [play, setPlay] = useState({});
   const [game, setGame] = useState({});
+  const [score, setScore] = useState<number>(0);
+  setInterval(() => {
+    const newScore = Math.trunc((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
+  }, 200);
+
+  useEffect(() => {
+    console.log('SHIT:', (game as Game).currentScore);
+
+    setScore(Math.trunc((game as Game).currentScore));
+  }, [
+    game,
+    (game as Game).currentScore,
+    (game as Game).score,
+    (game as Game).level,
+  ]);
 
   useEffect(() => {
     if (game instanceof Game) {
@@ -60,7 +76,7 @@ const Home = (props) => {
       >
         {game instanceof Game ? (
           <>
-            <Score>{game instanceof Game ? game.currentScore : 0}</Score>
+            <Score>{game instanceof Game ? score : 0}</Score>
             <BlocklyComponent
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore

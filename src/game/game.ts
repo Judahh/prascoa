@@ -96,7 +96,8 @@ export class Game {
 
   async reset() {
     this.numOfItems = 0;
-    this.totalNumOfItems = 0;
+    // this.totalNumOfItems = 0;
+    this._currentScore = 0;
     this.chars = [];
     this.items = [];
     this.blocks = [];
@@ -159,7 +160,7 @@ export class Game {
     console.log('ITEMS:', this.numOfItems);
     console.log('TOTAL:', this.totalNumOfItems);
     this.printLevel();
-    if (this.totalNumOfItems === this.numOfItems) {
+    if (this.totalNumOfItems <= this.numOfItems) {
       if (
         !this._scores[this.level] ||
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -240,6 +241,8 @@ export class Game {
   }
 
   async drawMap(): Promise<void> {
+    this.totalNumOfItems = 0;
+    this._currentScore = 0;
     if (this._currentLevel) {
       for (let y = 0; y < this._currentLevel.length; y++) {
         const line = this._currentLevel[y];
@@ -273,7 +276,7 @@ export class Game {
       this.started = true;
     }
 
-    if (this.totalNumOfItems === 0) this.totalNumOfItems = this.items.length;
+    this.totalNumOfItems = this.items.length;
   }
 
   calcScore(carrots: number, blocks: number, steps: number) {
