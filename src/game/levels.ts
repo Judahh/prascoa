@@ -1,7 +1,7 @@
 import { Element } from './element';
 export const levels = [
   [
-    //! Apenas forward
+    //! 0 Apenas forward
     [0, 0, 0],
     [0, Element.BA + Element.CharRight, Element.BB + Element.C],
     [0, 0, 0],
@@ -16,7 +16,7 @@ export const levels = [
     [0, 0, 0],
   ],
   [
-    //! Adiciona turns
+    //! 2 Adiciona turns
     [0, 0, 0],
     [0, Element.BA + Element.CharUp, Element.BB + Element.C],
     [0, 0, 0],
@@ -27,19 +27,19 @@ export const levels = [
     [Element.BA + Element.C, Element.BB + Element.C, Element.BB + Element.C],
   ],
   [
-    //! Adiciona if e carrot
+    //! 4 Adiciona if e carrot
     [Element.BA + Element.CharRight, 0, 0],
     [0, Element.BA + Element.CharRight, Element.BB + Element.C],
     [0, 0, 0],
   ],
   [
-    //! Adiciona block, not, and e or
+    //! 5 Adiciona block, not, and e or
     [Element.BA + Element.CharRight, 0, 0],
     [Element.BA + Element.CharRight, Element.BB, Element.BB + Element.C],
     [0, 0, 0],
   ],
   [
-    //! Adiciona loop e number
+    //! 6 Adiciona loop e number
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [
