@@ -14,17 +14,23 @@ import { GameObject } from './gameObject';
 export class SharedCanvas {
   canvas: HTMLCanvasElement;
   context?: CanvasRenderingContext2D;
-  protected objects: GameObject[];
+  protected _objects: GameObject[];
   protected refreshId;
+  protected cleared: boolean;
   constructor(canvasClass: string) {
     this.canvas = document.getElementsByClassName(
       canvasClass
     )[0] as HTMLCanvasElement;
     const ctx = this.canvas.getContext('2d');
     this.context = ctx !== null ? ctx : undefined;
+    this.cleared = true;
     this.refreshCanvas();
-    this.objects = [];
+    this._objects = [];
     // this.refreshId = setInterval(this.draw.bind(this), 100);
+  }
+
+  get objects() {
+    return this._objects;
   }
 
   refreshCanvas(): void {
@@ -39,55 +45,66 @@ export class SharedCanvas {
   //! draw, clear the canvas and draw all of them with the current position
   //! of the caller.
 
-  // draw(
-  //   image,
-  //   numberOfColumns: number,
-  //   numberOfRows: number,
-  //   addWidth: number,
-  //   addHeight: number,
-  //   action?: boolean
-  // ): void {
-  //   const skin = this.skins[this.skin][Position[this.position]];
-  //   const min = action ? skin.action.minFrame : skin.minFrame;
-  //   const max = action ? skin.action.maxFrame : skin.maxFrame;
+  async draw(
+    currentIndex: number,
+    image: HTMLImageElement,
+    imageStartX: number,
+    imageStartY: number,
+    imageWidth: number,
+    imageHeight: number,
+    x: number,
+    y: number,
+    canvasWidth: number,
+    canvasHeight: number
+  ) {
+    if (this.cleared) {
+      // console.log('cleared');
+      this.cleared = false;
+      for (let index = 0; index < this.objects.length; index++) {
+        if (currentIndex !== index) {
+          const object = this.objects[index];
+          await object.draw();
+        } else {
+          this.context?.drawImage(
+            image,
+            imageStartX,
+            imageStartY,
+            imageWidth,
+            imageHeight,
+            x,
+            y,
+            canvasWidth,
+            canvasHeight
+          );
+        }
+      }
+    } else {
+      // console.log('regular');
+      this.context?.drawImage(
+        image,
+        imageStartX,
+        imageStartY,
+        imageWidth,
+        imageHeight,
+        x,
+        y,
+        canvasWidth,
+        canvasHeight
+      );
+    }
+  }
 
-  //   if (action)
-  //     this.sprite =
-  //       this.sprite < min
-  //         ? min
-  //         : this.sprite > max
-  //         ? max
-  //         : this.sprite === max
-  //         ? (this.sprite = min)
-  //         : this.sprite + 1;
-  //   else {
-  //     this.sprite =
-  //       this.sprite < min
-  //         ? min
-  //         : this.sprite > max
-  //         ? max
-  //         : this.sprite === max
-  //         ? (this.sprite = max)
-  //         : this.sprite + 1;
-  //     if (this.sprite === max) clearInterval(this.idleId);
-  //   }
-  //   // console.log(this.sprite);
+  clear() {
+    // console.log('clear CANVAS');
+    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.cleared = true;
+  }
 
-  //   this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  //   this.context?.drawImage(
-  //     image,
-  //     this.skins[this.skin].startX,
-  //     this.skins[this.skin].startY + this.sprite * this.skins[this.skin].height,
-  //     this.skins[this.skin].width,
-  //     this.skins[this.skin].height,
-  //     (this.x * this.canvas.width) / (numberOfColumns * 2) -
-  //       (this.y * this.canvas.height) / (numberOfRows * 2) +
-  //       addWidth,
-  //     (this.y * this.canvas.height) / (numberOfRows * 4) +
-  //       (this.x * this.canvas.width) / (numberOfColumns * 4) +
-  //       addHeight,
-  //     this.canvas.width / numberOfColumns,
-  //     this.canvas.height / numberOfRows
-  //   );
-  // }
+  get height(): number {
+    return this.canvas.height;
+  }
+
+  get width(): number {
+    return this.canvas.width;
+  }
 }

@@ -8,18 +8,16 @@
  * @suppress {duplicate}
  */
 
-import { Action } from './action';
 import { Position } from './position';
 import { Audio } from './audio';
 import { default as charSkins } from './characterSkins.json';
+import { SharedCanvas } from './sharedCanvas';
 
 // import Blockly from 'blockly';
 export class GameObject {
   x: number;
   y: number;
   position: Position;
-  canvas: HTMLCanvasElement;
-  context?: CanvasRenderingContext2D;
   skin: number;
   currentLevel: number[][];
   block: { height: number; width: number };
@@ -28,79 +26,39 @@ export class GameObject {
   protected sprite: number;
   protected idleId;
   protected image;
-  protected motion?: boolean;
+  protected canvas: SharedCanvas;
+  protected canvasIndex: number;
   constructor(
+    canvas: SharedCanvas,
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
     block: { height: number; width: number },
     skin: number,
-    canvasClass: string,
-    skins: any,
-    motion?: boolean
+    skins: any
   ) {
     this.x = location.x;
     this.y = location.y;
     this.position = location.position;
     this.skins = skins;
-    this.canvas = document.getElementsByClassName(
-      canvasClass
-    )[0] as HTMLCanvasElement;
-    const ctx = this.canvas.getContext('2d');
-    this.context = ctx !== null ? ctx : undefined;
-    //! TODO: refreshCanvas clear canvas. This is a bug
-    //! use sharedCanvas
-    this.refreshCanvas();
     this.skin = skin;
+    this.canvas = canvas;
+    this.canvasIndex = this.canvas.objects.push(this) - 1;
     this.currentLevel = currentLevel;
     this.block = block;
     this.audio = {};
     this.image = { element: new Image() };
     this.sprite = this.skin;
-    this.motion = motion;
-    if (motion) this.idleId = setInterval(this.draw.bind(this), 100);
+    // this.initMotion();
   }
 
-  refreshCanvas(): void {
-    const height = window.innerHeight - 70;
-    const width = window.innerWidth - 140;
-    const smaller = height <= width ? height : width;
-    this.canvas.height = smaller;
-    this.canvas.width = smaller;
+  async redraw(action?: boolean) {
+    // console.log('redraw');
+    this.canvas.clear();
+    await this.draw(action);
   }
-
   getDecimalPart(number: number): number {
     const decimal = number % 1;
     return Math.round(decimal * 100000000) / 100000000;
-  }
-
-  doAction(action?: Action): boolean {
-    // console.log('DO');
-    if (action === Action.Forward)
-      switch (this.position) {
-        case Position.Left:
-          this.x -= this.skins[this.skin].speed;
-          break;
-        case Position.Right:
-          this.x += this.skins[this.skin].speed;
-          break;
-        case Position.Down:
-          this.y -= this.skins[this.skin].speed;
-          break;
-        case Position.Up:
-          this.y += this.skins[this.skin].speed;
-          break;
-        default:
-          break;
-      }
-    // console.log(Position[this.position]);
-
-    this.draw(true);
-
-    const xResult = this.getDecimalPart(this.x);
-    const yResult = this.getDecimalPart(this.y);
-
-    //! TODO: TURN
-    return xResult == 0 && yResult == 0;
   }
 
   load(action?: boolean): Promise<boolean> {
@@ -113,14 +71,13 @@ export class GameObject {
     });
   }
 
-  //! TODO: use sharedCanvas
+  //! TODO: use sharedCanvas for store images
   async draw(action?: boolean): Promise<void> {
     this.image.element.src = this.skins[0].sprite;
-    // if (this.image.loaded) this.drawObject(action);
-    // else
-    await this.load(action);
+    if (this.image.loaded) await this.drawObject(action);
+    else await this.load(action);
   }
-  drawObject(action?: boolean): void {
+  async drawObject(action?: boolean): Promise<void> {
     const line = this.currentLevel[this.y];
 
     const realHeight =
@@ -131,7 +88,7 @@ export class GameObject {
     const addWidth =
       (this.canvas.width / line.length) * ((line.length - 1) / 2);
 
-    this.drawWithAdd(
+    await this.drawWithAdd(
       line.length,
       this.currentLevel.length,
       addWidth,
@@ -140,40 +97,60 @@ export class GameObject {
     );
   }
 
-  drawWithAdd(
+  async drawWithAdd(
     numberOfColumns: number,
     numberOfRows: number,
     addWidth: number,
     addHeight: number,
     action?: boolean
-  ): void {
+  ): Promise<void> {
     const skin = this.skins[this.skin][Position[this.position]];
     const min = action ? skin.action.minFrame : skin.minFrame;
     const max = action ? skin.action.maxFrame : skin.maxFrame;
 
-    if (action)
+    if (action) {
+      // const end = this.sprite === max;
       this.sprite =
         this.sprite < min
           ? min
           : this.sprite > max
           ? max
           : this.sprite === max
-          ? (this.sprite = min)
+          ? min
           : this.sprite + 1;
-    else {
+      // if (end) {
+      //   // clearInterval(this.idleId);
+      //   // this.idleId = undefined;
+      //   console.log('clear A');
+      // } else {
+      //   // if (!this.idleId)
+      //   //   this.idleId = setInterval(this.redraw.bind(this), 100);
+      //   // this.canvas.clear();
+      //   console.log('set A');
+      // }
+    } else {
       this.sprite =
         this.sprite < min
           ? min
           : this.sprite > max
           ? max
           : this.sprite === max
-          ? (this.sprite = max)
+          ? max
           : this.sprite + 1;
-      if (this.sprite === max) clearInterval(this.idleId);
+      if (this.sprite === max) {
+        clearInterval(this.idleId);
+        this.idleId = undefined;
+        // console.log('clear I');
+      } else {
+        if (!this.idleId)
+          this.idleId = setInterval(this.redraw.bind(this), 100);
+        // console.log('set I');
+        // this.canvas.clear();
+      }
     }
     // console.log(this.sprite);
 
-    this.drawImage(
+    await this.drawImage(
       this.skins[this.skin].startX,
       this.skins[this.skin].startY + this.sprite * this.skins[this.skin].height,
       this.skins[this.skin].width,
@@ -189,7 +166,7 @@ export class GameObject {
     );
   }
 
-  drawImage(
+  async drawImage(
     imageStartX: number,
     imageStartY: number,
     imageWidth: number,
@@ -199,13 +176,8 @@ export class GameObject {
     canvasWidth: number,
     canvasHeight: number
   ) {
-    if (this.motion) {
-      // console.log('clear:', this);
-      this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    } else {
-      console.log('keep:', this);
-    }
-    this.context?.drawImage(
+    await this.canvas.draw(
+      this.canvasIndex,
       this.image.element,
       imageStartX,
       imageStartY,

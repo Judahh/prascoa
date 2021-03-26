@@ -8,26 +8,19 @@ import { GameObject } from './gameObject';
 import { Position } from './position';
 import { Element } from './element';
 import { Action } from './action';
+import { SharedCanvas } from './sharedCanvas';
 
 // import Blockly from 'blockly';
 export class Character extends GameObject {
   protected _code;
   constructor(
+    canvas: SharedCanvas,
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
     block: { height: number; width: number },
     skin?: number
   ) {
-    super(
-      location,
-      currentLevel,
-      block,
-      skin ? skin : 0,
-      'svgCanvas2',
-      charSkins,
-      true
-    );
-    this.draw();
+    super(canvas, location, currentLevel, block, skin ? skin : 0, charSkins);
   }
 
   async execute(code: string): Promise<void> {
@@ -44,21 +37,60 @@ export class Character extends GameObject {
         // console.log(done);
         if (done) {
           clearInterval(id);
-          this.idleId = setInterval(this.draw.bind(this), 100);
+          this.idleId = setInterval(this.redraw.bind(this), 100);
           resolve(true);
         }
       }, 100);
     });
   }
 
+  doAction(action?: Action): boolean {
+    // console.log('DO');
+    if (action === Action.Forward)
+      switch (this.position) {
+        case Position.Left:
+          this.x -= this.skins[this.skin].speed;
+          break;
+        case Position.Right:
+          this.x += this.skins[this.skin].speed;
+          break;
+        case Position.Down:
+          this.y -= this.skins[this.skin].speed;
+          break;
+        case Position.Up:
+          this.y += this.skins[this.skin].speed;
+          break;
+        default:
+          break;
+      }
+    // console.log(Position[this.position]);
+
+    this.redraw(true);
+
+    const xResult = this.getDecimalPart(this.x);
+    const yResult = this.getDecimalPart(this.y);
+
+    const done = xResult == 0 && yResult == 0;
+
+    if (done) {
+      this.x = Math.floor(this.x);
+      this.y = Math.floor(this.y);
+    }
+
+    //! TODO: TURN
+    return done;
+  }
+
   async action(action: Action): Promise<void> {
     console.log('ACTION:', action);
 
+    console.log(this.x, this.y);
     if (action === Action.Forward) {
-      console.log('PLAY: actionSound');
+      // console.log('PLAY: actionSound');
       this.play('actionSound');
     }
     await this.promiseAction(action);
+    console.log(this.x, this.y);
   }
 
   is(element: Element): boolean {

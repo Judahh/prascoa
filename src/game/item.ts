@@ -9,25 +9,20 @@
 import { Position } from './position';
 import { default as itemSkins } from './itemSkins.json';
 import { GameObject } from './gameObject';
+import { SharedCanvas } from './sharedCanvas';
 
 // import Blockly from 'blockly';
 export class Item extends GameObject {
   constructor(
+    canvas: SharedCanvas,
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
     block: { height: number; width: number },
     skin?: number
   ) {
-    super(
-      location,
-      currentLevel,
-      block,
-      skin ? skin : 0,
-      'svgCanvas3',
-      itemSkins
-    );
+    super(canvas, location, currentLevel, block, skin ? skin : 0, itemSkins);
   }
-  drawObject(): void {
+  async drawObject(): Promise<void> {
     const line = this.currentLevel[this.y];
 
     const realHeight =
@@ -38,7 +33,7 @@ export class Item extends GameObject {
     const addWidth =
       (this.canvas.width / line.length) * ((line.length - 1) / 2);
 
-    this.drawWithAdd(
+    await this.drawWithAdd(
       line.length,
       this.currentLevel.length,
       addWidth,
@@ -46,15 +41,15 @@ export class Item extends GameObject {
     );
   }
 
-  drawWithAdd(
+  async drawWithAdd(
     numberOfColumns: number,
     numberOfRows: number,
     addWidth: number,
     addHeight: number
-  ): void {
+  ): Promise<void> {
     console.log(this.position);
 
-    this.drawImage(
+    await this.drawImage(
       this.skins[this.skin].startX,
       this.skins[this.skin].startY +
         this.skins[this.skin][Position[1]].minFrame *

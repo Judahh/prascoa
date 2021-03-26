@@ -1,10 +1,10 @@
 import { Element } from './element';
 export const levels = [
-  // [
-  //   [1, Element.BA + Element.CharRight, Element.BB],
-  //   [1, Element.BA + Element.CharRight, Element.BB],
-  //   [1, 1, 1],
-  // ],
+  [
+    [1, Element.BA + Element.CharRight, Element.BB],
+    [1, Element.BA + Element.CharRight, Element.BB],
+    [1, 1, 1],
+  ],
   [
     [1, 1, 1],
     [1, Element.BA + Element.CharRight, Element.BB],
