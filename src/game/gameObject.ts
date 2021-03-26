@@ -15,8 +15,8 @@ import { SharedCanvas } from './sharedCanvas';
 
 // import Blockly from 'blockly';
 export class GameObject {
-  x: number;
-  y: number;
+  x?: number;
+  y?: number;
   position: Position;
   skin: number;
   currentLevel: number[][];
@@ -84,23 +84,27 @@ export class GameObject {
     await this.load(action);
   }
   async drawObject(action?: boolean): Promise<void> {
-    const line = this.currentLevel[this.y];
+    if (this.y !== undefined) {
+      const line = this.currentLevel[this.y];
 
-    const realHeight =
-      ((this.canvas.height / this.currentLevel.length) *
-        (this.currentLevel.length + 2.5)) /
-      2;
-    const addHeight = (this.canvas.height - realHeight) / 2;
-    const addWidth =
-      (this.canvas.width / line.length) * ((line.length - 1) / 2);
+      const realHeight =
+        ((this.canvas.height / this.currentLevel.length) *
+          (this.currentLevel.length + 2.5)) /
+        2;
+      const addHeight = (this.canvas.height - realHeight) / 2;
+      const addWidth =
+        (this.canvas.width / line.length) * ((line.length - 1) / 2);
 
-    await this.drawWithAdd(
-      line.length,
-      this.currentLevel.length,
-      addWidth,
-      addHeight,
-      action
-    );
+      await this.drawWithAdd(
+        line.length,
+        this.currentLevel.length,
+        addWidth,
+        addHeight,
+        action
+      );
+    } else {
+      await this.drawWithAdd(0, 0, 0, 0);
+    }
   }
 
   async drawWithAdd(
@@ -110,66 +114,71 @@ export class GameObject {
     addHeight: number,
     action?: boolean
   ): Promise<void> {
-    const skin = this.skins[this.skin][Position[this.position]];
-    const min = action ? skin.action.minFrame : skin.minFrame;
-    const max = action ? skin.action.maxFrame : skin.maxFrame;
+    if (this.x !== undefined && this.y !== undefined) {
+      const skin = this.skins[this.skin][Position[this.position]];
+      const min = action ? skin.action.minFrame : skin.minFrame;
+      const max = action ? skin.action.maxFrame : skin.maxFrame;
 
-    if (action) {
-      // const end = this.sprite === max;
-      this.sprite =
-        this.sprite < min
-          ? min
-          : this.sprite > max
-          ? max
-          : this.sprite === max
-          ? min
-          : this.sprite + 1;
-      // if (end) {
-      //   // clearInterval(this.idleId);
-      //   // this.idleId = undefined;
-      //   console.log('clear A');
-      // } else {
-      //   // if (!this.idleId)
-      //   //   this.idleId = setInterval(this.redraw.bind(this), 100);
-      //   // this.canvas.clear();
-      //   console.log('set A');
-      // }
-    } else {
-      this.sprite =
-        this.sprite < min
-          ? min
-          : this.sprite > max
-          ? max
-          : this.sprite === max
-          ? max
-          : this.sprite + 1;
-      if (this.sprite === max) {
-        clearInterval(this.idleId);
-        this.idleId = undefined;
-        // console.log('clear I');
+      if (action) {
+        // const end = this.sprite === max;
+        this.sprite =
+          this.sprite < min
+            ? min
+            : this.sprite > max
+            ? max
+            : this.sprite === max
+            ? min
+            : this.sprite + 1;
+        // if (end) {
+        //   // clearInterval(this.idleId);
+        //   // this.idleId = undefined;
+        //   console.log('clear A');
+        // } else {
+        //   // if (!this.idleId)
+        //   //   this.idleId = setInterval(this.redraw.bind(this), 100);
+        //   // this.canvas.clear();
+        //   console.log('set A');
+        // }
       } else {
-        if (!this.idleId)
-          this.idleId = setInterval(this.redraw.bind(this), 100);
-        // console.log('set I');
-        // this.canvas.clear();
+        this.sprite =
+          this.sprite < min
+            ? min
+            : this.sprite > max
+            ? max
+            : this.sprite === max
+            ? max
+            : this.sprite + 1;
+        if (this.sprite === max) {
+          clearInterval(this.idleId);
+          this.idleId = undefined;
+          // console.log('clear I');
+        } else {
+          if (!this.idleId)
+            this.idleId = setInterval(this.redraw.bind(this), 100);
+          // console.log('set I');
+          // this.canvas.clear();
+        }
       }
-    }
-    // console.log(this.sprite);
+      // console.log(this.sprite);
 
-    await this.drawImage(
-      this.skins[this.skin].startX,
-      this.skins[this.skin].startY + this.sprite * this.skins[this.skin].height,
-      this.skins[this.skin].width,
-      this.skins[this.skin].height,
-      (this.x * this.canvas.width) / (numberOfColumns * 2) -
-        (this.y * this.canvas.height) / (numberOfRows * 2) +
-        addWidth,
-      (this.y * this.canvas.height) / (numberOfRows * 4) +
-        (this.x * this.canvas.width) / (numberOfColumns * 4) +
-        addHeight,
-      this.canvas.width / numberOfColumns,
-      this.canvas.height / numberOfRows
-    );
+      await this.drawImage(
+        this.skins[this.skin].startX,
+        this.skins[this.skin].startY +
+          this.sprite * this.skins[this.skin].height,
+        this.skins[this.skin].width,
+        this.skins[this.skin].height,
+        (this.x * this.canvas.width) / (numberOfColumns * 2) -
+          (this.y * this.canvas.height) / (numberOfRows * 2) +
+          addWidth,
+        (this.y * this.canvas.height) / (numberOfRows * 4) +
+          (this.x * this.canvas.width) / (numberOfColumns * 4) +
+          addHeight,
+        this.canvas.width / numberOfColumns,
+        this.canvas.height / numberOfRows
+      );
+    } else {
+      await this.drawImage(0, 0, 0, 0, 0, 0, 0, 0);
+    }
   }
 
   async drawImage(

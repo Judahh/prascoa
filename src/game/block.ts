@@ -21,26 +21,28 @@ export class Block extends GameObject {
     skin?: number
   ) {
     super(canvas, location, currentLevel, block, skin ? skin : 0, blockSkins);
-    console.log('skin', this.skin);
-    console.log('sprite', this.skin);
+    // console.log('skin', this.skin);
+    // console.log('sprite', this.skin);
   }
   async drawObject(): Promise<void> {
-    const line = this.currentLevel[this.y];
+    if (this.y !== undefined) {
+      const line = this.currentLevel[this.y];
 
-    const realHeight =
-      ((this.canvas.height / this.currentLevel.length) *
-        (this.currentLevel.length + 1)) /
-      2;
-    const addHeight = (this.canvas.height - realHeight) / 2;
-    const addWidth =
-      (this.canvas.width / line.length) * ((line.length - 1) / 2);
+      const realHeight =
+        ((this.canvas.height / this.currentLevel.length) *
+          (this.currentLevel.length + 1)) /
+        2;
+      const addHeight = (this.canvas.height - realHeight) / 2;
+      const addWidth =
+        (this.canvas.width / line.length) * ((line.length - 1) / 2);
 
-    await this.drawWithAdd(
-      line.length,
-      this.currentLevel.length,
-      addWidth,
-      addHeight
-    );
+      await this.drawWithAdd(
+        line.length,
+        this.currentLevel.length,
+        addWidth,
+        addHeight
+      );
+    } else await this.drawWithAdd(0, 0, 0, 0);
   }
 
   async drawWithAdd(
@@ -66,20 +68,21 @@ export class Block extends GameObject {
     //   this.canvas.width / numberOfColumns,
     //   this.canvas.height / numberOfRows
     // );
-
-    await this.drawImage(
-      this.skins[this.skin].startX,
-      this.skins[this.skin].startY,
-      this.skins[this.skin].width,
-      this.skins[this.skin].height * 2,
-      (this.x * this.canvas.width) / (numberOfColumns * 2) -
-        (this.y * this.canvas.height) / (numberOfRows * 2) +
-        addWidth,
-      (this.y * this.canvas.height) / (numberOfRows * 4) +
-        (this.x * this.canvas.width) / (numberOfColumns * 4) +
-        addHeight,
-      this.canvas.width / numberOfColumns,
-      this.canvas.height / numberOfRows
-    );
+    if (this.x !== undefined && this.y !== undefined)
+      await this.drawImage(
+        this.skins[this.skin].startX,
+        this.skins[this.skin].startY,
+        this.skins[this.skin].width,
+        this.skins[this.skin].height * 2,
+        (this.x * this.canvas.width) / (numberOfColumns * 2) -
+          (this.y * this.canvas.height) / (numberOfRows * 2) +
+          addWidth,
+        (this.y * this.canvas.height) / (numberOfRows * 4) +
+          (this.x * this.canvas.width) / (numberOfColumns * 4) +
+          addHeight,
+        this.canvas.width / numberOfColumns,
+        this.canvas.height / numberOfRows
+      );
+    else await this.drawImage(0, 0, 0, 0, 0, 0, 0, 0);
   }
 }

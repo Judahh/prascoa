@@ -13,7 +13,6 @@ import { default as gTagConfig } from '../config/gTag.json';
 import React from 'react';
 import 'nprogress/nprogress.css';
 
-//! TODO: use Hooks and add lazy loading to Workbox someway
 //Binding events
 Router.events.on('routeChangeStart', () => {
   NProgress.start();

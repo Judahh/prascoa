@@ -7,7 +7,7 @@
  */
 
 import { Character } from './character';
-import { Element, getBlock, getChar, getItem, getPosition } from './element';
+import { getBlock, getChar, getItem, getPosition } from './element';
 
 import Blockly from 'blockly';
 import { levels } from './levels';
@@ -19,13 +19,18 @@ export class Game {
   protected _level: number;
   protected _currentLevel?: number[][];
   protected _scores: Array<number | undefined>;
+  protected _currentScore: number;
   protected chars: Character[];
   protected items: Item[];
   protected blocks: Block[];
   protected started: boolean;
   protected canvases: SharedCanvas[];
+  protected numOfItems: number;
+  protected totalNumOfItems: number;
 
   constructor(level?: number) {
+    this.numOfItems = 0;
+    this.totalNumOfItems = 0;
     this.chars = [];
     this.items = [];
     this.blocks = [];
@@ -34,6 +39,7 @@ export class Game {
       new SharedCanvas('svgCanvas2'),
       new SharedCanvas('svgCanvas3'),
     ];
+    this._currentScore = 0;
     this._level = level ? level : 0;
     this._scores = [];
     this._scores[0] = 0;
@@ -60,8 +66,7 @@ export class Game {
   }
 
   get currentScore(): number {
-    const score = this.scores[this.level];
-    return score === undefined ? 0 : score;
+    return this._currentScore;
   }
 
   get level(): number {
@@ -85,18 +90,79 @@ export class Game {
       }
   }
 
+  async reset() {
+    this.numOfItems = 0;
+    this.totalNumOfItems = 0;
+    this.chars = [];
+    this.items = [];
+    this.blocks = [];
+    this.canvases = [
+      new SharedCanvas('svgCanvas'),
+      new SharedCanvas('svgCanvas2'),
+      new SharedCanvas('svgCanvas3'),
+    ];
+    this._currentLevel = JSON.parse(JSON.stringify(levels[this.level]));
+    await this.draw();
+  }
+
+  addItem(steps: number) {
+    this._currentScore += 1000 / steps;
+    this.numOfItems++;
+  }
+
+  async gotItem(x: number, y: number, steps: number) {
+    console.log('GOT ITEM!');
+    const itemIndex = this.items.findIndex((item: Item) => {
+      return item.x === x && item.y === y;
+    });
+    if (itemIndex !== -1) {
+      await this.items[itemIndex].destroy();
+      this.addItem(steps);
+      this.items.splice(itemIndex, 1);
+    }
+  }
+
+  async died() {
+    // animação de queda
+    await this.reset();
+  }
+
   async play(simpleWorkspace: any): Promise<void> {
     console.log('PLAY Game');
+    await this.reset();
     this.printLevel();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const code = Blockly.JavaScript.workspaceToCode(simpleWorkspace);
+    const checks = (code.match(/this.check/g) || []).length;
+    const actions = (code.match(/this.action/g) || []).length;
     for (const char of this.chars) {
-      await char.execute(code);
+      try {
+        await char.execute(code);
+      } catch (error) {
+        console.log('Received an Error from Execute:', error.message);
+        if (error.message === 'Died') this.died();
+        return;
+      }
     }
-    console.log('DONE');
+    const blocklys = checks + actions;
+    const addScore = (this.numOfItems * 1000) / blocklys;
+    this._currentScore += addScore;
+    console.log('DONE:', this._currentScore);
     this.printLevel();
+    if (this.totalNumOfItems === this.numOfItems) {
+      if (
+        !this._scores[this.level] ||
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        this._currentScore >= this._scores[this.level]
+      )
+        this._scores[this.level] = this._currentScore;
+      if (this._level < levels.length - 1) this._level++;
+    } else {
+      this.reset();
+    }
   }
 
   getNode(n: any, v: any): any {
@@ -124,7 +190,7 @@ export class Game {
           const charE = getChar(this._currentLevel[y][x]);
           const itemE = getItem(this._currentLevel[y][x]);
           if (blockE) {
-            console.log(blockE);
+            // console.log(blockE);
             const block = new Block(
               this.canvases[0],
               {
@@ -155,6 +221,7 @@ export class Game {
                 height: this._currentLevel.length,
                 width: this._currentLevel.length,
               },
+              this.gotItem.bind(this),
               charE - 1
             );
             await char.draw();
@@ -186,6 +253,8 @@ export class Game {
       this.chars[0].play('themeSound');
       this.started = true;
     }
+
+    if (this.totalNumOfItems === 0) this.totalNumOfItems = this.items.length;
   }
 
   calcScore(carrots: number, blocks: number, steps: number) {

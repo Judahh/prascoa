@@ -6,21 +6,26 @@
 import { default as charSkins } from './characterSkins.json';
 import { GameObject } from './gameObject';
 import { Position } from './position';
-import { Element } from './element';
+import { Element, getItem } from './element';
 import { Action } from './action';
 import { SharedCanvas } from './sharedCanvas';
 
 // import Blockly from 'blockly';
 export class Character extends GameObject {
   protected _code;
+  protected gotItem;
+  protected _steps;
   constructor(
     canvas: SharedCanvas,
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
     block: { height: number; width: number },
+    gotItem,
     skin?: number
   ) {
     super(canvas, location, currentLevel, block, skin ? skin : 0, charSkins);
+    this.gotItem = gotItem;
+    this._steps = 0;
   }
 
   async execute(code: string): Promise<void> {
@@ -45,7 +50,8 @@ export class Character extends GameObject {
   }
 
   doAction(action?: Action): boolean {
-    // console.log('DO');
+    if (this.x === undefined || this.y === undefined) return true;
+    console.log('P:', this.x, this.y);
     if (action === Action.Forward)
       switch (this.position) {
         case Position.Left:
@@ -63,8 +69,29 @@ export class Character extends GameObject {
         default:
           break;
       }
-    // console.log(Position[this.position]);
-
+    else if (action) {
+      const isLeft = action === 1;
+      switch (this.position) {
+        case Position.Left:
+          if (isLeft) this.position = Position.Down;
+          else this.position = Position.Up;
+          break;
+        case Position.Right:
+          if (isLeft) this.position = Position.Up;
+          else this.position = Position.Down;
+          break;
+        case Position.Down:
+          if (isLeft) this.position = Position.Right;
+          else this.position = Position.Left;
+          break;
+        case Position.Up:
+          if (isLeft) this.position = Position.Left;
+          else this.position = Position.Right;
+          break;
+        default:
+          break;
+      }
+    }
     this.redraw(true);
 
     const xResult = this.getDecimalPart(this.x);
@@ -77,12 +104,17 @@ export class Character extends GameObject {
       this.y = Math.floor(this.y);
     }
 
-    //! TODO: TURN
+    console.log('EP:', this.x, this.y);
     return done;
   }
 
   async action(action: Action): Promise<void> {
     console.log('ACTION:', action);
+    if (this.x === undefined || this.y === undefined) {
+      this.x = undefined;
+      this.y = undefined;
+      throw new Error('Died');
+    }
 
     console.log(this.x, this.y);
     this.currentLevel[this.y][this.x] =
@@ -92,12 +124,28 @@ export class Character extends GameObject {
       this.play('actionSound');
     }
     await this.promiseAction(action);
+
+    if (
+      this.y >= this.currentLevel.length ||
+      this.x >= this.currentLevel[this.y].length
+    ) {
+      this.x = undefined;
+      this.y = undefined;
+      throw new Error('Died');
+    }
+    this._steps++;
     console.log(this.x, this.y);
     this.currentLevel[this.y][this.x] =
       this.currentLevel[this.y][this.x] + Element.Char * this.position;
+
+    if (getItem(this.currentLevel[this.y][this.x])) {
+      await this.gotItem(this.x, this.y, this._steps);
+    }
+    // return true;
   }
 
   is(element: Element): boolean {
+    if (this.x === undefined || this.y === undefined) return false;
     switch (this.position) {
       case Position.Down:
         return this.currentLevel[this.y + 1][this.x] >= element;

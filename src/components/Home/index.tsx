@@ -40,8 +40,10 @@ const Home = (props) => {
   }, [game]);
 
   useEffect(() => {
-    (play as HTMLElement).onclick = () => {
-      (game as Game).play.bind(game)(simpleWorkspace.current.primaryWorkspace);
+    (play as HTMLElement).onclick = async () => {
+      await (game as Game).play.bind(game)(
+        simpleWorkspace.current.primaryWorkspace
+      );
     };
   }, [play]);
 

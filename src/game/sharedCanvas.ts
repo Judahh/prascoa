@@ -41,10 +41,6 @@ export class SharedCanvas {
     this.canvas.width = smaller;
   }
 
-  //! TODO: use journaly to subscribe to game objects, whe one of them call
-  //! draw, clear the canvas and draw all of them with the current position
-  //! of the caller.
-
   async draw(
     currentIndex: number,
     image: HTMLImageElement,

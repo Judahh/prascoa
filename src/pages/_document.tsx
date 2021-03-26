@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-//! TODO: use Hooks
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
