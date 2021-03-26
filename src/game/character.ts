@@ -24,7 +24,8 @@ export class Character extends GameObject {
       block,
       skin ? skin : 0,
       'svgCanvas2',
-      charSkins
+      charSkins,
+      true
     );
     this.draw();
   }

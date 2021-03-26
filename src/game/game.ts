@@ -11,27 +11,23 @@ import { Element } from './element';
 
 import Blockly from 'blockly';
 import { levels } from './levels';
-import { default as skins } from './blockSkins.json';
 import { Item } from './item';
+import { Block } from './block';
+import { Position } from './position';
 export class Game {
   protected _level: number;
   protected _currentLevel?: number[][];
   protected _scores: Array<number | undefined>;
   protected chars: Character[];
   protected items: Item[];
-  protected canvas: HTMLCanvasElement;
-  protected context?: CanvasRenderingContext2D;
+
+  protected blocks: Block[];
   protected started: boolean;
 
   constructor(level?: number) {
-    this.canvas = document.getElementsByClassName(
-      'svgCanvas'
-    )[0] as HTMLCanvasElement;
-    const ctx = this.canvas.getContext('2d');
-    this.context = ctx !== null ? ctx : undefined;
-    this.refreshCanvas();
     this.chars = [];
     this.items = [];
+    this.blocks = [];
     this._level = level ? level : 0;
     this._scores = [];
     this._scores[0] = 0;
@@ -39,7 +35,7 @@ export class Game {
     for (let index = 1; index < levels.length; index++) {
       this._scores[index] = undefined;
     }
-    if (this.canvas) this.level = this._level;
+    this.level = this._level;
   }
 
   get scores(): Array<number | undefined> {
@@ -60,14 +56,6 @@ export class Game {
   get currentScore(): number {
     const score = this.scores[this.level];
     return score === undefined ? 0 : score;
-  }
-
-  refreshCanvas(): void {
-    const height = window.innerHeight - 70;
-    const width = window.innerWidth - 140;
-    const smaller = height <= width ? height : width;
-    this.canvas.height = smaller;
-    this.canvas.width = smaller;
   }
 
   get level(): number {
@@ -108,63 +96,28 @@ export class Game {
     return a > b ? a : b;
   }
 
-  drawXY(
-    map,
-    blockSprite,
-    numberOfColumns: number,
-    numberOfRows: number,
-    addWidth: number,
-    addHeight: number,
-    x: number,
-    y: number
-  ): void {
-    this.context?.drawImage(
-      map,
-      blockSprite.startX,
-      blockSprite.startY,
-      blockSprite.width,
-      blockSprite.fullHeight,
-      (x * this.canvas.width) / (numberOfColumns * 2) -
-        (y * this.canvas.height) / (numberOfRows * 2) +
-        addWidth,
-      (y * this.canvas.height) / (numberOfRows * 4) +
-        (x * this.canvas.width) / (numberOfColumns * 4) +
-        addHeight,
-      this.canvas.width / numberOfColumns,
-      this.canvas.height / numberOfRows
-    );
-  }
-
-  clear(): void {
-    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  }
-
-  drawMap(map, blockSprite): void {
-    this.clear();
+  async draw(): Promise<void> {
     if (this._currentLevel) {
-      const realHeight =
-        ((this.canvas.height / this._currentLevel.length) *
-          (this._currentLevel.length + 1)) /
-        2;
-      const addHeight = (this.canvas.height - realHeight) / 2;
-
       for (let y = 0; y < this._currentLevel.length; y++) {
         const line = this._currentLevel[y];
         for (let x = 0; x < line.length; x++) {
-          const addWidth =
-            (this.canvas.width / line.length) * ((line.length - 1) / 2);
-
-          if (this._currentLevel[y][x])
-            this.drawXY(
-              map,
-              blockSprite,
-              line.length,
-              this._currentLevel.length,
-              addWidth,
-              addHeight,
-              x,
-              y
+          if (this._currentLevel[y][x]) {
+            console.log(x, y);
+            const block = new Block(
+              {
+                x,
+                y,
+                position: Position.None,
+              },
+              this._currentLevel,
+              {
+                height: this._currentLevel.length,
+                width: this._currentLevel.length,
+              }
             );
+            await block.draw();
+            this.blocks.push(block);
+          }
           if (
             this._currentLevel[y][x] >= Element.Char &&
             this._currentLevel[y][x] < Element.Carrot
@@ -183,23 +136,22 @@ export class Game {
                 }
               )
             );
-          if (this._currentLevel[y][x] >= Element.Carrot)
-            this.items.push(
-              new Item(
-                {
-                  x,
-                  y,
-                  position: Math.trunc(
-                    this._currentLevel[y][x] / Element.Carrot
-                  ),
-                },
-                this._currentLevel,
-                {
-                  height: this._currentLevel.length,
-                  width: this._currentLevel.length,
-                }
-              )
+          if (this._currentLevel[y][x] >= Element.Carrot) {
+            const item = new Item(
+              {
+                x,
+                y,
+                position: Math.trunc(this._currentLevel[y][x] / Element.Carrot),
+              },
+              this._currentLevel,
+              {
+                height: this._currentLevel.length,
+                width: this._currentLevel.length,
+              }
             );
+            await item.draw();
+            this.items.push(item);
+          }
         }
       }
     }
@@ -212,12 +164,5 @@ export class Game {
 
   calcScore(carrots: number, blocks: number, steps: number) {
     return (1000 * Math.pow(carrots, 2)) / (blocks * steps);
-  }
-
-  //! TODO: use sharedCanvas
-  draw(): void {
-    const images = { map: new Image() }; // save image and do not load again
-    images.map.src = skins[0].sprite;
-    images.map.onload = () => this.drawMap(images.map, skins[0]);
   }
 }
