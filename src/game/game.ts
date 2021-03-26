@@ -76,6 +76,10 @@ export class Game {
   set level(level: number) {
     this._level = level;
     this._currentLevel = JSON.parse(JSON.stringify(levels[level]));
+    for (const canvas of this.canvases) {
+      canvas.clear();
+    }
+    this.drawMap();
     this.draw();
   }
 
@@ -96,11 +100,8 @@ export class Game {
     this.chars = [];
     this.items = [];
     this.blocks = [];
-    this.canvases = [
-      new SharedCanvas('svgCanvas'),
-      new SharedCanvas('svgCanvas2'),
-      new SharedCanvas('svgCanvas3'),
-    ];
+    this.canvases[1] = new SharedCanvas('svgCanvas2');
+    this.canvases[2] = new SharedCanvas('svgCanvas3');
     this._currentLevel = JSON.parse(JSON.stringify(levels[this.level]));
     await this.draw();
   }
@@ -129,7 +130,6 @@ export class Game {
 
   async play(simpleWorkspace: any): Promise<void> {
     console.log('PLAY Game');
-    await this.reset();
     this.printLevel();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -146,10 +146,18 @@ export class Game {
         return;
       }
     }
+    // console.log('A SCORE:', this._currentScore);
     const blocklys = checks + actions;
+    // console.log(blocklys);
+    // console.log(actions);
+    // console.log(checks);
+
     const addScore = (this.numOfItems * 1000) / blocklys;
     this._currentScore += addScore;
-    console.log('DONE:', this._currentScore);
+    console.log('ADD SCORE:', addScore);
+    console.log('DONE SCORE:', this._currentScore);
+    console.log('ITEMS:', this.numOfItems);
+    console.log('TOTAL:', this.totalNumOfItems);
     this.printLevel();
     if (this.totalNumOfItems === this.numOfItems) {
       if (
@@ -159,9 +167,9 @@ export class Game {
         this._currentScore >= this._scores[this.level]
       )
         this._scores[this.level] = this._currentScore;
-      if (this._level < levels.length - 1) this._level++;
+      if (this._level < levels.length - 1) this.level++;
     } else {
-      this.reset();
+      await this.reset();
     }
   }
 
@@ -186,29 +194,10 @@ export class Game {
       for (let y = 0; y < this._currentLevel.length; y++) {
         const line = this._currentLevel[y];
         for (let x = 0; x < line.length; x++) {
-          const blockE = getBlock(this._currentLevel[y][x]);
           const charE = getChar(this._currentLevel[y][x]);
           const itemE = getItem(this._currentLevel[y][x]);
-          if (blockE) {
-            // console.log(blockE);
-            const block = new Block(
-              this.canvases[0],
-              {
-                x,
-                y,
-                position: Position.None,
-              },
-              this._currentLevel,
-              {
-                height: this._currentLevel.length,
-                width: this._currentLevel.length,
-              },
-              blockE - 1
-            );
-            await block.draw();
-            this.blocks.push(block);
-          }
           if (charE) {
+            // console.log(x, y);
             const char = new Character(
               this.canvases[1],
               {
@@ -224,7 +213,7 @@ export class Game {
               this.gotItem.bind(this),
               charE - 1
             );
-            await char.draw();
+            await char.draw(undefined, false);
             this.chars.push(char);
           }
           if (itemE) {
@@ -244,6 +233,36 @@ export class Game {
             );
             await item.draw();
             this.items.push(item);
+          }
+        }
+      }
+    }
+  }
+
+  async drawMap(): Promise<void> {
+    if (this._currentLevel) {
+      for (let y = 0; y < this._currentLevel.length; y++) {
+        const line = this._currentLevel[y];
+        for (let x = 0; x < line.length; x++) {
+          const blockE = getBlock(this._currentLevel[y][x]);
+          if (blockE) {
+            // console.log(blockE);
+            const block = new Block(
+              this.canvases[0],
+              {
+                x,
+                y,
+                position: Position.None,
+              },
+              this._currentLevel,
+              {
+                height: this._currentLevel.length,
+                width: this._currentLevel.length,
+              },
+              blockE - 1
+            );
+            await block.draw();
+            this.blocks.push(block);
           }
         }
       }

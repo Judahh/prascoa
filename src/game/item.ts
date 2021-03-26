@@ -81,6 +81,6 @@ export class Item extends GameObject {
       this.y = undefined;
     }
     this.canvas.clear();
-    this.draw();
+    this.draw(undefined, true);
   }
 }

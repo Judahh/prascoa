@@ -24,8 +24,8 @@ export class SharedCanvas {
     const ctx = this.canvas.getContext('2d');
     this.context = ctx !== null ? ctx : undefined;
     this.cleared = true;
-    this.refreshCanvas();
     this._objects = [];
+    this.refreshCanvas();
     // this.refreshId = setInterval(this.draw.bind(this), 100);
   }
 
@@ -39,6 +39,7 @@ export class SharedCanvas {
     const smaller = height <= width ? height : width;
     this.canvas.height = smaller;
     this.canvas.width = smaller;
+    this.clear();
   }
 
   async draw(

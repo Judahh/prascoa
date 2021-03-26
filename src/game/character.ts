@@ -34,25 +34,35 @@ export class Character extends GameObject {
   }
 
   promiseAction(action: Action): Promise<boolean> {
-    return new Promise((resolve) => {
-      const doTheAction = this.doAction.bind(this);
-      const id = setInterval(() => {
-        clearInterval(this.idleId);
-        const done = doTheAction(action);
-        // console.log(done);
-        if (done) {
-          clearInterval(id);
-          this.idleId = setInterval(this.redraw.bind(this), 100);
-          resolve(true);
-        }
-      }, 100);
+    const doTheAction = this.doAction.bind(this);
+    return new Promise(async (resolve) => {
+      let done = await doTheAction(action);
+      if (done) resolve(done);
+      else {
+        await this.delay(100);
+        done = await this.promiseAction(action);
+        resolve(done);
+      }
+      // const id = setInterval(() => {
+      //   clearInterval(this.idleId);
+      //   const done = doTheAction(action);
+      //   // console.log(done);
+      //   if (done) {
+      //     clearInterval(id);
+      //     this.idleId = setInterval(this.redraw.bind(this), 100);
+      //     resolve(true);
+      //   }
+      // }, 100);
     });
   }
 
-  doAction(action?: Action): boolean {
-    if (this.x === undefined || this.y === undefined) return true;
-    console.log('P:', this.x, this.y);
-    if (action === Action.Forward)
+  async doAction(action?: Action): Promise<boolean> {
+    console.log('DOING');
+
+    let done = true;
+    if (this.x === undefined || this.y === undefined) return done;
+    // console.log('P:', this.x, this.y);
+    if (action === Action.Forward) {
       switch (this.position) {
         case Position.Left:
           this.x -= this.skins[this.skin].speed;
@@ -61,15 +71,29 @@ export class Character extends GameObject {
           this.x += this.skins[this.skin].speed;
           break;
         case Position.Down:
-          this.y -= this.skins[this.skin].speed;
+          this.y += this.skins[this.skin].speed;
           break;
         case Position.Up:
-          this.y += this.skins[this.skin].speed;
+          this.y -= this.skins[this.skin].speed;
           break;
         default:
           break;
       }
-    else if (action) {
+      await this.redraw(true, true);
+
+      const xResult = this.getDecimalPart(this.x);
+      const yResult = this.getDecimalPart(this.y);
+
+      done = xResult == 0 && yResult == 0;
+
+      if (done) {
+        this.x = Math.floor(this.x);
+        this.y = Math.floor(this.y);
+      }
+
+      // console.log('EP:', this.x, this.y);
+      // console.log('EPD:', done);
+    } else if (action) {
       const isLeft = action === 1;
       switch (this.position) {
         case Position.Left:
@@ -91,32 +115,22 @@ export class Character extends GameObject {
         default:
           break;
       }
+      await this.redraw(true, true);
     }
-    this.redraw(true);
+    console.log('ACTION:', this.x, this.y);
 
-    const xResult = this.getDecimalPart(this.x);
-    const yResult = this.getDecimalPart(this.y);
-
-    const done = xResult == 0 && yResult == 0;
-
-    if (done) {
-      this.x = Math.floor(this.x);
-      this.y = Math.floor(this.y);
-    }
-
-    console.log('EP:', this.x, this.y);
     return done;
   }
 
   async action(action: Action): Promise<void> {
-    console.log('ACTION:', action);
+    console.log('NEW ACTION:', action);
     if (this.x === undefined || this.y === undefined) {
       this.x = undefined;
       this.y = undefined;
       throw new Error('Died');
     }
 
-    console.log(this.x, this.y);
+    console.log('WITH:', this.x, this.y);
     this.currentLevel[this.y][this.x] =
       this.currentLevel[this.y][this.x] - Element.Char * this.position;
     if (action === Action.Forward) {
@@ -124,6 +138,7 @@ export class Character extends GameObject {
       this.play('actionSound');
     }
     await this.promiseAction(action);
+    console.log('promiseAction END');
 
     if (
       this.y >= this.currentLevel.length ||
