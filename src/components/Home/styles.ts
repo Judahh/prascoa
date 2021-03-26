@@ -19,6 +19,16 @@ export const Background2 = styled.div`
   position: absolute;
 `;
 
+export const Background3 = styled.div`
+  width: 100%;
+  height: 100%;
+  z-index: -1000;
+  background-color: rgb(152, 234, 224);
+  right: 0px;
+  bottom: 0px;
+  position: absolute;
+`;
+
 export const Text = styled.span`
   font-size: x-large;
   align-items: center;

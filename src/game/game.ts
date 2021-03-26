@@ -7,38 +7,47 @@
  */
 
 import { Character } from './character';
-import { Element } from './element';
+import { getBlock, getChar, getItem, getPosition } from './element';
 
 import Blockly from 'blockly';
 import { levels } from './levels';
-import { default as skins } from './blockSkins.json';
 import { Item } from './item';
+import { Block } from './block';
+import { Position } from './position';
+import { SharedCanvas } from './sharedCanvas';
 export class Game {
-  protected currentLevel: number;
+  protected _level: number;
+  protected _currentLevel?: number[][];
   protected _scores: Array<number | undefined>;
+  protected _currentScore: number;
   protected chars: Character[];
   protected items: Item[];
-  protected canvas: HTMLCanvasElement;
-  protected context?: CanvasRenderingContext2D;
+  protected blocks: Block[];
   protected started: boolean;
+  protected canvases: SharedCanvas[];
+  protected numOfItems: number;
+  protected totalNumOfItems: number;
 
   constructor(level?: number) {
-    this.canvas = document.getElementsByClassName(
-      'svgCanvas'
-    )[0] as HTMLCanvasElement;
-    const ctx = this.canvas.getContext('2d');
-    this.context = ctx !== null ? ctx : undefined;
-    this.refreshCanvas();
+    this.numOfItems = 0;
+    this.totalNumOfItems = 0;
     this.chars = [];
     this.items = [];
-    this.currentLevel = level ? level : 0;
+    this.blocks = [];
+    this.canvases = [
+      new SharedCanvas('svgCanvas'),
+      new SharedCanvas('svgCanvas2'),
+      new SharedCanvas('svgCanvas3'),
+    ];
+    this._currentScore = 0;
+    this._level = level ? level : 0;
     this._scores = [];
     this._scores[0] = 0;
     this.started = false;
     for (let index = 1; index < levels.length; index++) {
       this._scores[index] = undefined;
     }
-    if (this.canvas) this.level = this.currentLevel;
+    this.level = this._level;
   }
 
   get scores(): Array<number | undefined> {
@@ -57,35 +66,111 @@ export class Game {
   }
 
   get currentScore(): number {
-    const score = this.scores[this.level];
-    return score === undefined ? 0 : score;
-  }
-
-  refreshCanvas(): void {
-    const height = window.innerHeight - 70;
-    const width = window.innerWidth - 140;
-    const smaller = height <= width ? height : width;
-    this.canvas.height = smaller;
-    this.canvas.width = smaller;
+    return this._currentScore;
   }
 
   get level(): number {
-    return this.currentLevel;
+    return this._level;
   }
 
   set level(level: number) {
-    this.currentLevel = level;
-    this.draw(level ? level : 0);
+    this._level = level;
+    this._currentLevel = JSON.parse(JSON.stringify(levels[level]));
+    for (const canvas of this.canvases) {
+      canvas.clear();
+    }
+    this.drawMap();
+    this.draw();
   }
 
-  play(simpleWorkspace: any): void {
+  printLevel() {
+    if (this._currentLevel)
+      for (const line of this._currentLevel) {
+        let sLine = '';
+        for (const element of line) {
+          sLine += '(' + element + '), ';
+        }
+        console.log(sLine);
+      }
+  }
+
+  async reset() {
+    this.numOfItems = 0;
+    // this.totalNumOfItems = 0;
+    this._currentScore = 0;
+    this.chars = [];
+    this.items = [];
+    this.blocks = [];
+    this.canvases[1] = new SharedCanvas('svgCanvas2');
+    this.canvases[2] = new SharedCanvas('svgCanvas3');
+    this._currentLevel = JSON.parse(JSON.stringify(levels[this.level]));
+    await this.draw();
+  }
+
+  addItem(steps: number) {
+    this._currentScore += 1000 / steps;
+    this.numOfItems++;
+  }
+
+  async gotItem(x: number, y: number, steps: number) {
+    console.log('GOT ITEM!');
+    const itemIndex = this.items.findIndex((item: Item) => {
+      return item.x === x && item.y === y;
+    });
+    if (itemIndex !== -1) {
+      await this.items[itemIndex].destroy();
+      this.addItem(steps);
+      this.items.splice(itemIndex, 1);
+    }
+  }
+
+  async died() {
+    //! TODO: Fall animation
+    await this.reset();
+  }
+
+  async play(simpleWorkspace: any): Promise<void> {
     console.log('PLAY Game');
+    this.printLevel();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const code = Blockly.JavaScript.workspaceToCode(simpleWorkspace);
+    const checks = (code.match(/this.check/g) || []).length;
+    const actions = (code.match(/this.action/g) || []).length;
     for (const char of this.chars) {
-      char.execute(code);
+      try {
+        await char.execute(code);
+      } catch (error) {
+        console.log('Received an Error from Execute:', error.message);
+        if (error.message === 'Died') this.died();
+        return;
+      }
+    }
+    // console.log('A SCORE:', this._currentScore);
+    const blocklys = checks + actions;
+    // console.log(blocklys);
+    // console.log(actions);
+    // console.log(checks);
+
+    const addScore = (this.numOfItems * 1000) / blocklys;
+    this._currentScore += addScore;
+    console.log('ADD SCORE:', addScore);
+    console.log('DONE SCORE:', this._currentScore);
+    console.log('ITEMS:', this.numOfItems);
+    console.log('TOTAL:', this.totalNumOfItems);
+    this.printLevel();
+    if (this.totalNumOfItems <= this.numOfItems) {
+      if (
+        !this._scores[this.level] ||
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        this._currentScore >= this._scores[this.level]
+      )
+        this._scores[this.level] = this._currentScore;
+      if (this._level < levels.length - 1) this.level++;
+    } else {
+      await this.reset();
     }
   }
 
@@ -105,113 +190,95 @@ export class Game {
     return a > b ? a : b;
   }
 
-  drawXY(
-    map,
-    blockSprite,
-    numberOfColumns: number,
-    numberOfRows: number,
-    addWidth: number,
-    addHeight: number,
-    x: number,
-    y: number
-  ): void {
-    this.context?.drawImage(
-      map,
-      blockSprite.startX,
-      blockSprite.startY,
-      blockSprite.width,
-      blockSprite.fullHeight,
-      (x * this.canvas.width) / (numberOfColumns * 2) -
-        (y * this.canvas.height) / (numberOfRows * 2) +
-        addWidth,
-      (y * this.canvas.height) / (numberOfRows * 4) +
-        (x * this.canvas.width) / (numberOfColumns * 4) +
-        addHeight,
-      this.canvas.width / numberOfColumns,
-      this.canvas.height / numberOfRows
-    );
-  }
-
-  clear(): void {
-    this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  }
-
-  drawMap(currentLevel, map, blockSprite): void {
-    this.clear();
-
-    const realHeight =
-      ((this.canvas.height / currentLevel.length) * (currentLevel.length + 1)) /
-      2;
-    const addHeight = (this.canvas.height - realHeight) / 2;
-
-    for (let y = 0; y < currentLevel.length; y++) {
-      const line = currentLevel[y];
-      for (let x = 0; x < line.length; x++) {
-        const addWidth =
-          (this.canvas.width / line.length) * ((line.length - 1) / 2);
-
-        if (currentLevel[y][x])
-          this.drawXY(
-            map,
-            blockSprite,
-            line.length,
-            currentLevel.length,
-            addWidth,
-            addHeight,
-            x,
-            y
-          );
-        if (
-          currentLevel[y][x] >= Element.Char &&
-          currentLevel[y][x] < Element.Carrot
-        )
-          this.chars.push(
-            new Character(
-              { x, y, position: Math.trunc(currentLevel[y][x] / Element.Char) },
-              currentLevel,
-              {
-                height: currentLevel.length,
-                width: currentLevel.length,
-              }
-            )
-          );
-        if (currentLevel[y][x] >= Element.Carrot)
-          this.items.push(
-            new Item(
+  async draw(): Promise<void> {
+    if (this._currentLevel) {
+      for (let y = 0; y < this._currentLevel.length; y++) {
+        const line = this._currentLevel[y];
+        for (let x = 0; x < line.length; x++) {
+          const charE = getChar(this._currentLevel[y][x]);
+          const itemE = getItem(this._currentLevel[y][x]);
+          if (charE) {
+            // console.log(x, y);
+            const char = new Character(
+              this.canvases[1],
               {
                 x,
                 y,
-                position: Math.trunc(currentLevel[y][x] / Element.Carrot),
+                position: getPosition(this._currentLevel[y][x]),
               },
-              currentLevel,
+              this._currentLevel,
               {
-                height: currentLevel.length,
-                width: currentLevel.length,
-              }
-            )
-          );
+                height: this._currentLevel.length,
+                width: this._currentLevel.length,
+              },
+              this.gotItem.bind(this),
+              charE - 1
+            );
+            await char.draw(undefined, false);
+            this.chars.push(char);
+          }
+          if (itemE) {
+            const item = new Item(
+              this.canvases[2],
+              {
+                x,
+                y,
+                position: Position.None,
+              },
+              this._currentLevel,
+              {
+                height: this._currentLevel.length,
+                width: this._currentLevel.length,
+              },
+              itemE - 1
+            );
+            await item.draw();
+            this.items.push(item);
+          }
+        }
+      }
+      if (!this.started) {
+        this.chars[0].play('themeSound');
+        this.started = true;
+      }
+    }
+  }
+
+  async drawMap(): Promise<void> {
+    this.totalNumOfItems = 0;
+    this._currentScore = 0;
+    if (this._currentLevel) {
+      for (let y = 0; y < this._currentLevel.length; y++) {
+        const line = this._currentLevel[y];
+        for (let x = 0; x < line.length; x++) {
+          const blockE = getBlock(this._currentLevel[y][x]);
+          if (blockE) {
+            // console.log(blockE);
+            const block = new Block(
+              this.canvases[0],
+              {
+                x,
+                y,
+                position: Position.None,
+              },
+              this._currentLevel,
+              {
+                height: this._currentLevel.length,
+                width: this._currentLevel.length,
+              },
+              blockE - 1
+            );
+            await block.draw();
+            this.blocks.push(block);
+          }
+        }
       }
     }
 
-    if (!this.started) {
-      this.chars[0].play('themeSound');
-      this.started = true;
-    }
+    this.totalNumOfItems = this.items.length;
   }
 
   calcScore(carrots: number, blocks: number, steps: number) {
     return (1000 * Math.pow(carrots, 2)) / (blocks * steps);
-  }
-
-  draw(level: number): void {
-    // load images
-    const images = { map: new Image() };
-    images.map.src = skins[0].sprite;
-    const currentLevel = levels[level];
-    images.map.onload = () => this.drawMap(currentLevel, images.map, skins[0]);
-    // window.addEventListener('resize', () => {
-    //   // canvas.height = window.innerHeight;
-    //   // canvas.width = window.innerWidth;
-    // });
   }
 }

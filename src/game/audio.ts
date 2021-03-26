@@ -73,6 +73,7 @@ export class Audio {
     start: number,
     end: number
   ): void {
+    // console.log('Play');
     const sourceNode = this.initSourceNode(buffer);
     sourceNode.loop = loop;
     if (loop) {
@@ -81,7 +82,7 @@ export class Audio {
       sourceNode.start(delay, start);
     } else {
       sourceNode.start(delay, start, end);
-      sourceNode.stop(end);
+      // sourceNode.stop(end);
     }
   }
 }

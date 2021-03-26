@@ -6,50 +6,176 @@
 import { default as charSkins } from './characterSkins.json';
 import { GameObject } from './gameObject';
 import { Position } from './position';
+import { Element, getItem } from './element';
+import { Action } from './action';
+import { SharedCanvas } from './sharedCanvas';
 
 // import Blockly from 'blockly';
 export class Character extends GameObject {
+  protected _code;
+  protected gotItem;
+  protected _steps;
   constructor(
+    canvas: SharedCanvas,
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
     block: { height: number; width: number },
+    gotItem,
     skin?: number
   ) {
-    super(
-      location,
-      currentLevel,
-      block,
-      skin ? skin : 0,
-      'svgCanvas2',
-      charSkins
-    );
-    this.draw();
+    super(canvas, location, currentLevel, block, skin ? skin : 0, charSkins);
+    this.gotItem = gotItem;
+    this._steps = 0;
   }
 
-  execute(code: string): void {
-    eval(code);
+  async execute(code: string): Promise<void> {
+    this._code = '(async () => {' + code + '})()';
+    await eval(this._code);
   }
 
-  action(action): void {
-    console.log('ACTION:', action);
+  promiseAction(action: Action): Promise<boolean> {
+    const doTheAction = this.doAction.bind(this);
+    return new Promise(async (resolve) => {
+      let done = await doTheAction(action);
+      if (done) resolve(done);
+      else {
+        await this.delay(100);
+        done = await this.promiseAction(action);
+        resolve(done);
+      }
+      // const id = setInterval(() => {
+      //   clearInterval(this.idleId);
+      //   const done = doTheAction(action);
+      //   // console.log(done);
+      //   if (done) {
+      //     clearInterval(id);
+      //     this.idleId = setInterval(this.redraw.bind(this), 100);
+      //     resolve(true);
+      //   }
+      // }, 100);
+    });
   }
 
-  is(action) {
+  async doAction(action?: Action): Promise<boolean> {
+    console.log('DOING');
+
+    let done = true;
+    if (this.x === undefined || this.y === undefined) return done;
+    // console.log('P:', this.x, this.y);
+    if (action === Action.Forward) {
+      switch (this.position) {
+        case Position.Left:
+          this.x -= this.skins[this.skin].speed;
+          break;
+        case Position.Right:
+          this.x += this.skins[this.skin].speed;
+          break;
+        case Position.Down:
+          this.y += this.skins[this.skin].speed;
+          break;
+        case Position.Up:
+          this.y -= this.skins[this.skin].speed;
+          break;
+        default:
+          break;
+      }
+      await this.redraw(true, true);
+
+      const xResult = this.getDecimalPart(this.x);
+      const yResult = this.getDecimalPart(this.y);
+
+      done = xResult === 0 && yResult === 0;
+
+      if (done) {
+        this.x = Math.floor(this.x);
+        this.y = Math.floor(this.y);
+      }
+
+      // console.log('EP:', this.x, this.y);
+      // console.log('EPD:', done);
+    } else if (action) {
+      const isLeft = action === 1;
+      switch (this.position) {
+        case Position.Left:
+          if (isLeft) this.position = Position.Down;
+          else this.position = Position.Up;
+          break;
+        case Position.Right:
+          if (isLeft) this.position = Position.Up;
+          else this.position = Position.Down;
+          break;
+        case Position.Down:
+          if (isLeft) this.position = Position.Right;
+          else this.position = Position.Left;
+          break;
+        case Position.Up:
+          if (isLeft) this.position = Position.Left;
+          else this.position = Position.Right;
+          break;
+        default:
+          break;
+      }
+      await this.redraw(true, true);
+    }
+    console.log('ACTION:', this.x, this.y);
+
+    return done;
+  }
+
+  async action(action: Action): Promise<void> {
+    console.log('NEW ACTION:', action);
+    if (this.x === undefined || this.y === undefined) {
+      this.x = undefined;
+      this.y = undefined;
+      throw new Error('Died');
+    }
+
+    console.log('WITH:', this.x, this.y);
+    this.currentLevel[this.y][this.x] =
+      this.currentLevel[this.y][this.x] - Element.Char * this.position;
+    if (action === Action.Forward) {
+      // console.log('PLAY: actionSound');
+      this.play('actionSound');
+    }
+    await this.promiseAction(action);
+    console.log('promiseAction END');
+
+    if (
+      this.y >= this.currentLevel.length ||
+      this.x >= this.currentLevel[this.y].length
+    ) {
+      this.x = undefined;
+      this.y = undefined;
+      throw new Error('Died');
+    }
+    this._steps++;
+    console.log(this.x, this.y);
+    this.currentLevel[this.y][this.x] =
+      this.currentLevel[this.y][this.x] + Element.Char * this.position;
+
+    if (getItem(this.currentLevel[this.y][this.x])) {
+      await this.gotItem(this.x, this.y, this._steps);
+    }
+    // return true;
+  }
+
+  is(element: Element): boolean {
+    if (this.x === undefined || this.y === undefined) return false;
     switch (this.position) {
       case Position.Down:
-        return this.currentLevel[this.y + 1][this.x] >= action;
+        return this.currentLevel[this.y + 1][this.x] >= element;
       case Position.up:
-        return this.currentLevel[this.y - 1][this.x] >= action;
+        return this.currentLevel[this.y - 1][this.x] >= element;
       case Position.Right:
-        return this.currentLevel[this.y][this.x + 1] >= action;
+        return this.currentLevel[this.y][this.x + 1] >= element;
       case Position.Left:
-        return this.currentLevel[this.y][this.x - 1] >= action;
+        return this.currentLevel[this.y][this.x - 1] >= element;
       default:
-        return this.currentLevel[this.y][this.x] >= action;
+        return this.currentLevel[this.y][this.x] >= element;
     }
   }
 
-  not(action) {
+  not(action): boolean {
     return !action;
   }
 

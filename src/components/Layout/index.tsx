@@ -16,9 +16,6 @@ import { LayoutWrapper } from './styles';
 
 // eslint-disable-next-line no-unused-vars
 const Layout = ({ language, children, getGame, setGame, ...rest }) => {
-  //! TODO: Menu
-  // console.log('Layout:', { language, children, getGame, setGame, ...rest });
-  // const menu = ['regular', 'transparent', 'inverted'];
   const [token, setToken] = useState();
   const [currentLanguage, setCurrentLanguage] = useState(langBR);
   const [currentTheme, setCurrentTheme] = useState(lightTheme);

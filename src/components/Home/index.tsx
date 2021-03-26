@@ -20,6 +20,7 @@ import {
   SvgCanvas,
   SvgCanvas2,
   Background2,
+  Background3,
 } from './styles';
 
 const initialXml =
@@ -27,11 +28,44 @@ const initialXml =
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Home = (props) => {
-  // console.log('Home:', props);
+  console.log('Home:', props);
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState<any>({});
   const [play, setPlay] = useState({});
   const [game, setGame] = useState({});
+  const [score, setScore] = useState<number>(0);
+  const [level, setLevel] = useState<number>(0);
+
+  setInterval(() => {
+    const newScore = Math.trunc((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
+    const newLevel = Math.trunc((game as Game).level);
+
+    if (!Number.isNaN(newLevel) && newLevel !== level) {
+      setLevel(Math.trunc((game as Game).level));
+      // console.log('NL:', level);
+    }
+  }, 200);
+
+  useEffect(() => {
+    const newScore = Math.trunc((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score)
+      setScore(Math.trunc((game as Game).currentScore));
+    const newLevel = Math.trunc((game as Game).level);
+    if (!Number.isNaN(newLevel) && newLevel !== level)
+      setLevel(Math.trunc((game as Game).level));
+  }, [
+    game,
+    (game as Game).currentScore,
+    (game as Game).score,
+    (game as Game).level,
+  ]);
+
+  useEffect(() => {
+    console.log('FL:', level);
+    const newLevel = Math.trunc((game as Game).level);
+    if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
+  }, [score]);
 
   useEffect(() => {
     if (game instanceof Game) {
@@ -40,8 +74,10 @@ const Home = (props) => {
   }, [game]);
 
   useEffect(() => {
-    (play as HTMLElement).onclick = () => {
-      (game as Game).play.bind(game)(simpleWorkspace.current.primaryWorkspace);
+    (play as HTMLElement).onclick = async () => {
+      await (game as Game).play.bind(game)(
+        simpleWorkspace.current.primaryWorkspace
+      );
     };
   }, [play]);
 
@@ -58,7 +94,7 @@ const Home = (props) => {
       >
         {game instanceof Game ? (
           <>
-            <Score>{game instanceof Game ? game.currentScore : 0}</Score>
+            <Score>{game instanceof Game ? score : 0}</Score>
             <BlocklyComponent
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
@@ -76,16 +112,16 @@ const Home = (props) => {
               }}
             >
               <Block type="forward" />
-              <Block type="left" />
-              <Block type="right" />
-              <Block type="if" />
-              <Block type="while" />
-              <Block type="block" />
-              <Block type="carrot" />
-              <Block type="number" />
-              <Block type="and" />
-              <Block type="or" />
-              <Block type="not" />
+              {level >= 2 ? <Block type="left" /> : undefined}
+              {level >= 2 ? <Block type="right" /> : undefined}
+              {level >= 4 ? <Block type="if" /> : undefined}
+              {level >= 6 ? <Block type="while" /> : undefined}
+              {level >= 5 ? <Block type="block" /> : undefined}
+              {level >= 4 ? <Block type="carrot" /> : undefined}
+              {level >= 6 ? <Block type="number" /> : undefined}
+              {level >= 5 ? <Block type="and" /> : undefined}
+              {level >= 5 ? <Block type="or" /> : undefined}
+              {level >= 5 ? <Block type="not" /> : undefined}
             </BlocklyComponent>
           </>
         ) : (
@@ -109,6 +145,7 @@ const Home = (props) => {
         <Background2 theme={props.theme}>
           <SvgCanvas2 className="svgCanvas3"></SvgCanvas2>
         </Background2>
+        <Background3 theme={props.theme} />
       </Layout>
     </>
   );

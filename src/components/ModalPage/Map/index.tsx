@@ -71,7 +71,11 @@ const Map = (props) => {
     );
 
     setScore(props.getGame instanceof Game ? (props.getGame as Game).score : 0);
-  }, [props.getGame]);
+  }, [props.getGame, (props.getGame as Game).score]);
+
+  useEffect(() => {
+    setScore(props.getGame instanceof Game ? (props.getGame as Game).score : 0);
+  }, [(props.getGame as Game).score]);
 
   return (
     <ModalPageWrapper>

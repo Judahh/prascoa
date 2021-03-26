@@ -7,13 +7,12 @@
  */
 
 import { Position } from './position';
-import { default as itemSkins } from './itemSkins.json';
+import { default as blockSkins } from './blockSkins.json';
 import { GameObject } from './gameObject';
 import { SharedCanvas } from './sharedCanvas';
-import { getItem } from './element';
 
 // import Blockly from 'blockly';
-export class Item extends GameObject {
+export class Block extends GameObject {
   constructor(
     canvas: SharedCanvas,
     location: { x: number; y: number; position: Position },
@@ -21,7 +20,9 @@ export class Item extends GameObject {
     block: { height: number; width: number },
     skin?: number
   ) {
-    super(canvas, location, currentLevel, block, skin ? skin : 0, itemSkins);
+    super(canvas, location, currentLevel, block, skin ? skin : 0, blockSkins);
+    // console.log('skin', this.skin);
+    // console.log('sprite', this.skin);
   }
   async drawObject(): Promise<void> {
     if (this.y !== undefined) {
@@ -29,7 +30,7 @@ export class Item extends GameObject {
 
       const realHeight =
         ((this.canvas.height / this.currentLevel.length) *
-          (this.currentLevel.length + 3)) /
+          (this.currentLevel.length + 1)) /
         2;
       const addHeight = (this.canvas.height - realHeight) / 2;
       const addWidth =
@@ -50,15 +51,29 @@ export class Item extends GameObject {
     addWidth: number,
     addHeight: number
   ): Promise<void> {
-    // console.log(this.position);
+    // console.log(this.skins[this.skin].height);
+
+    // this.context?.drawImage(
+    //   map,
+    //   blockSprite.startX,
+    //   blockSprite.startY,
+    //   blockSprite.width,
+    //   blockSprite.fullHeight,
+    //   (x * this.canvas.width) / (numberOfColumns * 2) -
+    //     (y * this.canvas.height) / (numberOfRows * 2) +
+    //     addWidth,
+    //   (y * this.canvas.height) / (numberOfRows * 4) +
+    //     (x * this.canvas.width) / (numberOfColumns * 4) +
+    //     addHeight,
+    //   this.canvas.width / numberOfColumns,
+    //   this.canvas.height / numberOfRows
+    // );
     if (this.x !== undefined && this.y !== undefined)
       await this.drawImage(
         this.skins[this.skin].startX,
-        this.skins[this.skin].startY +
-          this.skins[this.skin][Position[this.position]].minFrame *
-            this.skins[this.skin].height,
+        this.skins[this.skin].startY,
         this.skins[this.skin].width,
-        this.skins[this.skin].height,
+        this.skins[this.skin].height * 2,
         (this.x * this.canvas.width) / (numberOfColumns * 2) -
           (this.y * this.canvas.height) / (numberOfRows * 2) +
           addWidth,
@@ -69,18 +84,5 @@ export class Item extends GameObject {
         this.canvas.height / numberOfRows
       );
     else await this.drawImage(0, 0, 0, 0, 0, 0, 0, 0);
-  }
-
-  async destroy() {
-    console.log('destroed');
-    if (this.x && this.y) {
-      this.currentLevel[this.y][this.x] =
-        this.currentLevel[this.y][this.x] -
-        getItem(this.currentLevel[this.y][this.x]);
-      this.x = undefined;
-      this.y = undefined;
-    }
-    this.canvas.clear();
-    this.draw(undefined, true);
   }
 }

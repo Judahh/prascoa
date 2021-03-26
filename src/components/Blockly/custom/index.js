@@ -243,7 +243,7 @@ Blockly.Blocks['forward'] = {
 };
 
 Blockly.JavaScript['forward'] = (block) => {
-  return 'this.action(' + Action[block.type] + ');\n';
+  return 'await this.action(' + Action[block.type] + ');\n';
 };
 
 Blockly.Blocks['left'] = {
@@ -259,7 +259,7 @@ Blockly.Blocks['left'] = {
 };
 
 Blockly.JavaScript['left'] = (block) => {
-  return 'this.action(' + Action[block.type] + ');\n';
+  return 'await this.action(' + Action[block.type] + ');\n';
 };
 
 Blockly.Blocks['right'] = {
@@ -275,5 +275,5 @@ Blockly.Blocks['right'] = {
 };
 
 Blockly.JavaScript['right'] = (block) => {
-  return 'this.action(' + Action[block.type] + ');\n';
+  return 'await this.action(' + Action[block.type] + ');\n';
 };

@@ -5,7 +5,7 @@
     "startY": 0,
     "width": 128,
     "height": 121,
-    "speed": 2.5,
+    "speed": 0.1,
     "none": {
       "minFrame": 0,
       "maxFrame": 0
