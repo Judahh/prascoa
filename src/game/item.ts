@@ -47,12 +47,12 @@ export class Item extends GameObject {
     addWidth: number,
     addHeight: number
   ): Promise<void> {
-    console.log(this.position);
+    // console.log(this.position);
 
     await this.drawImage(
       this.skins[this.skin].startX,
       this.skins[this.skin].startY +
-        this.skins[this.skin][Position[1]].minFrame *
+        this.skins[this.skin][Position[this.position]].minFrame *
           this.skins[this.skin].height,
       this.skins[this.skin].width,
       this.skins[this.skin].height,

@@ -21,6 +21,8 @@ export class Block extends GameObject {
     skin?: number
   ) {
     super(canvas, location, currentLevel, block, skin ? skin : 0, blockSkins);
+    console.log('skin', this.skin);
+    console.log('sprite', this.skin);
   }
   async drawObject(): Promise<void> {
     const line = this.currentLevel[this.y];
@@ -47,7 +49,7 @@ export class Block extends GameObject {
     addWidth: number,
     addHeight: number
   ): Promise<void> {
-    console.log(this.skins[this.skin].height);
+    // console.log(this.skins[this.skin].height);
 
     // this.context?.drawImage(
     //   map,

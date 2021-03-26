@@ -7,7 +7,7 @@
  */
 
 import { Character } from './character';
-import { Element } from './element';
+import { Element, getBlock, getChar, getItem, getPosition } from './element';
 
 import Blockly from 'blockly';
 import { levels } from './levels';
@@ -74,8 +74,20 @@ export class Game {
     this.draw();
   }
 
+  printLevel() {
+    if (this._currentLevel)
+      for (const line of this._currentLevel) {
+        let sLine = '';
+        for (const element of line) {
+          sLine += '(' + element + '), ';
+        }
+        console.log(sLine);
+      }
+  }
+
   async play(simpleWorkspace: any): Promise<void> {
-    console.log('PLAY Game', this._currentLevel);
+    console.log('PLAY Game');
+    this.printLevel();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -83,7 +95,8 @@ export class Game {
     for (const char of this.chars) {
       await char.execute(code);
     }
-    console.log('DONE', this._currentLevel);
+    console.log('DONE');
+    this.printLevel();
   }
 
   getNode(n: any, v: any): any {
@@ -107,8 +120,11 @@ export class Game {
       for (let y = 0; y < this._currentLevel.length; y++) {
         const line = this._currentLevel[y];
         for (let x = 0; x < line.length; x++) {
-          if (this._currentLevel[y][x]) {
-            // console.log(x, y);
+          const blockE = getBlock(this._currentLevel[y][x]);
+          const charE = getChar(this._currentLevel[y][x]);
+          const itemE = getItem(this._currentLevel[y][x]);
+          if (blockE) {
+            console.log(blockE);
             const block = new Block(
               this.canvases[0],
               {
@@ -120,44 +136,44 @@ export class Game {
               {
                 height: this._currentLevel.length,
                 width: this._currentLevel.length,
-              }
+              },
+              blockE - 1
             );
             await block.draw();
             this.blocks.push(block);
           }
-          if (
-            this._currentLevel[y][x] >= Element.Char &&
-            this._currentLevel[y][x] < Element.Carrot
-          ) {
+          if (charE) {
             const char = new Character(
               this.canvases[1],
               {
                 x,
                 y,
-                position: Math.trunc(this._currentLevel[y][x] / Element.Char),
+                position: getPosition(this._currentLevel[y][x]),
               },
               this._currentLevel,
               {
                 height: this._currentLevel.length,
                 width: this._currentLevel.length,
-              }
+              },
+              charE - 1
             );
             await char.draw();
             this.chars.push(char);
           }
-          if (this._currentLevel[y][x] >= Element.Carrot) {
+          if (itemE) {
             const item = new Item(
               this.canvases[2],
               {
                 x,
                 y,
-                position: Math.trunc(this._currentLevel[y][x] / Element.Carrot),
+                position: Position.None,
               },
               this._currentLevel,
               {
                 height: this._currentLevel.length,
                 width: this._currentLevel.length,
-              }
+              },
+              itemE - 1
             );
             await item.draw();
             this.items.push(item);

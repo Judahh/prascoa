@@ -85,12 +85,16 @@ export class Character extends GameObject {
     console.log('ACTION:', action);
 
     console.log(this.x, this.y);
+    this.currentLevel[this.y][this.x] =
+      this.currentLevel[this.y][this.x] - Element.Char * this.position;
     if (action === Action.Forward) {
       // console.log('PLAY: actionSound');
       this.play('actionSound');
     }
     await this.promiseAction(action);
     console.log(this.x, this.y);
+    this.currentLevel[this.y][this.x] =
+      this.currentLevel[this.y][this.x] + Element.Char * this.position;
   }
 
   is(element: Element): boolean {
