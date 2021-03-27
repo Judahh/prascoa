@@ -77,7 +77,7 @@ export class Game {
     this._level = level;
     this._currentLevel = JSON.parse(JSON.stringify(levels[level]));
     for (const canvas of this.canvases) {
-      canvas.clear();
+      canvas.reset();
     }
     this.drawMap();
     this.draw();
@@ -101,8 +101,8 @@ export class Game {
     this.chars = [];
     this.items = [];
     this.blocks = [];
-    this.canvases[1] = new SharedCanvas('svgCanvas2');
-    this.canvases[2] = new SharedCanvas('svgCanvas3');
+    this.canvases[1].reset();
+    this.canvases[2].reset();
     this._currentLevel = JSON.parse(JSON.stringify(levels[this.level]));
     await this.draw();
   }

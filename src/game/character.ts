@@ -30,6 +30,7 @@ export class Character extends GameObject {
 
   async execute(code: string): Promise<void> {
     this._code = '(async () => {' + code + '})()';
+    console.log(code);
     await eval(this._code);
   }
 
@@ -39,20 +40,9 @@ export class Character extends GameObject {
       let done = await doTheAction(action);
       if (done) resolve(done);
       else {
-        await this.delay(100);
         done = await this.promiseAction(action);
         resolve(done);
       }
-      // const id = setInterval(() => {
-      //   clearInterval(this.idleId);
-      //   const done = doTheAction(action);
-      //   // console.log(done);
-      //   if (done) {
-      //     clearInterval(id);
-      //     this.idleId = setInterval(this.redraw.bind(this), 100);
-      //     resolve(true);
-      //   }
-      // }, 100);
     });
   }
 

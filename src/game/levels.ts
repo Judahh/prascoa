@@ -1,31 +1,31 @@
 import { Element } from './element';
 export const levels = [
-  [
-    //! 0 Apenas forward
-    [0, 0, 0],
-    [0, Element.BA + Element.CharRight, Element.BB + Element.C],
-    [0, 0, 0],
-  ],
-  [
-    [0, 0, 0],
-    [
-      Element.BA + Element.CharRight,
-      Element.BB + Element.C,
-      Element.BA + Element.C,
-    ],
-    [0, 0, 0],
-  ],
-  [
-    //! 2 Adiciona turns
-    [0, 0, 0],
-    [0, Element.BA + Element.CharUp, Element.BB + Element.C],
-    [0, 0, 0],
-  ],
-  [
-    [Element.BA + Element.CharDown, 0, 0],
-    [Element.BB + Element.C, 0, 0],
-    [Element.BA + Element.C, Element.BB + Element.C, Element.BB + Element.C],
-  ],
+  // [
+  //   //! 0 Apenas forward
+  //   [0, 0, 0],
+  //   [0, Element.BA + Element.CharRight, Element.BB + Element.C],
+  //   [0, 0, 0],
+  // ],
+  // [
+  //   [0, 0, 0],
+  //   [
+  //     Element.BA + Element.CharRight,
+  //     Element.BB + Element.C,
+  //     Element.BA + Element.C,
+  //   ],
+  //   [0, 0, 0],
+  // ],
+  // [
+  //   //! 2 Adiciona turns
+  //   [0, 0, 0],
+  //   [0, Element.BA + Element.CharUp, Element.BB + Element.C],
+  //   [0, 0, 0],
+  // ],
+  // [
+  //   [Element.BA + Element.CharDown, 0, 0],
+  //   [Element.BB + Element.C, 0, 0],
+  //   [Element.BA + Element.C, Element.BB + Element.C, Element.BB + Element.C],
+  // ],
   [
     //! 4 Adiciona if e carrot
     [Element.BA + Element.CharRight, 0, 0],

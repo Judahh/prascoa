@@ -42,7 +42,7 @@ export class GameObject {
     this.skins = skins;
     this.skin = skin;
     this.canvas = canvas;
-    this.canvasIndex = this.canvas.objects.push(this) - 1;
+    this.canvasIndex = this.canvas.addObject();
     this.currentLevel = currentLevel;
     this.block = block;
     this.audio = {};
@@ -55,7 +55,6 @@ export class GameObject {
     this.sprite = min;
     // this.initMotion();
   }
-
   async redraw(action?: boolean, waitIdle?: boolean) {
     // console.log('redraw');
     this.canvas.clear();
@@ -65,7 +64,6 @@ export class GameObject {
     const decimal = currentNumber % 1;
     return Math.round(decimal * 100000000) / 100000000;
   }
-
   load(action?: boolean, waitIdle?: boolean): Promise<boolean> {
     return new Promise((resolve) => {
       this.image[this.skin].element.onload = async () => {
@@ -75,7 +73,6 @@ export class GameObject {
       };
     });
   }
-
   //! TODO: use sharedCanvas for store images
   async draw(action?: boolean, waitIdle?: boolean): Promise<void> {
     this.image[this.skin].element.src = this.skins[this.skin].sprite;
@@ -109,15 +106,6 @@ export class GameObject {
       await this.drawWithAdd(0, 0, 0, 0, action, waitIdle);
     }
   }
-
-  delay(time: number): Promise<boolean> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, time);
-    });
-  }
-
   async drawWithAdd(
     numberOfColumns: number,
     numberOfRows: number,
@@ -177,10 +165,8 @@ export class GameObject {
           console.log('max', max);
 
           if (waitIdle) {
-            await this.delay(100);
             await this.redraw(action, waitIdle);
           } else {
-            this.delay(100);
             this.redraw(action, waitIdle);
           }
           // if (!this.idleId)
@@ -190,7 +176,6 @@ export class GameObject {
       await this.drawImage(0, 0, 0, 0, 0, 0, 0, 0);
     }
   }
-
   async drawImage(
     imageStartX: number,
     imageStartY: number,
@@ -201,7 +186,7 @@ export class GameObject {
     canvasWidth: number,
     canvasHeight: number
   ) {
-    await this.canvas.draw(
+    await this.canvas.addDrawing(
       this.canvasIndex,
       this.image[this.skin].element,
       imageStartX,
@@ -214,7 +199,6 @@ export class GameObject {
       canvasHeight
     );
   }
-
   play(soundName: string): void {
     const sound = this.skins[this.skin][soundName];
     if (!this.audio[soundName]) this.audio[soundName] = new Audio(sound.url);

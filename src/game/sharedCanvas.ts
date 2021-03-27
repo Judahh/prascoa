@@ -8,32 +8,56 @@
  * @suppress {duplicate}
  */
 
-import { GameObject } from './gameObject';
-
-// import Blockly from 'blockly';
 export class SharedCanvas {
   canvas: HTMLCanvasElement;
   context?: CanvasRenderingContext2D;
-  protected _objects: GameObject[];
+  protected canvasClass: string;
   protected refreshId;
-  protected cleared: boolean;
+  protected drawings: {
+    image: HTMLImageElement;
+    imageStartX: number;
+    imageStartY: number;
+    imageWidth: number;
+    imageHeight: number;
+    x: number;
+    y: number;
+    canvasWidth: number;
+    canvasHeight: number;
+  }[][];
+  protected lastDrawings: {
+    image: HTMLImageElement;
+    imageStartX: number;
+    imageStartY: number;
+    imageWidth: number;
+    imageHeight: number;
+    x: number;
+    y: number;
+    canvasWidth: number;
+    canvasHeight: number;
+  }[];
   constructor(canvasClass: string) {
+    this.canvasClass = canvasClass;
     this.canvas = document.getElementsByClassName(
-      canvasClass
+      this.canvasClass
     )[0] as HTMLCanvasElement;
     const ctx = this.canvas.getContext('2d');
     this.context = ctx !== null ? ctx : undefined;
-    this.cleared = true;
-    this._objects = [];
+    this.drawings = [];
+    this.lastDrawings = [];
     this.refreshCanvas();
     // this.refreshId = setInterval(this.draw.bind(this), 100);
   }
 
-  get objects() {
-    return this._objects;
+  reset() {
+    this.canvas = document.getElementsByClassName(
+      this.canvasClass
+    )[0] as HTMLCanvasElement;
+    const ctx = this.canvas.getContext('2d');
+    this.context = ctx !== null ? ctx : undefined;
+    this.drawings = [];
+    this.refreshCanvas();
   }
-
-  refreshCanvas(): void {
+  protected refreshCanvas(): void {
     const height = window.innerHeight - 70;
     const width = window.innerWidth - 140;
     const smaller = height <= width ? height : width;
@@ -41,9 +65,12 @@ export class SharedCanvas {
     this.canvas.width = smaller;
     this.clear();
   }
-
-  async draw(
-    currentIndex: number,
+  addObject(): number {
+    //return index
+    return this.drawings.push([]) - 1;
+  }
+  async addDrawing(
+    objectIndex: number,
     image: HTMLImageElement,
     imageStartX: number,
     imageStartY: number,
@@ -54,47 +81,78 @@ export class SharedCanvas {
     canvasWidth: number,
     canvasHeight: number
   ) {
-    if (this.cleared) {
-      // console.log('cleared');
-      this.cleared = false;
-      for (let index = 0; index < this.objects.length; index++) {
-        if (currentIndex !== index) {
-          const object = this.objects[index];
-          await object.draw();
-        } else {
-          this.context?.drawImage(
-            image,
-            imageStartX,
-            imageStartY,
-            imageWidth,
-            imageHeight,
-            x,
-            y,
-            canvasWidth,
-            canvasHeight
-          );
+    const drawing = {
+      image,
+      imageStartX,
+      imageStartY,
+      imageWidth,
+      imageHeight,
+      x,
+      y,
+      canvasWidth,
+      canvasHeight,
+    };
+    this.drawings[objectIndex].push(drawing);
+    this.lastDrawings[objectIndex] = drawing;
+    if (this.isTheBiggestDrawer(objectIndex)) {
+      await this.draw();
+    } else {
+      //! await the last draw
+    }
+  }
+  isTheBiggestDrawer(objectIndex: number) {
+    let biggest = true;
+    const drawerLength = this.drawings[objectIndex].length;
+    for (let index = 0; index < this.drawings.length; index++) {
+      if (objectIndex !== index) {
+        const length = this.drawings[index].length;
+        if (drawerLength <= length) {
+          biggest = false;
+          return biggest;
         }
       }
-    } else {
-      // console.log('regular');
-      this.context?.drawImage(
-        image,
-        imageStartX,
-        imageStartY,
-        imageWidth,
-        imageHeight,
-        x,
-        y,
-        canvasWidth,
-        canvasHeight
-      );
     }
+    return biggest;
+  }
+  delay(time: number): Promise<boolean> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, time);
+    });
+  }
+  protected async draw() {
+    this.clear();
+    for (let index = 0; index < this.drawings.length; index++) {
+      const drawings = this.drawings[index];
+      let deleteDrawing = true;
+      let drawing = drawings[0];
+      if (!drawing) {
+        drawing = this.lastDrawings[index];
+        deleteDrawing = false;
+      }
+      if (drawing) {
+        this.context?.drawImage(
+          drawing.image,
+          drawing.imageStartX,
+          drawing.imageStartY,
+          drawing.imageWidth,
+          drawing.imageHeight,
+          drawing.x,
+          drawing.y,
+          drawing.canvasWidth,
+          drawing.canvasHeight
+        );
+        if (deleteDrawing) {
+          drawings.splice(0, 1);
+        }
+      }
+    }
+    await this.delay(100);
   }
 
   clear() {
-    // console.log('clear CANVAS');
     this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.cleared = true;
   }
 
   get height(): number {
