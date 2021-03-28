@@ -25,7 +25,6 @@ export class GameObject {
   protected audio: any;
   protected sprite: number;
   protected idleId;
-  protected image;
   protected canvas: SharedCanvas;
   protected canvasIndex: number;
   constructor(
@@ -46,8 +45,6 @@ export class GameObject {
     this.currentLevel = currentLevel;
     this.block = block;
     this.audio = {};
-    this.image = {};
-    this.image[this.skin] = { element: new Image() };
     // console.log('skin:', this.skin);
     // console.log('skins:', this.skins);
     const skinF = this.skins[this.skin][Position[this.position]];
@@ -60,29 +57,7 @@ export class GameObject {
     this.canvas.clear();
     await this.draw(action, waitIdle);
   }
-  load(action?: boolean, waitIdle?: boolean): Promise<boolean> {
-    return new Promise(async (resolve) => {
-      if (!this.image[this.skin].element.src)
-        this.image[this.skin].element.src = this.skins[this.skin].sprite;
-      if (this.image[this.skin].element.complete) {
-        await this.drawObject(action, waitIdle);
-        resolve(true);
-      } else {
-        this.image[this.skin].element.onload = async () => {
-          await this.drawObject(action, waitIdle);
-          resolve(true);
-          // this.image[this.skin].loaded = true;
-        };
-      }
-    });
-  }
-  //! TODO: use sharedCanvas for store images
   async draw(action?: boolean, waitIdle?: boolean): Promise<void> {
-    // if (this.image[this.skin].loaded) await this.drawObject(action);
-    // else
-    await this.load(action, waitIdle);
-  }
-  async drawObject(action?: boolean, waitIdle?: boolean): Promise<void> {
     if (this.y !== undefined) {
       const line = this.currentLevel[Math.trunc(this.y)];
       // console.log(this.y);
@@ -191,7 +166,7 @@ export class GameObject {
   ) {
     await this.canvas.addDrawing(
       this.canvasIndex,
-      this.image[this.skin].element,
+      this.skins[this.skin].sprite,
       imageStartX,
       imageStartY,
       imageWidth,

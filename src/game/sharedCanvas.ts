@@ -35,6 +35,8 @@ export class SharedCanvas {
     canvasWidth: number;
     canvasHeight: number;
   }[];
+  protected lastDraw;
+  protected images;
   constructor(canvasClass: string) {
     this.canvasClass = canvasClass;
     this.canvas = document.getElementsByClassName(
@@ -44,6 +46,7 @@ export class SharedCanvas {
     this.context = ctx !== null ? ctx : undefined;
     this.drawings = [];
     this.lastDrawings = [];
+    this.images = {};
     this.refreshCanvas();
     // this.refreshId = setInterval(this.draw.bind(this), 100);
   }
@@ -69,9 +72,28 @@ export class SharedCanvas {
     //return index
     return this.drawings.push([]) - 1;
   }
+
+  load(imageSource: string): Promise<HTMLImageElement> {
+    return new Promise(async (resolve) => {
+      if (!this.images[imageSource] || !this.images[imageSource].src) {
+        this.images[imageSource] = new Image();
+        this.images[imageSource].onload = async () => {
+          resolve(this.images[imageSource]);
+        };
+        this.images[imageSource].src = imageSource;
+      }
+      if (this.images[imageSource].complete) {
+        resolve(this.images[imageSource]);
+      } else {
+        this.images[imageSource].onload = async () => {
+          resolve(this.images[imageSource]);
+        };
+      }
+    });
+  }
   async addDrawing(
     objectIndex: number,
-    image: HTMLImageElement,
+    imageSource: string,
     imageStartX: number,
     imageStartY: number,
     imageWidth: number,
@@ -81,6 +103,7 @@ export class SharedCanvas {
     canvasWidth: number,
     canvasHeight: number
   ) {
+    const image = await this.load(imageSource);
     const drawing = {
       image,
       imageStartX,
@@ -94,11 +117,10 @@ export class SharedCanvas {
     };
     this.drawings[objectIndex].push(drawing);
     this.lastDrawings[objectIndex] = drawing;
-    if (this.isTheBiggestDrawer(objectIndex)) {
-      await this.draw();
-    } else {
-      //! await the last draw
+    if (this.isTheBiggestDrawer(objectIndex) || !this.lastDraw) {
+      this.lastDraw = this.draw();
     }
+    await this.lastDraw;
   }
   isTheBiggestDrawer(objectIndex: number) {
     let biggest = true;

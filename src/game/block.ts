@@ -24,7 +24,7 @@ export class Block extends GameObject {
     // console.log('skin', this.skin);
     // console.log('sprite', this.skin);
   }
-  async drawObject(): Promise<void> {
+  async draw(): Promise<void> {
     if (this.y !== undefined) {
       const line = this.currentLevel[this.y];
 

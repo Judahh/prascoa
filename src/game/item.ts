@@ -23,7 +23,7 @@ export class Item extends GameObject {
   ) {
     super(canvas, location, currentLevel, block, skin ? skin : 0, itemSkins);
   }
-  async drawObject(): Promise<void> {
+  async draw(): Promise<void> {
     if (this.y !== undefined) {
       const line = this.currentLevel[this.y];
 
