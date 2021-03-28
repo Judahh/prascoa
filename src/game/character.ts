@@ -71,14 +71,17 @@ export class Character extends GameObject {
       }
       await this.redraw(true, true);
 
-      const xResult = this.getDecimalPart(this.x);
-      const yResult = this.getDecimalPart(this.y);
+      this.x = Number(this.x.toFixed(1));
+      this.y = Number(this.y.toFixed(1));
+
+      const xResult = this.x % 1;
+      const yResult = this.y % 1;
 
       done = xResult === 0 && yResult === 0;
 
       if (done) {
-        this.x = Math.floor(this.x);
-        this.y = Math.floor(this.y);
+        this.x = Math.trunc(this.x);
+        this.y = Math.trunc(this.y);
       }
 
       // console.log('EP:', this.x, this.y);
@@ -105,9 +108,9 @@ export class Character extends GameObject {
         default:
           break;
       }
-      await this.redraw(true, true);
+      await this.redraw(false, true);
     }
-    console.log('ACTION:', this.x, this.y);
+    // console.log('ACTION:', this.x, this.y);
 
     return done;
   }

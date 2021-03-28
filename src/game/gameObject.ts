@@ -60,22 +60,24 @@ export class GameObject {
     this.canvas.clear();
     await this.draw(action, waitIdle);
   }
-  getDecimalPart(currentNumber: number): number {
-    const decimal = currentNumber % 1;
-    return Math.round(decimal * 100000000) / 100000000;
-  }
   load(action?: boolean, waitIdle?: boolean): Promise<boolean> {
-    return new Promise((resolve) => {
-      this.image[this.skin].element.onload = async () => {
+    return new Promise(async (resolve) => {
+      if (!this.image[this.skin].element.src)
+        this.image[this.skin].element.src = this.skins[this.skin].sprite;
+      if (this.image[this.skin].element.complete) {
         await this.drawObject(action, waitIdle);
         resolve(true);
-        // this.image[this.skin].loaded = true;
-      };
+      } else {
+        this.image[this.skin].element.onload = async () => {
+          await this.drawObject(action, waitIdle);
+          resolve(true);
+          // this.image[this.skin].loaded = true;
+        };
+      }
     });
   }
   //! TODO: use sharedCanvas for store images
   async draw(action?: boolean, waitIdle?: boolean): Promise<void> {
-    this.image[this.skin].element.src = this.skins[this.skin].sprite;
     // if (this.image[this.skin].loaded) await this.drawObject(action);
     // else
     await this.load(action, waitIdle);
@@ -107,6 +109,7 @@ export class GameObject {
     }
   }
   async drawWithAdd(
+    //! maybe the bug is here
     numberOfColumns: number,
     numberOfRows: number,
     addWidth: number,

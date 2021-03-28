@@ -237,10 +237,6 @@ export class Game {
           }
         }
       }
-      if (!this.started) {
-        this.chars[0].play('themeSound');
-        this.started = true;
-      }
     }
   }
 
@@ -272,6 +268,10 @@ export class Game {
             this.blocks.push(block);
           }
         }
+      }
+      if (!this.started) {
+        this.chars[0].play('themeSound');
+        this.started = true;
       }
     }
 

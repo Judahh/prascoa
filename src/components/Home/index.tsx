@@ -112,6 +112,11 @@ const Home = (props) => {
               }}
             >
               <Block type="forward" />
+              <Block type="left" />
+              <Block type="right" />
+              <Block type="while" />
+              <Block type="number" />
+
               {level >= 2 ? <Block type="left" /> : undefined}
               {level >= 2 ? <Block type="right" /> : undefined}
               {level >= 4 ? <Block type="if" /> : undefined}
