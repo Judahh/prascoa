@@ -108,7 +108,7 @@ export class Character extends GameObject {
         default:
           break;
       }
-      await this.redraw(false, true);
+      await this.redraw(false, true); //! TODO: this has a bug it waits all idle (by running in the next jump)
     }
     // console.log('ACTION:', this.x, this.y);
 

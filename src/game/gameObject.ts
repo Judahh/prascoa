@@ -84,7 +84,7 @@ export class GameObject {
     }
   }
   async drawWithAdd(
-    //! maybe the bug is here
+    //! TODO maybe the bug is here
     numberOfColumns: number,
     numberOfRows: number,
     addWidth: number,
@@ -137,10 +137,10 @@ export class GameObject {
       );
       if (!action)
         if (this.sprite === max) {
-          console.log('this.sprite is max', this.sprite);
+          // console.log('this.sprite is max', this.sprite);
         } else {
-          console.log('this.sprite', this.sprite);
-          console.log('max', max);
+          // console.log('this.sprite', this.sprite);
+          // console.log('max', max);
 
           if (waitIdle) {
             await this.redraw(action, waitIdle);

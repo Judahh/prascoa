@@ -6,7 +6,7 @@ export const levels = [
   //   [1, 1 + Element.CharUp, 0],
   // ],
   // [
-  //   //! 0 Apenas forward
+  //   //! 0 Just forward
   //   [0, 0, 0],
   //   [0, Element.BA + Element.CharRight, Element.BB + Element.C],
   //   [0, 0, 0],
@@ -22,7 +22,7 @@ export const levels = [
   //   [0, 0, 0],
   // ],
   // [
-  //   //! 2 Adiciona turns
+  //   //! 2 Add turns
   //   [0, 0, 0],
   //   [0, Element.BA + Element.CharUp, Element.BB + Element.C],
   //   [0, 0, 0],
@@ -34,19 +34,19 @@ export const levels = [
   //   [Element.BA + Element.C, Element.BB + Element.C, Element.BB + Element.C],
   // ],
   // [
-  //   //! 4 Adiciona if e carrot
+  //   //! 4 Add if e carrot
   //   [Element.BA + Element.CharRight, 0, 0],
   //   [0, Element.BA + Element.CharRight, Element.BB + Element.C],
   //   [0, 0, 0],
   // ],
   // [
-  //   //! 5 Adiciona block, not, and e or
+  //   //! 5 Add block, not, and e or
   //   [Element.BA + Element.CharRight, 0, 0],
   //   [Element.BA + Element.CharRight, Element.BB, Element.BB + Element.C],
   //   [0, 0, 0],
   // ],
   // [
-  //   //! 6 Adiciona loop e number
+  //   //! 6 Add loop e number
   //   [0, 0, 0, 0],
   //   [0, 0, 0, 0],
   //   [

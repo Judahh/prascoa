@@ -168,7 +168,12 @@ export class Game {
         this._currentScore >= this._scores[this.level]
       )
         this._scores[this.level] = this._currentScore;
-      if (this._level < levels.length - 1) this.level++;
+      if (this._level < levels.length - 1) {
+        //! TODO next level animation
+        this.level++;
+      } else {
+        //! TODO game completed (for now) animation
+      }
     } else {
       await this.reset();
     }
