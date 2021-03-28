@@ -192,6 +192,7 @@ export class Game {
 
   async draw(): Promise<void> {
     if (this._currentLevel) {
+      this.totalNumOfItems = 0;
       for (let y = 0; y < this._currentLevel.length; y++) {
         const line = this._currentLevel[y];
         for (let x = 0; x < line.length; x++) {
@@ -237,11 +238,11 @@ export class Game {
           }
         }
       }
+      this.totalNumOfItems = this.items.length;
     }
   }
 
   async drawMap(): Promise<void> {
-    this.totalNumOfItems = 0;
     this._currentScore = 0;
     if (this._currentLevel) {
       for (let y = 0; y < this._currentLevel.length; y++) {
@@ -274,8 +275,6 @@ export class Game {
         this.started = true;
       }
     }
-
-    this.totalNumOfItems = this.items.length;
   }
 
   calcScore(carrots: number, blocks: number, steps: number) {
