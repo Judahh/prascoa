@@ -99,7 +99,8 @@ export class GameObject {
       Math.trunc(this.y) < this.currentLevel.length &&
       Math.trunc(this.x) >= 0 &&
       this.currentLevel[Math.trunc(this.y)] &&
-      Math.trunc(this.x) < this.currentLevel[Math.trunc(this.y)].length
+      Math.trunc(this.x) < this.currentLevel[Math.trunc(this.y)].length &&
+      this.currentLevel[Math.trunc(this.y)][Math.trunc(this.x)]
     ) {
       // console.log('drawWithAdd');
       const skin = this.skins[this.skin][Position[this.position]];

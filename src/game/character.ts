@@ -120,7 +120,7 @@ export class Character extends GameObject {
   }
 
   async action(action: Action): Promise<void> {
-    // console.log('NEW ACTION:', action);
+    console.log('NEW ACTION:', action);
     if (this.x === undefined || this.y === undefined) {
       this.x = undefined;
       this.y = undefined;
@@ -159,22 +159,49 @@ export class Character extends GameObject {
   }
 
   is(element: Element): boolean {
+    console.log('is:', element);
     if (this.x === undefined || this.y === undefined) return false;
     switch (this.position) {
       case Position.Down:
+        if (
+          this.currentLevel[this.y + 1] === undefined ||
+          this.currentLevel[this.y + 1][this.x] === undefined
+        )
+          return false;
         return this.currentLevel[this.y + 1][this.x] >= element;
       case Position.up:
+        if (
+          this.currentLevel[this.y - 1] === undefined ||
+          this.currentLevel[this.y - 1][this.x] === undefined
+        )
+          return false;
         return this.currentLevel[this.y - 1][this.x] >= element;
       case Position.Right:
+        if (
+          this.currentLevel[this.y] === undefined ||
+          this.currentLevel[this.y][this.x + 1] === undefined
+        )
+          return false;
         return this.currentLevel[this.y][this.x + 1] >= element;
       case Position.Left:
+        if (
+          this.currentLevel[this.y] === undefined ||
+          this.currentLevel[this.y][this.x - 1] === undefined
+        )
+          return false;
         return this.currentLevel[this.y][this.x - 1] >= element;
       default:
+        if (
+          this.currentLevel[this.y] === undefined ||
+          this.currentLevel[this.y][this.x] === undefined
+        )
+          return false;
         return this.currentLevel[this.y][this.x] >= element;
     }
   }
 
   not(action: unknown): boolean {
+    console.log('NOT:', action);
     return !action;
   }
 

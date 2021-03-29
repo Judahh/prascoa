@@ -144,7 +144,7 @@ const Home = (props) => {
   ]);
 
   useEffect(() => {
-    console.log('FL:', level);
+    // console.log('FL:', level);
     const newLevel = Math.round((game as Game).level);
     if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
   }, [score]);
