@@ -92,7 +92,7 @@ export class GameObject {
     action?: boolean,
     waitIdle?: boolean
   ): Promise<void> {
-    console.log('drawWithAdd', action);
+    // console.log('drawWithAdd', action);
     if (
       this.x !== undefined &&
       this.y !== undefined &&

@@ -111,7 +111,7 @@ export class Character extends GameObject {
         default:
           break;
       }
-      console.log('turn');
+      // console.log('turn');
       await this.draw(false, true); //! TODO: this has a bug it waits all idle (by running in the next jump)
     }
     // console.log('ACTION:', this.x, this.y);

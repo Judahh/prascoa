@@ -146,10 +146,10 @@ export class Game {
 
     const addScore = (this.numOfItems * 1000) / blocklys;
     this._currentScore += addScore;
-    console.log('ADD SCORE:', addScore);
-    console.log('DONE SCORE:', this._currentScore);
-    console.log('ITEMS:', this.numOfItems);
-    console.log('TOTAL:', this.totalNumOfItems);
+    // console.log('ADD SCORE:', addScore);
+    // console.log('DONE SCORE:', this._currentScore);
+    // console.log('ITEMS:', this.numOfItems);
+    // console.log('TOTAL:', this.totalNumOfItems);
     this.printLevel();
     if (this.totalNumOfItems <= this.numOfItems) {
       if (
