@@ -58,6 +58,7 @@ export class SharedCanvas {
     const ctx = this.canvas.getContext('2d');
     this.context = ctx !== null ? ctx : undefined;
     this.drawings = [];
+    this.lastDraw = undefined;
     this.refreshCanvas();
   }
   protected refreshCanvas(): void {
@@ -72,8 +73,7 @@ export class SharedCanvas {
     //return index
     return this.drawings.push([]) - 1;
   }
-
-  load(imageSource: string): Promise<HTMLImageElement> {
+  protected load(imageSource: string): Promise<HTMLImageElement> {
     return new Promise(async (resolve) => {
       if (!this.images[imageSource] || !this.images[imageSource].src) {
         this.images[imageSource] = new Image();
@@ -118,11 +118,15 @@ export class SharedCanvas {
     this.drawings[objectIndex].push(drawing);
     this.lastDrawings[objectIndex] = drawing;
     if (this.isTheBiggestDrawer(objectIndex) || !this.lastDraw) {
+      console.log('new');
       this.lastDraw = this.draw();
+    } else {
+      console.log('wait');
     }
-    await this.lastDraw;
+    const r = await this.lastDraw;
+    console.log(r);
   }
-  isTheBiggestDrawer(objectIndex: number) {
+  protected isTheBiggestDrawer(objectIndex: number) {
     let biggest = true;
     const drawerLength = this.drawings[objectIndex].length;
     for (let index = 0; index < this.drawings.length; index++) {
@@ -136,7 +140,7 @@ export class SharedCanvas {
     }
     return biggest;
   }
-  delay(time: number): Promise<boolean> {
+  protected delay(time: number): Promise<boolean> {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(true);

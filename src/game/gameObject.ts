@@ -52,11 +52,6 @@ export class GameObject {
     this.sprite = min;
     // this.initMotion();
   }
-  async redraw(action?: boolean, waitIdle?: boolean) {
-    // console.log('redraw');
-    this.canvas.clear();
-    await this.draw(action, waitIdle);
-  }
   async draw(action?: boolean, waitIdle?: boolean): Promise<void> {
     if (this.y !== undefined) {
       const line = this.currentLevel[Math.trunc(this.y)];
@@ -92,9 +87,9 @@ export class GameObject {
     action?: boolean,
     waitIdle?: boolean
   ): Promise<void> {
-    // console.log('drawWithAdd');
+    console.log('drawWithAdd', action);
     if (this.x !== undefined && this.y !== undefined) {
-      console.log('drawWithAdd');
+      // console.log('drawWithAdd');
       const skin = this.skins[this.skin][Position[this.position]];
       const min = action ? skin.action.minFrame : skin.minFrame;
       const max = action ? skin.action.maxFrame : skin.maxFrame;
@@ -143,12 +138,10 @@ export class GameObject {
           // console.log('max', max);
 
           if (waitIdle) {
-            await this.redraw(action, waitIdle);
+            await this.draw(action, waitIdle);
           } else {
-            this.redraw(action, waitIdle);
+            this.draw(action, waitIdle);
           }
-          // if (!this.idleId)
-          //   this.idleId = setInterval(this.redraw.bind(this), 100);
         }
     } else {
       await this.drawImage(0, 0, 0, 0, 0, 0, 0, 0);

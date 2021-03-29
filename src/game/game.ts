@@ -76,9 +76,6 @@ export class Game {
   set level(level: number) {
     this._level = level;
     this._currentLevel = JSON.parse(JSON.stringify(levels[level]));
-    for (const canvas of this.canvases) {
-      canvas.reset();
-    }
     this.drawMap();
     this.draw();
   }
@@ -95,14 +92,6 @@ export class Game {
   }
 
   async reset() {
-    this.numOfItems = 0;
-    // this.totalNumOfItems = 0;
-    this._currentScore = 0;
-    this.chars = [];
-    this.items = [];
-    this.blocks = [];
-    this.canvases[1].reset();
-    this.canvases[2].reset();
     this._currentLevel = JSON.parse(JSON.stringify(levels[this.level]));
     await this.draw();
   }
@@ -113,7 +102,7 @@ export class Game {
   }
 
   async gotItem(x: number, y: number, steps: number) {
-    console.log('GOT ITEM!');
+    console.log('GOT ITEM!', x, y, ' with ', steps, ' steps');
     const itemIndex = this.items.findIndex((item: Item) => {
       return item.x === x && item.y === y;
     });
@@ -130,7 +119,7 @@ export class Game {
   }
 
   async play(simpleWorkspace: any): Promise<void> {
-    console.log('PLAY Game');
+    console.log('PLAY Game:', this.chars);
     this.printLevel();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -197,6 +186,12 @@ export class Game {
 
   async draw(): Promise<void> {
     if (this._currentLevel) {
+      this.canvases[1].reset();
+      this.canvases[2].reset();
+      this.chars = [];
+      this.items = [];
+      this._currentScore = 0;
+      this.numOfItems = 0;
       this.totalNumOfItems = 0;
       for (let y = 0; y < this._currentLevel.length; y++) {
         const line = this._currentLevel[y];
@@ -248,8 +243,9 @@ export class Game {
   }
 
   async drawMap(): Promise<void> {
-    this._currentScore = 0;
     if (this._currentLevel) {
+      this.canvases[0].reset();
+      this.blocks = [];
       for (let y = 0; y < this._currentLevel.length; y++) {
         const line = this._currentLevel[y];
         for (let x = 0; x < line.length; x++) {

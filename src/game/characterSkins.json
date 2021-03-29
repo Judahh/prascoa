@@ -15,27 +15,27 @@
       }
     },
     "up": {
-      "minFrame": 29,
-      "maxFrame": 37,
+      "minFrame": 19,
+      "maxFrame": 28,
       "action": {
-        "minFrame": 19,
-        "maxFrame": 28
+        "minFrame": 29,
+        "maxFrame": 37
       }
     },
     "down": {
-      "minFrame": 48,
-      "maxFrame": 56,
+      "minFrame": 38,
+      "maxFrame": 47,
       "action": {
-        "minFrame": 38,
-        "maxFrame": 47
+        "minFrame": 48,
+        "maxFrame": 56
       }
     },
     "left": {
-      "minFrame": 67,
-      "maxFrame": 75,
+      "minFrame": 57,
+      "maxFrame": 66,
       "action": {
-        "minFrame": 57,
-        "maxFrame": 66
+        "minFrame": 67,
+        "maxFrame": 75
       }
     },
     "themeSound": {

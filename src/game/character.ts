@@ -12,25 +12,28 @@ import { SharedCanvas } from './sharedCanvas';
 
 // import Blockly from 'blockly';
 export class Character extends GameObject {
-  protected _code;
-  protected gotItem;
-  protected _steps;
+  protected _code: string;
+  // eslint-disable-next-line no-unused-vars
+  protected gotItem: (x: number, y: number, steps: number) => Promise<void>;
+  protected _steps: number;
   constructor(
     canvas: SharedCanvas,
     location: { x: number; y: number; position: Position },
     currentLevel: number[][],
     block: { height: number; width: number },
-    gotItem,
+    // eslint-disable-next-line no-unused-vars
+    gotItem: (x: number, y: number, steps: number) => Promise<void>,
     skin?: number
   ) {
     super(canvas, location, currentLevel, block, skin ? skin : 0, charSkins);
     this.gotItem = gotItem;
     this._steps = 0;
+    this._code = '(async () => {})()';
   }
 
   async execute(code: string): Promise<void> {
     this._code = '(async () => {' + code + '})()';
-    console.log(code);
+    // console.log(code);
     await eval(this._code);
   }
 
@@ -47,7 +50,7 @@ export class Character extends GameObject {
   }
 
   async doAction(action?: Action): Promise<boolean> {
-    console.log('DOING');
+    // console.log('DOING');
 
     let done = true;
     if (this.x === undefined || this.y === undefined) return done;
@@ -69,7 +72,7 @@ export class Character extends GameObject {
         default:
           break;
       }
-      await this.redraw(true, true);
+      await this.draw(true, true);
 
       this.x = Number(this.x.toFixed(1));
       this.y = Number(this.y.toFixed(1));
@@ -108,7 +111,8 @@ export class Character extends GameObject {
         default:
           break;
       }
-      await this.redraw(false, true); //! TODO: this has a bug it waits all idle (by running in the next jump)
+      console.log('turn');
+      await this.draw(false, true); //! TODO: this has a bug it waits all idle (by running in the next jump)
     }
     // console.log('ACTION:', this.x, this.y);
 
@@ -131,7 +135,7 @@ export class Character extends GameObject {
       this.play('actionSound');
     }
     await this.promiseAction(action);
-    console.log('promiseAction END');
+    // console.log('promiseAction END');
 
     if (
       this.y >= this.currentLevel.length ||
@@ -142,7 +146,7 @@ export class Character extends GameObject {
       throw new Error('Died');
     }
     this._steps++;
-    console.log(this.x, this.y);
+    console.log('TO:', this.x, this.y);
     this.currentLevel[this.y][this.x] =
       this.currentLevel[this.y][this.x] + Element.Char * this.position;
 
@@ -168,19 +172,19 @@ export class Character extends GameObject {
     }
   }
 
-  not(action): boolean {
+  not(action: unknown): boolean {
     return !action;
   }
 
-  check(action) {
+  check(action: boolean): boolean {
     return action;
   }
 
-  and(action1, action2) {
+  and(action1: number, action2: number): number {
     return action1 * action2;
   }
 
-  or(action1, action2) {
+  or(action1: number, action2: number): number {
     return action1 + action2;
   }
 }

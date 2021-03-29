@@ -28,7 +28,7 @@ const initialXml =
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Home = (props) => {
-  console.log('Home:', props);
+  // console.log('Home:', props);
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState<any>({});
   const [play, setPlay] = useState({});
