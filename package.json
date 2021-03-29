@@ -40,6 +40,7 @@
     "react-reveal": "latest",
     "react-social-icons": "latest",
     "react-tooltip": "latest",
+    "semaphore": "^1.1.0",
     "styled-components": "latest",
     "webpack": "latest",
     "workbox-precaching": "latest",

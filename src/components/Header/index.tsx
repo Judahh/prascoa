@@ -12,6 +12,7 @@ const Header = (props) => {
         menu={props.menu}
         setGame={props.setGame}
         getGame={props.getGame}
+        getPlay={props.getPlay}
       />
 
       <Scroll />

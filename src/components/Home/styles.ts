@@ -58,7 +58,7 @@ export const Play = styled.div`
   height: 100vh;
   cursor: pointer;
   position: relative;
-  color: ${(props) => props.theme.menu};
+  color: ${(props) => props.theme.text};
   font-size: x-large;
   justify-content: center;
   text-align: center;

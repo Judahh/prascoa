@@ -6,7 +6,7 @@ import LanguageContext from '../../language/context';
 
 import Layout from '../Layout';
 
-import { Block } from '../Blockly';
+// import { Block } from '../Blockly';
 import { BlocklyComponent } from '../Blockly/blocklyComponent';
 
 import '../Blockly/custom';
@@ -28,42 +28,77 @@ const initialXml =
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const Home = (props) => {
-  console.log('Home:', props);
+  // console.log('Home:', props);
   const lang = useContext(LanguageContext);
   const [simpleWorkspace] = useState<any>({});
   const [play, setPlay] = useState({});
   const [game, setGame] = useState({});
   const [score, setScore] = useState<number>(0);
   const [level, setLevel] = useState<number>(0);
+  const [maxUnlockedLevel, setMaxUnlockedLevel] = useState<number>(0);
+  // const [isNewLevel, setIsNewLevel] = useState<boolean>(true);
+  const [toolbox, setToolbox] = useState({
+    kind: 'flyoutToolbox',
+    contents: new Array<{
+      kind: string;
+      type: string;
+    }>(),
+  });
 
   setInterval(() => {
-    const newScore = Math.trunc((game as Game).currentScore);
+    const newScore = Math.round((game as Game).currentScore);
     if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
-    const newLevel = Math.trunc((game as Game).level);
 
+    const newLevel = Math.round((game as Game).level);
     if (!Number.isNaN(newLevel) && newLevel !== level) {
-      setLevel(Math.trunc((game as Game).level));
-      // console.log('NL:', level);
+      setLevel(newLevel);
     }
   }, 200);
 
   useEffect(() => {
-    const newScore = Math.trunc((game as Game).currentScore);
-    if (!Number.isNaN(newScore) && newScore !== score)
-      setScore(Math.trunc((game as Game).currentScore));
-    const newLevel = Math.trunc((game as Game).level);
-    if (!Number.isNaN(newLevel) && newLevel !== level)
-      setLevel(Math.trunc((game as Game).level));
+    const newScore = Math.round((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
+    const newLevel = Math.round((game as Game).level);
+    if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
   }, [
     game,
     (game as Game).currentScore,
     (game as Game).score,
     (game as Game).level,
   ]);
+  useEffect(() => {
+    const newScore = Math.round((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
+    const newLevel = Math.round((game as Game).level);
+    if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
+  }, [(game as Game).score, (game as Game).level]);
 
   useEffect(() => {
-    console.log('FL:', level);
-    const newLevel = Math.trunc((game as Game).level);
+    const newScore = Math.round((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
+  }, [(game as Game).currentScore]);
+
+  // useEffect(() => {
+  //   const currentMaxLevel = Math.round((game as Game).maxUnlockedLevel);
+  //   // console.log('currentMaxLevel:', currentMaxLevel);
+  //   if (!Number.isNaN(currentMaxLevel) && currentMaxLevel > maxUnlockedLevel) {
+  //     // console.log('currentMaxLevel:', currentMaxLevel);
+  //     setMaxUnlockedLevel(currentMaxLevel);
+  //   }
+  // }, [(game as Game).maxUnlockedLevel]);
+
+  useEffect(() => {
+    const currentMaxLevel = Math.round((game as Game).maxUnlockedLevel);
+    // console.log('currentMaxLevel:', currentMaxLevel);
+    if (!Number.isNaN(currentMaxLevel) && currentMaxLevel > maxUnlockedLevel) {
+      // console.log('currentMaxLevel:', currentMaxLevel);
+      setMaxUnlockedLevel(currentMaxLevel);
+    }
+  }, [level, (game as Game).maxUnlockedLevel]);
+
+  useEffect(() => {
+    // console.log('FL:', level);
+    const newLevel = Math.round((game as Game).level);
     if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
   }, [score]);
 
@@ -75,11 +110,85 @@ const Home = (props) => {
 
   useEffect(() => {
     (play as HTMLElement).onclick = async () => {
-      await (game as Game).play.bind(game)(
-        simpleWorkspace.current.primaryWorkspace
-      );
+      await (game as Game).play.bind(game)(simpleWorkspace.current.workspace);
     };
   }, [play]);
+
+  useEffect(() => {
+    const mL = maxUnlockedLevel;
+    // console.log('SET', mL);
+    const currentToolbox = {
+      kind: 'flyoutToolbox',
+      contents: new Array<{
+        kind: string;
+        type: string;
+      }>(),
+    };
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'forward',
+    });
+    if (mL > 1) {
+      // console.log('>1');
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'left',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'right',
+      });
+    }
+    if (mL > 3) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'if',
+      });
+    }
+    if (mL > 5) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'while',
+      });
+    }
+    if (mL > 4) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'block',
+      });
+    }
+    if (mL > 3) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'carrot',
+      });
+    }
+    if (mL > 5) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'number',
+      });
+    }
+    if (mL > 4) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'and',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'or',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'not',
+      });
+    }
+    setToolbox(currentToolbox);
+    if (simpleWorkspace && simpleWorkspace.current) {
+      // console.log('simpleWorkspace.current.xml:', simpleWorkspace.current.xml);
+      simpleWorkspace.current.toolbox = currentToolbox;
+    }
+  }, [maxUnlockedLevel, (game as Game).maxUnlockedLevel, (game as Game).level]);
 
   return (
     <>
@@ -89,6 +198,7 @@ const Home = (props) => {
       <Layout
         setGame={setGame}
         getGame={game}
+        getPlay={play}
         theme={props.theme}
         language={lang}
       >
@@ -110,9 +220,14 @@ const Home = (props) => {
                 snap: true,
                 colour: 'transparent',
               }}
+              toolbox={toolbox}
             >
-              <Block type="forward" />
-              {level >= 2 ? <Block type="left" /> : undefined}
+              {/* <Block type="forward" /> */}
+              {/* <Block type="left" />
+              <Block type="right" />
+              <Block type="while" />
+              <Block type="number" /> */}
+              {/* {level >= 2 ? <Block type="left" /> : undefined}
               {level >= 2 ? <Block type="right" /> : undefined}
               {level >= 4 ? <Block type="if" /> : undefined}
               {level >= 6 ? <Block type="while" /> : undefined}
@@ -121,7 +236,7 @@ const Home = (props) => {
               {level >= 6 ? <Block type="number" /> : undefined}
               {level >= 5 ? <Block type="and" /> : undefined}
               {level >= 5 ? <Block type="or" /> : undefined}
-              {level >= 5 ? <Block type="not" /> : undefined}
+              {level >= 5 ? <Block type="not" /> : undefined} */}
             </BlocklyComponent>
           </>
         ) : (

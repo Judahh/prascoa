@@ -9,14 +9,16 @@ const Map = (props) => {
   // console.log(props);
   const [levels, setLevels] = useState<JSX.Element[]>([]);
   const [score, setScore] = useState<number>(0);
+  const [currentLevel, setCurrentLevel] = useState<number>(0);
   useEffect(() => {
+    console.log('CURRENT LEVEL');
     setLevels(
       props.getGame instanceof Game
         ? (props.getGame as Game).scores.map((score, level) =>
-            level === props.getGame.level ? (
+            level === currentLevel ? (
               <Level key={level}>
                 <Rabbit src="/rabbit.svg" alt="V" />
-                <Box>{score === undefined ? 0 : score}</Box>
+                <Box>{score === undefined ? 0 : Math.round(score)}</Box>
               </Level>
             ) : (
               <Level
@@ -25,8 +27,10 @@ const Map = (props) => {
                   cursor: score === undefined ? 'default' : 'pointer',
                 }}
                 onClick={() => {
-                  if (score !== undefined)
+                  if (score !== undefined) {
                     (props.getGame as Game).level = level;
+                    setCurrentLevel(level);
+                  }
                 }}
               >
                 {score === undefined ? (
@@ -61,7 +65,7 @@ const Map = (props) => {
                         padding: '10px',
                       }}
                     />
-                    <Box>{score === undefined ? 0 : score}</Box>
+                    <Box>{score === undefined ? 0 : Math.round(score)}</Box>
                   </>
                 )}
               </Level>
@@ -69,13 +73,38 @@ const Map = (props) => {
           )
         : []
     );
-
-    setScore(props.getGame instanceof Game ? (props.getGame as Game).score : 0);
-  }, [props.getGame, (props.getGame as Game).score]);
+  }, [currentLevel]);
 
   useEffect(() => {
-    setScore(props.getGame instanceof Game ? (props.getGame as Game).score : 0);
+    setScore(
+      props.getGame instanceof Game
+        ? Math.round((props.getGame as Game).score)
+        : 0
+    );
   }, [(props.getGame as Game).score]);
+
+  useEffect(() => {
+    setScore(
+      props.getGame instanceof Game
+        ? Math.round((props.getGame as Game).score)
+        : 0
+    );
+  }, [(props.getGame as Game).score]);
+
+  useEffect(() => {
+    if (
+      (props.getGame as Game) &&
+      (props.getGame as Game).level !== undefined
+    ) {
+      setCurrentLevel((props.getGame as Game).level);
+    }
+  }, [(props.getGame as Game).level]);
+
+  useEffect(() => {
+    console.log('GAME:');
+
+    setCurrentLevel(0);
+  }, [props.getGame as Game, props.getPlay]);
 
   return (
     <ModalPageWrapper>

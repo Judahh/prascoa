@@ -9,30 +9,32 @@ import 'blockly/blocks';
 Blockly.setLocale(locale);
 
 export class BlocklyComponent extends Component {
-  blocklyDiv;
-  toolbox;
-  primaryWorkspace;
+  protected blocklyDiv: React.RefObject<string | HTMLElement>;
+  protected toolboxElement: React.RefObject<HTMLElement>;
+  protected primaryWorkspace?: Blockly.WorkspaceSvg;
 
   constructor(props) {
     super(props);
     this.blocklyDiv = React.createRef();
-    this.toolbox = React.createRef();
+    this.toolboxElement = React.createRef();
   }
 
   componentDidMount() {
     // eslint-disable-next-line no-unused-vars
+    // console.log('MOUNT');
+    // eslint-disable-next-line no-unused-vars
     const { children, ...rest } = this.props;
     const initialXml = this.props['initialXml'];
-    this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
-      toolbox: this.toolbox.current,
-      ...rest,
-    });
+    if (this.blocklyDiv.current)
+      this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
+        toolbox: this.toolboxElement.current
+          ? this.toolboxElement.current
+          : undefined,
+        ...rest,
+      });
 
     if (initialXml) {
-      Blockly.Xml.domToWorkspace(
-        Blockly.Xml.textToDom(initialXml),
-        this.primaryWorkspace
-      );
+      this.xml = initialXml;
     }
   }
 
@@ -40,11 +42,25 @@ export class BlocklyComponent extends Component {
     return this.primaryWorkspace;
   }
 
-  setXml(xml) {
-    Blockly.Xml.domToWorkspace(
-      Blockly.Xml.textToDom(xml),
-      this.primaryWorkspace
-    );
+  get xml(): string {
+    if (this.primaryWorkspace)
+      return Blockly.Xml.workspaceToDom(this.primaryWorkspace).innerHTML;
+    return '';
+  }
+
+  set xml(xml: string) {
+    if (this.primaryWorkspace)
+      Blockly.Xml.domToWorkspace(
+        Blockly.Xml.textToDom(xml),
+        this.primaryWorkspace
+      );
+  }
+
+  set toolbox(tree) {
+    if (this.primaryWorkspace) {
+      // console.log('TOOLBOX UPDATE:', tree);
+      this.primaryWorkspace.updateToolbox(tree);
+    }
   }
 
   render() {
@@ -57,7 +73,7 @@ export class BlocklyComponent extends Component {
           xmlns="https://developers.google.com/blockly/xml"
           is="blockly"
           style={{ display: 'none' }}
-          ref={this.toolbox}
+          ref={this.toolboxElement}
         >
           {children}
         </Xml>

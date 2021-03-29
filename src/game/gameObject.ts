@@ -25,7 +25,6 @@ export class GameObject {
   protected audio: any;
   protected sprite: number;
   protected idleId;
-  protected image;
   protected canvas: SharedCanvas;
   protected canvasIndex: number;
   constructor(
@@ -42,12 +41,10 @@ export class GameObject {
     this.skins = skins;
     this.skin = skin;
     this.canvas = canvas;
-    this.canvasIndex = this.canvas.objects.push(this) - 1;
+    this.canvasIndex = this.canvas.addObject();
     this.currentLevel = currentLevel;
     this.block = block;
     this.audio = {};
-    this.image = {};
-    this.image[this.skin] = { element: new Image() };
     // console.log('skin:', this.skin);
     // console.log('skins:', this.skins);
     const skinF = this.skins[this.skin][Position[this.position]];
@@ -55,36 +52,13 @@ export class GameObject {
     this.sprite = min;
     // this.initMotion();
   }
-
-  async redraw(action?: boolean, waitIdle?: boolean) {
-    // console.log('redraw');
-    this.canvas.clear();
-    await this.draw(action, waitIdle);
-  }
-  getDecimalPart(currentNumber: number): number {
-    const decimal = currentNumber % 1;
-    return Math.round(decimal * 100000000) / 100000000;
-  }
-
-  load(action?: boolean, waitIdle?: boolean): Promise<boolean> {
-    return new Promise((resolve) => {
-      this.image[this.skin].element.onload = async () => {
-        await this.drawObject(action, waitIdle);
-        resolve(true);
-        // this.image[this.skin].loaded = true;
-      };
-    });
-  }
-
-  //! TODO: use sharedCanvas for store images
   async draw(action?: boolean, waitIdle?: boolean): Promise<void> {
-    this.image[this.skin].element.src = this.skins[this.skin].sprite;
-    // if (this.image[this.skin].loaded) await this.drawObject(action);
-    // else
-    await this.load(action, waitIdle);
-  }
-  async drawObject(action?: boolean, waitIdle?: boolean): Promise<void> {
-    if (this.y !== undefined) {
+    if (
+      this.y !== undefined &&
+      Math.trunc(this.y) >= 0 &&
+      Math.trunc(this.y) < this.currentLevel.length &&
+      this.currentLevel[Math.trunc(this.y)]
+    ) {
       const line = this.currentLevel[Math.trunc(this.y)];
       // console.log(this.y);
       // console.log(this.currentLevel);
@@ -109,15 +83,6 @@ export class GameObject {
       await this.drawWithAdd(0, 0, 0, 0, action, waitIdle);
     }
   }
-
-  delay(time: number): Promise<boolean> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, time);
-    });
-  }
-
   async drawWithAdd(
     numberOfColumns: number,
     numberOfRows: number,
@@ -126,9 +91,18 @@ export class GameObject {
     action?: boolean,
     waitIdle?: boolean
   ): Promise<void> {
-    // console.log('drawWithAdd');
-    if (this.x !== undefined && this.y !== undefined) {
-      console.log('drawWithAdd');
+    // console.log('drawWithAdd', action);
+    if (
+      this.x !== undefined &&
+      this.y !== undefined &&
+      Math.trunc(this.y) >= 0 &&
+      Math.trunc(this.y) < this.currentLevel.length &&
+      Math.trunc(this.x) >= 0 &&
+      this.currentLevel[Math.trunc(this.y)] &&
+      Math.trunc(this.x) < this.currentLevel[Math.trunc(this.y)].length &&
+      this.currentLevel[Math.trunc(this.y)][Math.trunc(this.x)]
+    ) {
+      // console.log('drawWithAdd');
       const skin = this.skins[this.skin][Position[this.position]];
       const min = action ? skin.action.minFrame : skin.minFrame;
       const max = action ? skin.action.maxFrame : skin.maxFrame;
@@ -171,26 +145,21 @@ export class GameObject {
       );
       if (!action)
         if (this.sprite === max) {
-          console.log('this.sprite is max', this.sprite);
+          // console.log('this.sprite is max', this.sprite);
         } else {
-          console.log('this.sprite', this.sprite);
-          console.log('max', max);
+          // console.log('this.sprite', this.sprite);
+          // console.log('max', max);
 
           if (waitIdle) {
-            await this.delay(100);
-            await this.redraw(action, waitIdle);
+            await this.draw(action, waitIdle);
           } else {
-            this.delay(100);
-            this.redraw(action, waitIdle);
+            this.draw(action, waitIdle);
           }
-          // if (!this.idleId)
-          //   this.idleId = setInterval(this.redraw.bind(this), 100);
         }
     } else {
       await this.drawImage(0, 0, 0, 0, 0, 0, 0, 0);
     }
   }
-
   async drawImage(
     imageStartX: number,
     imageStartY: number,
@@ -201,9 +170,9 @@ export class GameObject {
     canvasWidth: number,
     canvasHeight: number
   ) {
-    await this.canvas.draw(
+    await this.canvas.addDrawing(
       this.canvasIndex,
-      this.image[this.skin].element,
+      this.skins[this.skin].sprite,
       imageStartX,
       imageStartY,
       imageWidth,
@@ -214,7 +183,6 @@ export class GameObject {
       canvasHeight
     );
   }
-
   play(soundName: string): void {
     const sound = this.skins[this.skin][soundName];
     if (!this.audio[soundName]) this.audio[soundName] = new Audio(sound.url);

@@ -80,7 +80,7 @@ Blockly.JavaScript['while'] = (block) => {
 
   var branch = Blockly.JavaScript.statementToCode(block, 'Content');
   return (
-    'for(let i = 0; i<this.check(' + field + '); i++) {\n' + branch + '}\n'
+    'for(let i = 0; this.check(' + field + ', i); i++) {\n' + branch + '}\n'
   );
 };
 
