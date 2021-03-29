@@ -50,73 +50,79 @@ export class Character extends GameObject {
   }
 
   async doAction(action?: Action): Promise<boolean> {
-    // console.log('DOING');
+    try {
+      // console.log('DOING');
 
-    let done = true;
-    if (this.x === undefined || this.y === undefined) return done;
-    // console.log('P:', this.x, this.y);
-    if (action === Action.Forward) {
-      switch (this.position) {
-        case Position.Left:
-          this.x -= this.skins[this.skin].speed;
-          break;
-        case Position.Right:
-          this.x += this.skins[this.skin].speed;
-          break;
-        case Position.Down:
-          this.y += this.skins[this.skin].speed;
-          break;
-        case Position.Up:
-          this.y -= this.skins[this.skin].speed;
-          break;
-        default:
-          break;
+      let done = true;
+      if (this.x === undefined || this.y === undefined) return done;
+      // console.log('P:', this.x, this.y);
+      if (action === Action.Forward) {
+        switch (this.position) {
+          case Position.Left:
+            this.x -= this.skins[this.skin].speed;
+            break;
+          case Position.Right:
+            this.x += this.skins[this.skin].speed;
+            break;
+          case Position.Down:
+            this.y += this.skins[this.skin].speed;
+            break;
+          case Position.Up:
+            this.y -= this.skins[this.skin].speed;
+            break;
+          default:
+            break;
+        }
+        await this.draw(true, true);
+
+        this.x = Number(this.x.toFixed(1));
+        this.y = Number(this.y.toFixed(1));
+
+        const xResult = this.x % 1;
+        const yResult = this.y % 1;
+
+        done = xResult === 0 && yResult === 0;
+
+        if (done) {
+          this.x = Math.trunc(this.x);
+          this.y = Math.trunc(this.y);
+        }
+
+        // console.log('EP:', this.x, this.y);
+        // console.log('EPD:', done);
+      } else if (action) {
+        const isLeft = action === 1;
+        switch (this.position) {
+          case Position.Left:
+            if (isLeft) this.position = Position.Down;
+            else this.position = Position.Up;
+            break;
+          case Position.Right:
+            if (isLeft) this.position = Position.Up;
+            else this.position = Position.Down;
+            break;
+          case Position.Down:
+            if (isLeft) this.position = Position.Right;
+            else this.position = Position.Left;
+            break;
+          case Position.Up:
+            if (isLeft) this.position = Position.Left;
+            else this.position = Position.Right;
+            break;
+          default:
+            break;
+        }
+        // console.log('turn');
+        await this.draw(false, true);
       }
-      await this.draw(true, true);
+      // console.log('ACTION:', this.x, this.y);
 
-      this.x = Number(this.x.toFixed(1));
-      this.y = Number(this.y.toFixed(1));
-
-      const xResult = this.x % 1;
-      const yResult = this.y % 1;
-
-      done = xResult === 0 && yResult === 0;
-
-      if (done) {
-        this.x = Math.trunc(this.x);
-        this.y = Math.trunc(this.y);
-      }
-
-      // console.log('EP:', this.x, this.y);
-      // console.log('EPD:', done);
-    } else if (action) {
-      const isLeft = action === 1;
-      switch (this.position) {
-        case Position.Left:
-          if (isLeft) this.position = Position.Down;
-          else this.position = Position.Up;
-          break;
-        case Position.Right:
-          if (isLeft) this.position = Position.Up;
-          else this.position = Position.Down;
-          break;
-        case Position.Down:
-          if (isLeft) this.position = Position.Right;
-          else this.position = Position.Left;
-          break;
-        case Position.Up:
-          if (isLeft) this.position = Position.Left;
-          else this.position = Position.Right;
-          break;
-        default:
-          break;
-      }
-      // console.log('turn');
-      await this.draw(false, true);
+      return done;
+    } catch (error) {
+      this.x = undefined;
+      this.y = undefined;
+      return true;
     }
-    // console.log('ACTION:', this.x, this.y);
-
-    return done;
   }
 
   async action(action: Action): Promise<void> {

@@ -144,7 +144,11 @@ const Drawer = (props) => {
               {modal === ModalType.Share ? (
                 <Share getGame={props.getGame} />
               ) : (
-                <Map setGame={props.setGame} getGame={props.getGame} />
+                <Map
+                  setGame={props.setGame}
+                  getGame={props.getGame}
+                  getPlay={props.getPlay}
+                />
               )}
             </Modal>
           </DrawerModal>

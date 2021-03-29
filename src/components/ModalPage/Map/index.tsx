@@ -11,6 +11,7 @@ const Map = (props) => {
   const [score, setScore] = useState<number>(0);
   const [currentLevel, setCurrentLevel] = useState<number>(0);
   useEffect(() => {
+    console.log('CURRENT LEVEL');
     setLevels(
       props.getGame instanceof Game
         ? (props.getGame as Game).scores.map((score, level) =>
@@ -98,6 +99,12 @@ const Map = (props) => {
       setCurrentLevel((props.getGame as Game).level);
     }
   }, [(props.getGame as Game).level]);
+
+  useEffect(() => {
+    console.log('GAME:');
+
+    setCurrentLevel(0);
+  }, [props.getGame as Game, props.getPlay]);
 
   return (
     <ModalPageWrapper>

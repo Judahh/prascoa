@@ -198,6 +198,7 @@ const Home = (props) => {
       <Layout
         setGame={setGame}
         getGame={game}
+        getPlay={play}
         theme={props.theme}
         language={lang}
       >

@@ -15,7 +15,7 @@ import Header from '../../components/Header';
 import { LayoutWrapper } from './styles';
 
 // eslint-disable-next-line no-unused-vars
-const Layout = ({ language, children, getGame, setGame, ...rest }) => {
+const Layout = ({ language, children, getGame, setGame, getPlay, ...rest }) => {
   const [token, setToken] = useState();
   const [currentLanguage, setCurrentLanguage] = useState(langBR);
   const [currentTheme, setCurrentTheme] = useState(lightTheme);
@@ -68,6 +68,7 @@ const Layout = ({ language, children, getGame, setGame, ...rest }) => {
       handleToken,
       setGame,
       getGame,
+      getPlay,
     });
   });
 
@@ -82,6 +83,7 @@ const Layout = ({ language, children, getGame, setGame, ...rest }) => {
             handleLanguage={handleLanguage}
             setGame={setGame}
             getGame={getGame}
+            getPlay={getPlay}
             theme={currentTheme}
             menu={currentMenu}
           />
