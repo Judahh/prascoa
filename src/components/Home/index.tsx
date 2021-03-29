@@ -6,7 +6,7 @@ import LanguageContext from '../../language/context';
 
 import Layout from '../Layout';
 
-import { Block } from '../Blockly';
+// import { Block } from '../Blockly';
 import { BlocklyComponent } from '../Blockly/blocklyComponent';
 
 import '../Blockly/custom';
@@ -35,17 +35,99 @@ const Home = (props) => {
   const [game, setGame] = useState({});
   const [score, setScore] = useState<number>(0);
   const [level, setLevel] = useState<number>(0);
+  const [toolbox, setToolbox] = useState({
+    kind: 'flyoutToolbox',
+    contents: [
+      {
+        kind: 'block',
+        type: 'forward',
+      },
+    ],
+  });
 
   setInterval(() => {
     const newScore = Math.round((game as Game).currentScore);
     if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
-    const newLevel = Math.round((game as Game).level);
 
+    const newLevel = Math.round((game as Game).level);
     if (!Number.isNaN(newLevel) && newLevel !== level) {
       setLevel(Math.round((game as Game).level));
+
       // console.log('NL:', level);
     }
   }, 200);
+
+  useEffect(() => {
+    console.log('SET', level);
+    const currentToolbox = {
+      kind: 'flyoutToolbox',
+      contents: [
+        {
+          kind: 'block',
+          type: 'forward',
+        },
+      ],
+    };
+    // if (level > 0) {
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'left',
+    });
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'right',
+    });
+    // }
+    // if (level > 2) {
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'if',
+    });
+    // }
+    // if (level > 4) {
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'while',
+    });
+    // }
+    // if (level > 3) {
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'block',
+    });
+    // }
+    // if (level > 2) {
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'carrot',
+    });
+    // }
+    // if (level > 4) {
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'number',
+    });
+    // }
+    // if (level > 3) {
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'and',
+    });
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'or',
+    });
+    currentToolbox.contents.push({
+      kind: 'block',
+      type: 'not',
+    });
+    // }
+    setToolbox(currentToolbox);
+    if (simpleWorkspace && simpleWorkspace.current) {
+      console.log('simpleWorkspace.current.xml:', simpleWorkspace.current.xml);
+      simpleWorkspace.current.toolbox = toolbox;
+    }
+  }, [level]);
 
   useEffect(() => {
     const newScore = Math.round((game as Game).currentScore);
@@ -75,9 +157,7 @@ const Home = (props) => {
 
   useEffect(() => {
     (play as HTMLElement).onclick = async () => {
-      await (game as Game).play.bind(game)(
-        simpleWorkspace.current.primaryWorkspace
-      );
+      await (game as Game).play.bind(game)(simpleWorkspace.current.workspace);
     };
   }, [play]);
 
@@ -110,14 +190,14 @@ const Home = (props) => {
                 snap: true,
                 colour: 'transparent',
               }}
+              toolbox={toolbox}
             >
-              <Block type="forward" />
-              <Block type="left" />
+              {/* <Block type="forward" /> */}
+              {/* <Block type="left" />
               <Block type="right" />
               <Block type="while" />
-              <Block type="number" />
-
-              {level >= 2 ? <Block type="left" /> : undefined}
+              <Block type="number" /> */}
+              {/* {level >= 2 ? <Block type="left" /> : undefined}
               {level >= 2 ? <Block type="right" /> : undefined}
               {level >= 4 ? <Block type="if" /> : undefined}
               {level >= 6 ? <Block type="while" /> : undefined}
@@ -126,7 +206,7 @@ const Home = (props) => {
               {level >= 6 ? <Block type="number" /> : undefined}
               {level >= 5 ? <Block type="and" /> : undefined}
               {level >= 5 ? <Block type="or" /> : undefined}
-              {level >= 5 ? <Block type="not" /> : undefined}
+              {level >= 5 ? <Block type="not" /> : undefined} */}
             </BlocklyComponent>
           </>
         ) : (

@@ -178,15 +178,25 @@ export class Character extends GameObject {
     return !action;
   }
 
-  check(action: boolean): boolean {
-    return action;
+  check(action: number | boolean, index?: number): boolean {
+    if (typeof action === 'boolean') return action;
+    if (index !== undefined) return action > index;
+    else return action > 0;
   }
 
-  and(action1: number, action2: number): number {
+  and(action1: number | boolean, action2: number | boolean): number | boolean {
+    if (typeof action1 === 'boolean' && typeof action2 === 'boolean')
+      return action1 && action2;
+    if (typeof action1 === 'boolean') action1 = action1 ? 1 : 0;
+    if (typeof action2 === 'boolean') action2 = action2 ? 1 : 0;
     return action1 * action2;
   }
 
-  or(action1: number, action2: number): number {
+  or(action1: number | boolean, action2: number | boolean): number | boolean {
+    if (typeof action1 === 'boolean' && typeof action2 === 'boolean')
+      return action1 || action2;
+    if (typeof action1 === 'boolean') action1 = action1 ? 1 : 0;
+    if (typeof action2 === 'boolean') action2 = action2 ? 1 : 0;
     return action1 + action2;
   }
 }

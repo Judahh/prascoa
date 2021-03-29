@@ -9,14 +9,14 @@ import 'blockly/blocks';
 Blockly.setLocale(locale);
 
 export class BlocklyComponent extends Component {
-  blocklyDiv;
-  toolbox;
-  primaryWorkspace;
+  protected blocklyDiv;
+  protected toolboxElement;
+  protected primaryWorkspace;
 
   constructor(props) {
     super(props);
     this.blocklyDiv = React.createRef();
-    this.toolbox = React.createRef();
+    this.toolboxElement = React.createRef();
   }
 
   componentDidMount() {
@@ -24,15 +24,12 @@ export class BlocklyComponent extends Component {
     const { children, ...rest } = this.props;
     const initialXml = this.props['initialXml'];
     this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
-      toolbox: this.toolbox.current,
+      toolbox: this.toolboxElement.current,
       ...rest,
     });
 
     if (initialXml) {
-      Blockly.Xml.domToWorkspace(
-        Blockly.Xml.textToDom(initialXml),
-        this.primaryWorkspace
-      );
+      this.xml = initialXml;
     }
   }
 
@@ -40,11 +37,19 @@ export class BlocklyComponent extends Component {
     return this.primaryWorkspace;
   }
 
-  setXml(xml) {
+  get xml(): string {
+    return Blockly.Xml.workspaceToDom(this.primaryWorkspace).innerHTML;
+  }
+
+  set xml(xml: string) {
     Blockly.Xml.domToWorkspace(
       Blockly.Xml.textToDom(xml),
       this.primaryWorkspace
     );
+  }
+
+  set toolbox(tree) {
+    this.primaryWorkspace.updateToolbox(tree);
   }
 
   render() {
@@ -57,7 +62,7 @@ export class BlocklyComponent extends Component {
           xmlns="https://developers.google.com/blockly/xml"
           is="blockly"
           style={{ display: 'none' }}
-          ref={this.toolbox}
+          ref={this.toolboxElement}
         >
           {children}
         </Xml>

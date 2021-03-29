@@ -45,27 +45,27 @@ export const levels = [
   //   [Element.BA + Element.CharRight, Element.BB, Element.BB + Element.C],
   //   [0, 0, 0],
   // ],
-  // [
-  //   //! 6 Add loop e number
-  //   [0, 0, 0, 0],
-  //   [0, 0, 0, 0],
-  //   [
-  //     Element.BA + Element.CharRight,
-  //     Element.BB + Element.C,
-  //     Element.BA + Element.C,
-  //     Element.BA + Element.C,
-  //   ],
-  //   [0, 0, 0, 0],
-  // ],
   [
+    //! 6 Add loop e number
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
     [
-      Element.BA + Element.CharDown,
+      Element.BA + Element.CharRight,
       Element.BB + Element.C,
       Element.BA + Element.C,
+      Element.BA + Element.C,
     ],
-    [Element.BB + Element.C, 0, Element.BB + Element.C],
-    [Element.BA + Element.C, Element.BB + Element.C, Element.BA + Element.C],
+    [0, 0, 0, 0],
   ],
+  // [
+  //   [
+  //     Element.BA + Element.CharDown,
+  //     Element.BB + Element.C,
+  //     Element.BA + Element.C,
+  //   ],
+  //   [Element.BB + Element.C, 0, Element.BB + Element.C],
+  //   [Element.BA + Element.C, Element.BB + Element.C, Element.BA + Element.C],
+  // ],
   [
     //! 7
     [

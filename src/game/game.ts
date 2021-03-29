@@ -118,13 +118,13 @@ export class Game {
     await this.reset();
   }
 
-  async play(simpleWorkspace: any): Promise<void> {
+  async play(workspace: any): Promise<void> {
     console.log('PLAY Game:', this.chars);
     this.printLevel();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const code = Blockly.JavaScript.workspaceToCode(simpleWorkspace);
+    const code = Blockly.JavaScript.workspaceToCode(workspace);
     const checks = (code.match(/this.check/g) || []).length;
     const actions = (code.match(/this.action/g) || []).length;
     for (const char of this.chars) {
