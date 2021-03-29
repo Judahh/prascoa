@@ -53,7 +53,12 @@ export class GameObject {
     // this.initMotion();
   }
   async draw(action?: boolean, waitIdle?: boolean): Promise<void> {
-    if (this.y !== undefined) {
+    if (
+      this.y !== undefined &&
+      Math.trunc(this.y) >= 0 &&
+      Math.trunc(this.y) < this.currentLevel.length &&
+      this.currentLevel[Math.trunc(this.y)]
+    ) {
       const line = this.currentLevel[Math.trunc(this.y)];
       // console.log(this.y);
       // console.log(this.currentLevel);
@@ -88,7 +93,15 @@ export class GameObject {
     waitIdle?: boolean
   ): Promise<void> {
     console.log('drawWithAdd', action);
-    if (this.x !== undefined && this.y !== undefined) {
+    if (
+      this.x !== undefined &&
+      this.y !== undefined &&
+      Math.trunc(this.y) >= 0 &&
+      Math.trunc(this.y) < this.currentLevel.length &&
+      Math.trunc(this.x) >= 0 &&
+      this.currentLevel[Math.trunc(this.y)] &&
+      Math.trunc(this.x) < this.currentLevel[Math.trunc(this.y)].length
+    ) {
       // console.log('drawWithAdd');
       const skin = this.skins[this.skin][Position[this.position]];
       const min = action ? skin.action.minFrame : skin.minFrame;

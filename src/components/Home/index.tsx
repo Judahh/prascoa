@@ -37,23 +37,23 @@ const Home = (props) => {
   const [level, setLevel] = useState<number>(0);
 
   setInterval(() => {
-    const newScore = Math.trunc((game as Game).currentScore);
+    const newScore = Math.round((game as Game).currentScore);
     if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
-    const newLevel = Math.trunc((game as Game).level);
+    const newLevel = Math.round((game as Game).level);
 
     if (!Number.isNaN(newLevel) && newLevel !== level) {
-      setLevel(Math.trunc((game as Game).level));
+      setLevel(Math.round((game as Game).level));
       // console.log('NL:', level);
     }
   }, 200);
 
   useEffect(() => {
-    const newScore = Math.trunc((game as Game).currentScore);
+    const newScore = Math.round((game as Game).currentScore);
     if (!Number.isNaN(newScore) && newScore !== score)
-      setScore(Math.trunc((game as Game).currentScore));
-    const newLevel = Math.trunc((game as Game).level);
+      setScore(Math.round((game as Game).currentScore));
+    const newLevel = Math.round((game as Game).level);
     if (!Number.isNaN(newLevel) && newLevel !== level)
-      setLevel(Math.trunc((game as Game).level));
+      setLevel(Math.round((game as Game).level));
   }, [
     game,
     (game as Game).currentScore,
@@ -63,7 +63,7 @@ const Home = (props) => {
 
   useEffect(() => {
     console.log('FL:', level);
-    const newLevel = Math.trunc((game as Game).level);
+    const newLevel = Math.round((game as Game).level);
     if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
   }, [score]);
 

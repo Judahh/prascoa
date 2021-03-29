@@ -139,7 +139,9 @@ export class Character extends GameObject {
 
     if (
       this.y >= this.currentLevel.length ||
-      this.x >= this.currentLevel[this.y].length
+      this.x >= this.currentLevel[this.y].length ||
+      this.y < 0 ||
+      this.x < 0
     ) {
       this.x = undefined;
       this.y = undefined;

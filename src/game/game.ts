@@ -132,7 +132,9 @@ export class Game {
         await char.execute(code);
       } catch (error) {
         console.log('Received an Error from Execute:', error.message);
-        if (error.message === 'Died') this.died();
+        if (error.message === 'Died') console.log('Expected Death');
+        else console.log('Unexpected Death');
+        this.died();
         return;
       }
     }

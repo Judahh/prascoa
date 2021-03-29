@@ -16,7 +16,7 @@ const Map = (props) => {
             level === props.getGame.level ? (
               <Level key={level}>
                 <Rabbit src="/rabbit.svg" alt="V" />
-                <Box>{score === undefined ? 0 : score}</Box>
+                <Box>{score === undefined ? 0 : Math.round(score)}</Box>
               </Level>
             ) : (
               <Level
@@ -61,7 +61,7 @@ const Map = (props) => {
                         padding: '10px',
                       }}
                     />
-                    <Box>{score === undefined ? 0 : score}</Box>
+                    <Box>{score === undefined ? 0 : Math.round(score)}</Box>
                   </>
                 )}
               </Level>
@@ -70,11 +70,19 @@ const Map = (props) => {
         : []
     );
 
-    setScore(props.getGame instanceof Game ? (props.getGame as Game).score : 0);
+    setScore(
+      props.getGame instanceof Game
+        ? Math.round((props.getGame as Game).score)
+        : 0
+    );
   }, [props.getGame, (props.getGame as Game).score]);
 
   useEffect(() => {
-    setScore(props.getGame instanceof Game ? (props.getGame as Game).score : 0);
+    setScore(
+      props.getGame instanceof Game
+        ? Math.round((props.getGame as Game).score)
+        : 0
+    );
   }, [(props.getGame as Game).score]);
 
   return (
