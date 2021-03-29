@@ -68,60 +68,60 @@ const Home = (props) => {
         },
       ],
     };
-    // if (level > 0) {
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'left',
-    });
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'right',
-    });
-    // }
-    // if (level > 2) {
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'if',
-    });
-    // }
-    // if (level > 4) {
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'while',
-    });
-    // }
-    // if (level > 3) {
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'block',
-    });
-    // }
-    // if (level > 2) {
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'carrot',
-    });
-    // }
-    // if (level > 4) {
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'number',
-    });
-    // }
-    // if (level > 3) {
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'and',
-    });
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'or',
-    });
-    currentToolbox.contents.push({
-      kind: 'block',
-      type: 'not',
-    });
-    // }
+    if (level > 0) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'left',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'right',
+      });
+    }
+    if (level > 2) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'if',
+      });
+    }
+    if (level > 4) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'while',
+      });
+    }
+    if (level > 3) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'block',
+      });
+    }
+    if (level > 2) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'carrot',
+      });
+    }
+    if (level > 4) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'number',
+      });
+    }
+    if (level > 3) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'and',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'or',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'not',
+      });
+    }
     setToolbox(currentToolbox);
     if (simpleWorkspace && simpleWorkspace.current) {
       console.log('simpleWorkspace.current.xml:', simpleWorkspace.current.xml);
