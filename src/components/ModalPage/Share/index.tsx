@@ -5,8 +5,9 @@ import LanguageContext from '../../../language/context';
 import { SocialIcon } from 'react-social-icons';
 import { FaRegClone } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
+import { Game } from '../../../game/game';
 
-const Share = (): JSX.Element => {
+const Share = (props): JSX.Element => {
   const { share } = useContext(LanguageContext);
   const tooltipRef = useRef<HTMLParagraphElement>(null);
 
@@ -29,6 +30,13 @@ const Share = (): JSX.Element => {
     setTimeout(() => ReactTooltip.hide(tooltipRef.current), 1500);
   };
 
+  const addScore = (text: string): string => {
+    const score = (props.getGame as Game).score
+      ? '' + (props.getGame as Game).score
+      : '0';
+    return text.replace('<<<X>>>', score);
+  };
+
   for (const key in share) {
     if (share.hasOwnProperty(key)) {
       if (key === 'clone')
@@ -36,7 +44,7 @@ const Share = (): JSX.Element => {
           <div
             key={key}
             onClick={() => {
-              copy(share[key].text);
+              copy(addScore(share[key].text));
             }}
             style={{
               display: 'inline-block',
@@ -63,7 +71,7 @@ const Share = (): JSX.Element => {
             network={key}
             bgColor="transparent"
             fgColor="#fff"
-            url={share[key]}
+            url={addScore(share[key])}
             target="_blank"
           />
         );

@@ -68,6 +68,20 @@ export class Game {
   get currentScore(): number {
     return this._currentScore;
   }
+  get maxUnlockedLevel(): number {
+    // console.log(this.level);
+    let maxUnlockedLevel = this.level;
+    // console.log(this.scores.length);
+    for (let index = this.level + 1; index < this.scores.length; index++) {
+      if (this.scores[index] !== undefined) {
+        maxUnlockedLevel = index;
+      } else {
+        // console.log('undefined at:', maxUnlockedLevel);
+        return maxUnlockedLevel;
+      }
+    }
+    return maxUnlockedLevel;
+  }
 
   get level(): number {
     return this._level;
@@ -157,11 +171,15 @@ export class Game {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         this._currentScore >= this._scores[this.level]
-      )
+      ) {
         this._scores[this.level] = this._currentScore;
+        console.log('level:', this.level, this._scores[this.level]);
+      }
       if (this._level < levels.length - 1) {
         //! TODO: next level animation
         this.level++;
+        if (this._scores[this.level] === undefined)
+          this._scores[this.level] = 0;
       } else {
         //! TODO: game completed (for now) animation
       }
@@ -278,9 +296,5 @@ export class Game {
         this.started = true;
       }
     }
-  }
-
-  calcScore(carrots: number, blocks: number, steps: number) {
-    return (1000 * Math.pow(carrots, 2)) / (blocks * steps);
   }
 }

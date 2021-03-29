@@ -9,9 +9,9 @@ import 'blockly/blocks';
 Blockly.setLocale(locale);
 
 export class BlocklyComponent extends Component {
-  protected blocklyDiv;
-  protected toolboxElement;
-  protected primaryWorkspace;
+  protected blocklyDiv: React.RefObject<string | HTMLElement>;
+  protected toolboxElement: React.RefObject<HTMLElement>;
+  protected primaryWorkspace?: Blockly.WorkspaceSvg;
 
   constructor(props) {
     super(props);
@@ -23,10 +23,13 @@ export class BlocklyComponent extends Component {
     // eslint-disable-next-line no-unused-vars
     const { children, ...rest } = this.props;
     const initialXml = this.props['initialXml'];
-    this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
-      toolbox: this.toolboxElement.current,
-      ...rest,
-    });
+    if (this.blocklyDiv.current)
+      this.primaryWorkspace = Blockly.inject(this.blocklyDiv.current, {
+        toolbox: this.toolboxElement.current
+          ? this.toolboxElement.current
+          : undefined,
+        ...rest,
+      });
 
     if (initialXml) {
       this.xml = initialXml;
@@ -38,18 +41,21 @@ export class BlocklyComponent extends Component {
   }
 
   get xml(): string {
-    return Blockly.Xml.workspaceToDom(this.primaryWorkspace).innerHTML;
+    if (this.primaryWorkspace)
+      return Blockly.Xml.workspaceToDom(this.primaryWorkspace).innerHTML;
+    return '';
   }
 
   set xml(xml: string) {
-    Blockly.Xml.domToWorkspace(
-      Blockly.Xml.textToDom(xml),
-      this.primaryWorkspace
-    );
+    if (this.primaryWorkspace)
+      Blockly.Xml.domToWorkspace(
+        Blockly.Xml.textToDom(xml),
+        this.primaryWorkspace
+      );
   }
 
   set toolbox(tree) {
-    this.primaryWorkspace.updateToolbox(tree);
+    if (this.primaryWorkspace) this.primaryWorkspace.updateToolbox(tree);
   }
 
   render() {

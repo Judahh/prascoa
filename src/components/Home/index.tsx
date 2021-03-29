@@ -35,6 +35,8 @@ const Home = (props) => {
   const [game, setGame] = useState({});
   const [score, setScore] = useState<number>(0);
   const [level, setLevel] = useState<number>(0);
+  const [maxUnlockedLevel, setMaxUnlockedLevel] = useState<number>(0);
+  // const [isNewLevel, setIsNewLevel] = useState<boolean>(true);
   const [toolbox, setToolbox] = useState({
     kind: 'flyoutToolbox',
     contents: [
@@ -49,99 +51,52 @@ const Home = (props) => {
     const newScore = Math.round((game as Game).currentScore);
     if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
 
-    const newLevel = Math.round((game as Game).level);
-    if (!Number.isNaN(newLevel) && newLevel !== level) {
-      setLevel(Math.round((game as Game).level));
-
-      // console.log('NL:', level);
-    }
+    // const newLevel = Math.round((game as Game).level);
+    // if (!Number.isNaN(newLevel) && newLevel !== level) {
+    //   setLevel(newLevel);
+    // }
   }, 200);
 
   useEffect(() => {
-    console.log('SET', level);
-    const currentToolbox = {
-      kind: 'flyoutToolbox',
-      contents: [
-        {
-          kind: 'block',
-          type: 'forward',
-        },
-      ],
-    };
-    if (level > 0) {
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'left',
-      });
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'right',
-      });
-    }
-    if (level > 2) {
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'if',
-      });
-    }
-    if (level > 4) {
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'while',
-      });
-    }
-    if (level > 3) {
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'block',
-      });
-    }
-    if (level > 2) {
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'carrot',
-      });
-    }
-    if (level > 4) {
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'number',
-      });
-    }
-    if (level > 3) {
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'and',
-      });
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'or',
-      });
-      currentToolbox.contents.push({
-        kind: 'block',
-        type: 'not',
-      });
-    }
-    setToolbox(currentToolbox);
-    if (simpleWorkspace && simpleWorkspace.current) {
-      console.log('simpleWorkspace.current.xml:', simpleWorkspace.current.xml);
-      simpleWorkspace.current.toolbox = toolbox;
-    }
-  }, [level]);
-
-  useEffect(() => {
     const newScore = Math.round((game as Game).currentScore);
-    if (!Number.isNaN(newScore) && newScore !== score)
-      setScore(Math.round((game as Game).currentScore));
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
     const newLevel = Math.round((game as Game).level);
-    if (!Number.isNaN(newLevel) && newLevel !== level)
-      setLevel(Math.round((game as Game).level));
+    if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
   }, [
     game,
     (game as Game).currentScore,
     (game as Game).score,
     (game as Game).level,
   ]);
+  useEffect(() => {
+    const newScore = Math.round((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
+    const newLevel = Math.round((game as Game).level);
+    if (!Number.isNaN(newLevel) && newLevel !== level) setLevel(newLevel);
+  }, [(game as Game).score, (game as Game).level]);
+
+  useEffect(() => {
+    const newScore = Math.round((game as Game).currentScore);
+    if (!Number.isNaN(newScore) && newScore !== score) setScore(newScore);
+  }, [(game as Game).currentScore]);
+
+  // useEffect(() => {
+  //   const currentMaxLevel = Math.round((game as Game).maxUnlockedLevel);
+  //   // console.log('currentMaxLevel:', currentMaxLevel);
+  //   if (!Number.isNaN(currentMaxLevel) && currentMaxLevel > maxUnlockedLevel) {
+  //     // console.log('currentMaxLevel:', currentMaxLevel);
+  //     setMaxUnlockedLevel(currentMaxLevel);
+  //   }
+  // }, [(game as Game).maxUnlockedLevel]);
+
+  useEffect(() => {
+    const currentMaxLevel = Math.round((game as Game).maxUnlockedLevel);
+    // console.log('currentMaxLevel:', currentMaxLevel);
+    if (!Number.isNaN(currentMaxLevel) && currentMaxLevel > maxUnlockedLevel) {
+      // console.log('currentMaxLevel:', currentMaxLevel);
+      setMaxUnlockedLevel(currentMaxLevel);
+    }
+  }, [level, (game as Game).maxUnlockedLevel]);
 
   useEffect(() => {
     // console.log('FL:', level);
@@ -160,6 +115,85 @@ const Home = (props) => {
       await (game as Game).play.bind(game)(simpleWorkspace.current.workspace);
     };
   }, [play]);
+
+  useEffect(() => {
+    console.log('SET', maxUnlockedLevel);
+    const currentToolbox = {
+      kind: 'flyoutToolbox',
+      contents: [
+        {
+          kind: 'block',
+          type: 'forward',
+        },
+      ],
+    };
+    if (maxUnlockedLevel > 1) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'left',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'right',
+      });
+    }
+    if (maxUnlockedLevel > 3) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'if',
+      });
+    }
+    if (maxUnlockedLevel > 5) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'while',
+      });
+    }
+    if (maxUnlockedLevel > 4) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'block',
+      });
+    }
+    if (maxUnlockedLevel > 3) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'carrot',
+      });
+    }
+    if (maxUnlockedLevel > 5) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'number',
+      });
+    }
+    if (maxUnlockedLevel > 4) {
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'and',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'or',
+      });
+      currentToolbox.contents.push({
+        kind: 'block',
+        type: 'not',
+      });
+    }
+    setToolbox(currentToolbox);
+    if (simpleWorkspace && simpleWorkspace.current) {
+      console.log('simpleWorkspace.current.xml:', simpleWorkspace.current.xml);
+      simpleWorkspace.current.toolbox = toolbox;
+      setTimeout(() => {
+        console.log(
+          'simpleWorkspace.current.xml:',
+          simpleWorkspace.current.xml
+        );
+        simpleWorkspace.current.toolbox = toolbox;
+      }, 250);
+    }
+  }, [maxUnlockedLevel, (game as Game).maxUnlockedLevel]);
 
   return (
     <>
