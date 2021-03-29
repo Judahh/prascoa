@@ -103,29 +103,32 @@ export class SharedCanvas {
     canvasWidth: number,
     canvasHeight: number
   ) {
-    const image = await this.load(imageSource);
-    const drawing = {
-      image,
-      imageStartX,
-      imageStartY,
-      imageWidth,
-      imageHeight,
-      x,
-      y,
-      canvasWidth,
-      canvasHeight,
-    };
-    this.drawings[objectIndex].push(drawing);
-    this.lastDrawings[objectIndex] = drawing;
-    if (this.isTheBiggestDrawer(objectIndex) || !this.lastDraw) {
-      // console.log('new');
-      this.lastDraw = this.draw();
-    } else {
-      // console.log('wait');
+    if (this.drawings[objectIndex] !== undefined) {
+      const image = await this.load(imageSource);
+      const drawing = {
+        image,
+        imageStartX,
+        imageStartY,
+        imageWidth,
+        imageHeight,
+        x,
+        y,
+        canvasWidth,
+        canvasHeight,
+      };
+
+      this.drawings[objectIndex].push(drawing);
+      this.lastDrawings[objectIndex] = drawing;
+      if (this.isTheBiggestDrawer(objectIndex) || !this.lastDraw) {
+        // console.log('new');
+        this.lastDraw = this.draw();
+      } else {
+        // console.log('wait');
+      }
+      // const r =
+      await this.lastDraw;
+      // console.log(r);
     }
-    // const r =
-    await this.lastDraw;
-    // console.log(r);
   }
   protected isTheBiggestDrawer(objectIndex: number) {
     let biggest = true;

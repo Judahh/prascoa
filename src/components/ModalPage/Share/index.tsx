@@ -32,7 +32,7 @@ const Share = (props): JSX.Element => {
 
   const addScore = (text: string): string => {
     const score = (props.getGame as Game).score
-      ? '' + (props.getGame as Game).score
+      ? '' + Math.round((props.getGame as Game).score)
       : '0';
     return text.replace('<<<X>>>', score);
   };
