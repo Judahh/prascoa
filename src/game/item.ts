@@ -10,7 +10,7 @@ import { Position } from './position';
 import { default as itemSkins } from './itemSkins.json';
 import { GameObject } from './gameObject';
 import { SharedCanvas } from './sharedCanvas';
-import { getItem } from './element';
+import { getItem, Element } from './element';
 
 // import Blockly from 'blockly';
 export class Item extends GameObject {
@@ -75,10 +75,13 @@ export class Item extends GameObject {
     // console.log('destroyed');
     if (this.x !== undefined && this.y !== undefined) {
       // console.log('destroyed the');
-      const item = getItem(this.currentLevel[this.y][this.x]);
+      // console.log('before D:', this.currentLevel[this.y][this.x]);
+      const item = getItem(this.currentLevel[this.y][this.x]) * Element.Item;
       // console.log(item);
       this.currentLevel[this.y][this.x] =
         this.currentLevel[this.y][this.x] - item;
+      // console.log('after D:', this.currentLevel[this.y][this.x]);
+
       this.x = undefined;
       this.y = undefined;
     }

@@ -83,7 +83,7 @@ export const getPosition = (element: number): number => {
 export const getItem = (element: number): number => {
   let tempElement = removeUpper(element, Element.Tree);
   tempElement = removeBottom(tempElement, Element.Item);
-  // tempElement = removeBottom(tempElement, Element.Char);
+  tempElement = removeBottom(tempElement, Element.Char);
   tempElement = Math.round(tempElement / Element.Item);
   return tempElement;
 };

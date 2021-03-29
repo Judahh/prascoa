@@ -120,7 +120,7 @@ export class Character extends GameObject {
   }
 
   async action(action: Action): Promise<void> {
-    console.log('NEW ACTION:', action);
+    // console.log('NEW ACTION:', action);
     if (this.x === undefined || this.y === undefined) {
       this.x = undefined;
       this.y = undefined;
@@ -128,8 +128,13 @@ export class Character extends GameObject {
     }
 
     // console.log('WITH:', this.x, this.y);
+    // console.log('enter:', this.currentLevel[this.y][this.x]);
+    let char = Element.Char + this.position * 10;
+    // console.log('char:', char);
+
     this.currentLevel[this.y][this.x] =
-      this.currentLevel[this.y][this.x] - Element.Char * this.position;
+      this.currentLevel[this.y][this.x] - char;
+    // console.log('left:', this.currentLevel[this.y][this.x]);
     if (action === Action.Forward) {
       // console.log('PLAY: actionSound');
       this.play('actionSound');
@@ -141,7 +146,8 @@ export class Character extends GameObject {
       this.y >= this.currentLevel.length ||
       this.x >= this.currentLevel[this.y].length ||
       this.y < 0 ||
-      this.x < 0
+      this.x < 0 ||
+      !this.hasBlock()
     ) {
       this.x = undefined;
       this.y = undefined;
@@ -149,8 +155,11 @@ export class Character extends GameObject {
     }
     this._steps++;
     // console.log('TO:', this.x, this.y);
+    // console.log('before enter:', this.currentLevel[this.y][this.x]);
+    char = Element.Char + this.position * 10;
     this.currentLevel[this.y][this.x] =
-      this.currentLevel[this.y][this.x] + Element.Char * this.position;
+      this.currentLevel[this.y][this.x] + char;
+    // console.log('enter:', this.currentLevel[this.y][this.x]);
 
     if (getItem(this.currentLevel[this.y][this.x])) {
       await this.gotItem(this.x, this.y, this._steps);
@@ -158,8 +167,19 @@ export class Character extends GameObject {
     // return true;
   }
 
+  hasBlock(): boolean {
+    if (
+      this.x === undefined ||
+      this.y === undefined ||
+      this.currentLevel[this.y] === undefined ||
+      this.currentLevel[this.y][this.x] === undefined
+    )
+      return false;
+    return this.currentLevel[this.y][this.x] >= Element.block;
+  }
+
   is(element: Element): boolean {
-    console.log('is:', element);
+    // console.log(' is:', element);
     if (this.x === undefined || this.y === undefined) return false;
     switch (this.position) {
       case Position.Down:
@@ -168,6 +188,8 @@ export class Character extends GameObject {
           this.currentLevel[this.y + 1][this.x] === undefined
         )
           return false;
+        // console.log(this.currentLevel[this.y + 1][this.x]);
+
         return this.currentLevel[this.y + 1][this.x] >= element;
       case Position.up:
         if (
@@ -175,6 +197,8 @@ export class Character extends GameObject {
           this.currentLevel[this.y - 1][this.x] === undefined
         )
           return false;
+        // console.log(this.currentLevel[this.y - 1][this.x]);
+
         return this.currentLevel[this.y - 1][this.x] >= element;
       case Position.Right:
         if (
@@ -182,6 +206,8 @@ export class Character extends GameObject {
           this.currentLevel[this.y][this.x + 1] === undefined
         )
           return false;
+        // console.log(this.currentLevel[this.y][this.x + 1]);
+
         return this.currentLevel[this.y][this.x + 1] >= element;
       case Position.Left:
         if (
@@ -189,6 +215,8 @@ export class Character extends GameObject {
           this.currentLevel[this.y][this.x - 1] === undefined
         )
           return false;
+        // console.log(this.currentLevel[this.y][this.x - 1]);
+
         return this.currentLevel[this.y][this.x - 1] >= element;
       default:
         if (
@@ -196,12 +224,14 @@ export class Character extends GameObject {
           this.currentLevel[this.y][this.x] === undefined
         )
           return false;
+        // console.log(this.currentLevel[this.y][this.x]);
+
         return this.currentLevel[this.y][this.x] >= element;
     }
   }
 
   not(action: unknown): boolean {
-    console.log('NOT:', action);
+    // console.log('NOT:', action);
     return !action;
   }
 

@@ -27,8 +27,10 @@ export class Game {
   protected canvases: SharedCanvas[];
   protected numOfItems: number;
   protected totalNumOfItems: number;
+  protected playing: boolean;
 
   constructor(level?: number) {
+    this.playing = false;
     this.numOfItems = 0;
     this.totalNumOfItems = 0;
     this.chars = [];
@@ -133,58 +135,71 @@ export class Game {
   }
 
   async play(workspace: any): Promise<void> {
-    console.log('PLAY Game:', this.chars);
-    this.printLevel();
+    if (!this.playing) {
+      this.playing = true;
+      // console.log('PLAY Game:', this.chars);
+      this.printLevel();
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const code = Blockly.JavaScript.workspaceToCode(workspace);
-    const checks = (code.match(/this.check/g) || []).length;
-    const actions = (code.match(/this.action/g) || []).length;
-    for (const char of this.chars) {
-      try {
-        await char.execute(code);
-      } catch (error) {
-        console.error('Received an Error from Execute:', error.message);
-        if (error.message === 'Died') console.log('Expected Death');
-        else console.log('Unexpected Death');
-        this.died();
-        return;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      const checks = (code.match(/this.check/g) || []).length;
+      const actions = (code.match(/this.action/g) || []).length;
+      for (const char of this.chars) {
+        try {
+          await char.execute(code);
+        } catch (error) {
+          console.error('Received an Error from Execute:', error.message);
+          if (error.message === 'Died') console.log('Expected Death');
+          else console.log('Unexpected Death');
+          this.died();
+          this.playing = false;
+          return;
+        }
       }
-    }
-    // console.log('A SCORE:', this._currentScore);
-    const blocklys = checks + actions;
-    // console.log(blocklys);
-    // console.log(actions);
-    // console.log(checks);
+      // console.log('A SCORE:', this._currentScore);
+      const blocklys = checks + actions;
+      // console.log(blocklys);
+      // console.log(actions);
+      // console.log(checks);
 
-    const addScore = (this.numOfItems * 1000) / blocklys;
-    this._currentScore += addScore;
-    // console.log('ADD SCORE:', addScore);
-    // console.log('DONE SCORE:', this._currentScore);
-    // console.log('ITEMS:', this.numOfItems);
-    // console.log('TOTAL:', this.totalNumOfItems);
-    this.printLevel();
-    if (this.totalNumOfItems <= this.numOfItems) {
-      if (
-        !this._scores[this.level] ||
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        this._currentScore >= this._scores[this.level]
-      ) {
-        this._scores[this.level] = this._currentScore;
-        console.log('level:', this.level, this._scores[this.level]);
-      }
-      if (this._level < levels.length - 1) {
-        //! TODO: next level animation
-        this.level++;
-        if (this._scores[this.level] === undefined)
-          this._scores[this.level] = 0;
+      const addScore = (this.numOfItems * 1000) / blocklys;
+      this._currentScore += addScore;
+      // console.log('ADD SCORE:', addScore);
+      // console.log('DONE SCORE:', this._currentScore);
+      // console.log('ITEMS:', this.numOfItems);
+      // console.log('TOTAL:', this.totalNumOfItems);
+      this.printLevel();
+      if (this.totalNumOfItems <= this.numOfItems) {
+        if (
+          !this._scores[this.level] ||
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          this._currentScore >= this._scores[this.level]
+        ) {
+          this._scores[this.level] = this._currentScore;
+          // console.log('level:', this.level, this._scores[this.level]);
+        }
+        if (this._level < levels.length - 1) {
+          //! TODO: next level animation
+          this.level++;
+          if (this._scores[this.level] === undefined)
+            this._scores[this.level] = 0;
+        } else {
+          this.level = 0;
+        }
       } else {
-        //! TODO: game completed (for now) animation
+        await this.reset();
       }
+      this.playing = false;
     } else {
-      await this.reset();
+      for (const char of this.chars) {
+        char.x = undefined;
+        char.y = undefined;
+      }
+      // this.died();
+      // this.playing = false;
+      // throw new Error('Died');
     }
   }
 

@@ -21,6 +21,8 @@ export class BlocklyComponent extends Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-unused-vars
+    // console.log('MOUNT');
+    // eslint-disable-next-line no-unused-vars
     const { children, ...rest } = this.props;
     const initialXml = this.props['initialXml'];
     if (this.blocklyDiv.current)
@@ -55,7 +57,10 @@ export class BlocklyComponent extends Component {
   }
 
   set toolbox(tree) {
-    if (this.primaryWorkspace) this.primaryWorkspace.updateToolbox(tree);
+    if (this.primaryWorkspace) {
+      // console.log('TOOLBOX UPDATE:', tree);
+      this.primaryWorkspace.updateToolbox(tree);
+    }
   }
 
   render() {
