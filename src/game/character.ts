@@ -112,7 +112,7 @@ export class Character extends GameObject {
           break;
       }
       // console.log('turn');
-      await this.draw(false, true); //! TODO: this has a bug it waits all idle (by running in the next jump)
+      await this.draw(false, true);
     }
     // console.log('ACTION:', this.x, this.y);
 
@@ -120,14 +120,14 @@ export class Character extends GameObject {
   }
 
   async action(action: Action): Promise<void> {
-    console.log('NEW ACTION:', action);
+    // console.log('NEW ACTION:', action);
     if (this.x === undefined || this.y === undefined) {
       this.x = undefined;
       this.y = undefined;
       throw new Error('Died');
     }
 
-    console.log('WITH:', this.x, this.y);
+    // console.log('WITH:', this.x, this.y);
     this.currentLevel[this.y][this.x] =
       this.currentLevel[this.y][this.x] - Element.Char * this.position;
     if (action === Action.Forward) {
@@ -148,7 +148,7 @@ export class Character extends GameObject {
       throw new Error('Died');
     }
     this._steps++;
-    console.log('TO:', this.x, this.y);
+    // console.log('TO:', this.x, this.y);
     this.currentLevel[this.y][this.x] =
       this.currentLevel[this.y][this.x] + Element.Char * this.position;
 

@@ -102,7 +102,7 @@ export class Game {
   }
 
   async gotItem(x: number, y: number, steps: number) {
-    console.log('GOT ITEM!', x, y, ' with ', steps, ' steps');
+    // console.log('GOT ITEM!', x, y, ' with ', steps, ' steps');
     const itemIndex = this.items.findIndex((item: Item) => {
       return item.x === x && item.y === y;
     });
@@ -160,10 +160,10 @@ export class Game {
       )
         this._scores[this.level] = this._currentScore;
       if (this._level < levels.length - 1) {
-        //! TODO next level animation
+        //! TODO: next level animation
         this.level++;
       } else {
-        //! TODO game completed (for now) animation
+        //! TODO: game completed (for now) animation
       }
     } else {
       await this.reset();

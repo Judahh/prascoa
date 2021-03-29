@@ -84,7 +84,6 @@ export class GameObject {
     }
   }
   async drawWithAdd(
-    //! TODO maybe the bug is here
     numberOfColumns: number,
     numberOfRows: number,
     addWidth: number,

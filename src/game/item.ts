@@ -72,12 +72,11 @@ export class Item extends GameObject {
   }
 
   async destroy() {
-    console.log('destroyed');
+    // console.log('destroyed');
     if (this.x !== undefined && this.y !== undefined) {
-      console.log('destroyed the');
+      // console.log('destroyed the');
       const item = getItem(this.currentLevel[this.y][this.x]);
-      console.log(item);
-
+      // console.log(item);
       this.currentLevel[this.y][this.x] =
         this.currentLevel[this.y][this.x] - item;
       this.x = undefined;
