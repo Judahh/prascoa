@@ -1,3 +1,4 @@
+// file deepcode ignore no-any: easier
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 export class Confetti {
@@ -190,7 +191,7 @@ export class Confetti {
     let count = this.maxCount;
     if (min) {
       if (max) {
-        if (min == max) count = this.particles.length + max;
+        if (min === max) count = this.particles.length + max;
         else {
           if (min > max) {
             const temp = min;
