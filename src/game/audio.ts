@@ -21,11 +21,12 @@ export class Audio {
 
     if (SafeAudioContext) {
       this.audioContext = new SafeAudioContext();
-      this.buffer = this.audioContext.createBuffer(
-        1,
-        1,
-        this.audioContext.sampleRate
-      );
+      if (this.audioContext)
+        this.buffer = this.audioContext.createBuffer(
+          1,
+          1,
+          this.audioContext.sampleRate
+        );
     }
     this.url = url;
   }
