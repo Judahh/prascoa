@@ -42,13 +42,24 @@ export class Game {
       new SharedCanvas('svgCanvas3'),
     ];
     this._currentScore = 0;
-    this._level = level ? level : 0;
-    this._scores = [];
-    this._scores[0] = 0;
-    this.started = false;
-    for (let index = 1; index < levels.length; index++) {
-      this._scores[index] = undefined;
+    const storageLevel = localStorage.getItem('level');
+    const savedLevel = storageLevel
+      ? Number(window.atob(storageLevel))
+      : undefined;
+    this._level = level ? level : savedLevel ? savedLevel : 0;
+    const storageScores = localStorage.getItem('scores');
+    const savedScore = storageScores ? window.atob(storageScores) : undefined;
+    if (savedScore) {
+      this._scores = JSON.parse(savedScore);
+    } else {
+      this._scores = [];
+      this._scores[0] = 0;
     }
+    if (this._scores.length < levels.length)
+      for (let index = this._scores.length; index < levels.length; index++) {
+        this._scores[index] = undefined;
+      }
+    this.started = false;
     this.level = this._level;
   }
 
@@ -59,8 +70,14 @@ export class Game {
   get score(): number {
     const score = this.scores.reduce(
       (previousValue: number | undefined, currentValue: number | undefined) => {
-        const p: number = previousValue === undefined ? 0 : previousValue;
-        const c: number = currentValue === undefined ? 0 : currentValue;
+        const p: number =
+          previousValue === undefined || previousValue === null
+            ? 0
+            : previousValue;
+        const c: number =
+          currentValue === undefined || currentValue === null
+            ? 0
+            : currentValue;
         return p + c;
       }
     );
@@ -75,7 +92,7 @@ export class Game {
     let maxUnlockedLevel = this.level;
     // console.log(this.scores.length);
     for (let index = this.level + 1; index < this.scores.length; index++) {
-      if (this.scores[index] !== undefined) {
+      if (!this.isLocked(index)) {
         maxUnlockedLevel = index;
       } else {
         // console.log('undefined at:', maxUnlockedLevel);
@@ -91,6 +108,7 @@ export class Game {
 
   set level(level: number) {
     this._level = level;
+    localStorage.setItem('level', window.btoa(JSON.stringify(this._level)));
     this._currentLevel = JSON.parse(JSON.stringify(levels[level]));
     this.drawMap();
     this.draw();
@@ -132,6 +150,10 @@ export class Game {
   async died() {
     //! TODO: Fall animation
     await this.reset();
+  }
+
+  isLocked(level: number): boolean {
+    return this._scores[level] === undefined || this._scores[level] === null;
   }
 
   async play(workspace: any): Promise<void> {
@@ -180,14 +202,17 @@ export class Game {
           this._scores[this.level] = this._currentScore;
           // console.log('level:', this.level, this._scores[this.level]);
         }
-        if (this._level < levels.length - 1) {
+        if (this.level < levels.length - 1) {
           //! TODO: next level animation
           this.level++;
-          if (this._scores[this.level] === undefined)
-            this._scores[this.level] = 0;
+          if (this.isLocked(this.level)) this._scores[this.level] = 0;
         } else {
           this.level = 0;
         }
+        localStorage.setItem(
+          'scores',
+          window.btoa(JSON.stringify(this._scores))
+        );
       } else {
         await this.reset();
       }
