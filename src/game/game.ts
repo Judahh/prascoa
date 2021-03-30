@@ -15,6 +15,7 @@ import { Item } from './item';
 import { Block } from './block';
 import { Position } from './position';
 import { SharedCanvas } from './sharedCanvas';
+import { delay } from './util';
 export class Game {
   protected _level: number;
   protected _currentLevel?: number[][];
@@ -42,13 +43,24 @@ export class Game {
       new SharedCanvas('svgCanvas3'),
     ];
     this._currentScore = 0;
-    this._level = level ? level : 0;
-    this._scores = [];
-    this._scores[0] = 0;
-    this.started = false;
-    for (let index = 1; index < levels.length; index++) {
-      this._scores[index] = undefined;
+    const storageLevel = localStorage.getItem('level');
+    const savedLevel = storageLevel
+      ? Number(window.atob(storageLevel))
+      : undefined;
+    this._level = level ? level : savedLevel ? savedLevel : 0;
+    const storageScores = localStorage.getItem('scores');
+    const savedScore = storageScores ? window.atob(storageScores) : undefined;
+    if (savedScore) {
+      this._scores = JSON.parse(savedScore);
+    } else {
+      this._scores = [];
+      this._scores[0] = 0;
     }
+    if (this._scores.length < levels.length)
+      for (let index = this._scores.length; index < levels.length; index++) {
+        this._scores[index] = undefined;
+      }
+    this.started = false;
     this.level = this._level;
   }
 
@@ -59,8 +71,14 @@ export class Game {
   get score(): number {
     const score = this.scores.reduce(
       (previousValue: number | undefined, currentValue: number | undefined) => {
-        const p: number = previousValue === undefined ? 0 : previousValue;
-        const c: number = currentValue === undefined ? 0 : currentValue;
+        const p: number =
+          previousValue === undefined || previousValue === null
+            ? 0
+            : previousValue;
+        const c: number =
+          currentValue === undefined || currentValue === null
+            ? 0
+            : currentValue;
         return p + c;
       }
     );
@@ -75,7 +93,7 @@ export class Game {
     let maxUnlockedLevel = this.level;
     // console.log(this.scores.length);
     for (let index = this.level + 1; index < this.scores.length; index++) {
-      if (this.scores[index] !== undefined) {
+      if (!this.isLocked(index)) {
         maxUnlockedLevel = index;
       } else {
         // console.log('undefined at:', maxUnlockedLevel);
@@ -91,6 +109,7 @@ export class Game {
 
   set level(level: number) {
     this._level = level;
+    localStorage.setItem('level', window.btoa(JSON.stringify(this._level)));
     this._currentLevel = JSON.parse(JSON.stringify(levels[level]));
     this.drawMap();
     this.draw();
@@ -129,9 +148,52 @@ export class Game {
     }
   }
 
-  async died() {
+  async died(char?: Character) {
     //! TODO: Fall animation
+    await char?.fall();
     await this.reset();
+  }
+
+  isLocked(level: number): boolean {
+    return this._scores[level] === undefined || this._scores[level] === null;
+  }
+
+  async win(blocklys: number) {
+    this.chars[0].play('winSound');
+    const addScore = (this.numOfItems * 1000) / blocklys;
+    const total = this._currentScore + addScore;
+
+    let step = 1;
+    if (addScore > 1000) {
+      step = addScore / 1000;
+    }
+    for (; this._currentScore < total; this._currentScore += step) {
+      await delay(1);
+    }
+    this._currentScore = total;
+    await delay(250);
+    // console.log('ADD SCORE:', addScore);
+    // console.log('DONE SCORE:', this._currentScore);
+    // console.log('ITEMS:', this.numOfItems);
+    // console.log('TOTAL:', this.totalNumOfItems);
+
+    if (
+      !this._scores[this.level] ||
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      this._currentScore >= this._scores[this.level]
+    ) {
+      this._scores[this.level] = this._currentScore;
+      // console.log('level:', this.level, this._scores[this.level]);
+    }
+    if (this.level < levels.length - 1) {
+      //! TODO: next level animation
+      this.level++;
+      if (this.isLocked(this.level)) this._scores[this.level] = 0;
+    } else {
+      this.level = 0;
+    }
+    localStorage.setItem('scores', window.btoa(JSON.stringify(this._scores)));
   }
 
   async play(workspace: any): Promise<void> {
@@ -152,7 +214,7 @@ export class Game {
           console.error('Received an Error from Execute:', error.message);
           if (error.message === 'Died') console.log('Expected Death');
           else console.log('Unexpected Death');
-          this.died();
+          this.died(char);
           this.playing = false;
           return;
         }
@@ -163,34 +225,12 @@ export class Game {
       // console.log(actions);
       // console.log(checks);
 
-      const addScore = (this.numOfItems * 1000) / blocklys;
-      this._currentScore += addScore;
-      // console.log('ADD SCORE:', addScore);
-      // console.log('DONE SCORE:', this._currentScore);
-      // console.log('ITEMS:', this.numOfItems);
-      // console.log('TOTAL:', this.totalNumOfItems);
-      this.printLevel();
       if (this.totalNumOfItems <= this.numOfItems) {
-        if (
-          !this._scores[this.level] ||
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          this._currentScore >= this._scores[this.level]
-        ) {
-          this._scores[this.level] = this._currentScore;
-          // console.log('level:', this.level, this._scores[this.level]);
-        }
-        if (this._level < levels.length - 1) {
-          //! TODO: next level animation
-          this.level++;
-          if (this._scores[this.level] === undefined)
-            this._scores[this.level] = 0;
-        } else {
-          this.level = 0;
-        }
+        await this.win(blocklys);
       } else {
         await this.reset();
       }
+      this.printLevel();
       this.playing = false;
     } else {
       for (const char of this.chars) {

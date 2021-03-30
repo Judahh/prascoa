@@ -262,4 +262,22 @@ export class Character extends GameObject {
     if (typeof action2 === 'boolean') action2 = action2 ? 1 : 0;
     return action1 + action2;
   }
+
+  async fall(): Promise<void> {
+    this.play('crashSound');
+    for (let index = 0; index < 10; index++) {
+      await this.canvas.addDrawing(
+        this.canvasIndex,
+        this.skins[this.skin].crashSprite,
+        this.skins[this.skin].crash.startX,
+        this.skins[this.skin].crash.startY,
+        this.skins[this.skin].crash.width,
+        this.skins[this.skin].crash.height,
+        this.canvas.width / 2,
+        (index * this.canvas.height) / 5,
+        this.canvas.width / 5,
+        this.canvas.height / 5
+      );
+    }
+  }
 }

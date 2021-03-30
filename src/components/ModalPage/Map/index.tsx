@@ -12,28 +12,46 @@ const Map = (props) => {
   const [currentLevel, setCurrentLevel] = useState<number>(0);
   useEffect(() => {
     console.log('CURRENT LEVEL');
+    let realCurrentLevel = currentLevel;
+    if (
+      (props.getGame as Game) &&
+      currentLevel !== (props.getGame as Game).level &&
+      (props.getGame as Game).level !== undefined &&
+      (props.getGame as Game).level !== null &&
+      !Number.isNaN((props.getGame as Game).level)
+    ) {
+      setCurrentLevel((props.getGame as Game).level);
+      realCurrentLevel = (props.getGame as Game).level;
+    }
     setLevels(
       props.getGame instanceof Game
         ? (props.getGame as Game).scores.map((score, level) =>
-            level === currentLevel ? (
+            level === realCurrentLevel ? (
               <Level key={level}>
                 <Rabbit src="/rabbit.svg" alt="V" />
-                <Box>{score === undefined ? 0 : Math.round(score)}</Box>
+                <Box>
+                  {score === undefined || score === null
+                    ? 0
+                    : Math.round(score)}
+                </Box>
               </Level>
             ) : (
               <Level
                 key={level}
                 style={{
-                  cursor: score === undefined ? 'default' : 'pointer',
+                  cursor:
+                    score === undefined || score === null
+                      ? 'default'
+                      : 'pointer',
                 }}
                 onClick={() => {
-                  if (score !== undefined) {
+                  if (score !== undefined && score !== null) {
                     (props.getGame as Game).level = level;
                     setCurrentLevel(level);
                   }
                 }}
               >
-                {score === undefined ? (
+                {score === undefined || score === null ? (
                   <>
                     <div
                       style={{
@@ -65,7 +83,11 @@ const Map = (props) => {
                         padding: '10px',
                       }}
                     />
-                    <Box>{score === undefined ? 0 : Math.round(score)}</Box>
+                    <Box>
+                      {score === undefined || score === null
+                        ? 0
+                        : Math.round(score)}
+                    </Box>
                   </>
                 )}
               </Level>
@@ -73,7 +95,7 @@ const Map = (props) => {
           )
         : []
     );
-  }, [currentLevel]);
+  }, [currentLevel, (props.getGame as Game).scores]);
 
   useEffect(() => {
     setScore(
@@ -94,7 +116,9 @@ const Map = (props) => {
   useEffect(() => {
     if (
       (props.getGame as Game) &&
-      (props.getGame as Game).level !== undefined
+      (props.getGame as Game).level !== undefined &&
+      (props.getGame as Game).level !== null &&
+      !Number.isNaN((props.getGame as Game).level)
     ) {
       setCurrentLevel((props.getGame as Game).level);
     }
@@ -102,8 +126,17 @@ const Map = (props) => {
 
   useEffect(() => {
     console.log('GAME:');
-
-    setCurrentLevel(0);
+    let realCurrentLevel = 0;
+    if (
+      (props.getGame as Game) &&
+      currentLevel !== (props.getGame as Game).level &&
+      (props.getGame as Game).level !== undefined &&
+      (props.getGame as Game).level !== null &&
+      !Number.isNaN((props.getGame as Game).level)
+    ) {
+      realCurrentLevel = (props.getGame as Game).level;
+    }
+    setCurrentLevel(realCurrentLevel);
   }, [props.getGame as Game, props.getPlay]);
 
   return (

@@ -8,6 +8,8 @@
  * @suppress {duplicate}
  */
 
+import { delay } from './util';
+
 export class SharedCanvas {
   canvas: HTMLCanvasElement;
   context?: CanvasRenderingContext2D;
@@ -144,13 +146,6 @@ export class SharedCanvas {
     }
     return biggest;
   }
-  protected delay(time: number): Promise<boolean> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, time);
-    });
-  }
   protected async draw() {
     this.clear();
     for (let index = 0; index < this.drawings.length; index++) {
@@ -178,7 +173,7 @@ export class SharedCanvas {
         }
       }
     }
-    await this.delay(100);
+    await delay(100);
   }
 
   clear() {
