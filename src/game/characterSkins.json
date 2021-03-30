@@ -46,7 +46,7 @@
       "end": 70
     },
     "winSound": {
-      "url": "sounds/yodel",
+      "url": "sounds/party",
       "delay": 0,
       "loop": false,
       "start": 0,

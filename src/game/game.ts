@@ -156,6 +156,27 @@ export class Game {
     return this._scores[level] === undefined || this._scores[level] === null;
   }
 
+  async win() {
+    this.chars[0].play('winSound');
+    if (
+      !this._scores[this.level] ||
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      this._currentScore >= this._scores[this.level]
+    ) {
+      this._scores[this.level] = this._currentScore;
+      // console.log('level:', this.level, this._scores[this.level]);
+    }
+    if (this.level < levels.length - 1) {
+      //! TODO: next level animation
+      this.level++;
+      if (this.isLocked(this.level)) this._scores[this.level] = 0;
+    } else {
+      this.level = 0;
+    }
+    localStorage.setItem('scores', window.btoa(JSON.stringify(this._scores)));
+  }
+
   async play(workspace: any): Promise<void> {
     if (!this.playing) {
       this.playing = true;
@@ -193,26 +214,7 @@ export class Game {
       // console.log('TOTAL:', this.totalNumOfItems);
       this.printLevel();
       if (this.totalNumOfItems <= this.numOfItems) {
-        if (
-          !this._scores[this.level] ||
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          this._currentScore >= this._scores[this.level]
-        ) {
-          this._scores[this.level] = this._currentScore;
-          // console.log('level:', this.level, this._scores[this.level]);
-        }
-        if (this.level < levels.length - 1) {
-          //! TODO: next level animation
-          this.level++;
-          if (this.isLocked(this.level)) this._scores[this.level] = 0;
-        } else {
-          this.level = 0;
-        }
-        localStorage.setItem(
-          'scores',
-          window.btoa(JSON.stringify(this._scores))
-        );
+        await this.win();
       } else {
         await this.reset();
       }

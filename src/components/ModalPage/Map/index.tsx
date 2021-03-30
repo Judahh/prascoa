@@ -126,8 +126,17 @@ const Map = (props) => {
 
   useEffect(() => {
     console.log('GAME:');
-
-    setCurrentLevel(0);
+    let realCurrentLevel = 0;
+    if (
+      (props.getGame as Game) &&
+      currentLevel !== (props.getGame as Game).level &&
+      (props.getGame as Game).level !== undefined &&
+      (props.getGame as Game).level !== null &&
+      !Number.isNaN((props.getGame as Game).level)
+    ) {
+      realCurrentLevel = (props.getGame as Game).level;
+    }
+    setCurrentLevel(realCurrentLevel);
   }, [props.getGame as Game, props.getPlay]);
 
   return (
