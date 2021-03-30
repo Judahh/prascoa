@@ -234,13 +234,16 @@ export class Confetti {
   drawParticles(context: CanvasRenderingContext2D | undefined) {
     let particle: {
       diameter: number;
-      x: any;
-      tilt: any;
-      y: any;
+      x: number;
+      tilt: number;
+      y: number;
       color: any;
       color2: any;
     };
-    let x: any, y: any, x2: number, y2: any;
+    let x: number,
+      // y: number,
+      x2: number,
+      y2: number;
     for (let i = 0; i < this.particles.length; i++) {
       particle = this.particles[i];
       context?.beginPath();
