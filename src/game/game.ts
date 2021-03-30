@@ -15,6 +15,7 @@ import { Item } from './item';
 import { Block } from './block';
 import { Position } from './position';
 import { SharedCanvas } from './sharedCanvas';
+import { delay } from './util';
 export class Game {
   protected _level: number;
   protected _currentLevel?: number[][];
@@ -147,8 +148,9 @@ export class Game {
     }
   }
 
-  async died() {
+  async died(char?: Character) {
     //! TODO: Fall animation
+    await char?.fall();
     await this.reset();
   }
 
@@ -156,8 +158,25 @@ export class Game {
     return this._scores[level] === undefined || this._scores[level] === null;
   }
 
-  async win() {
+  async win(blocklys: number) {
     this.chars[0].play('winSound');
+    const addScore = (this.numOfItems * 1000) / blocklys;
+    const total = this._currentScore + addScore;
+
+    let step = 1;
+    if (addScore > 1000) {
+      step = addScore / 1000;
+    }
+    for (; this._currentScore < total; this._currentScore += step) {
+      await delay(1);
+    }
+    this._currentScore = total;
+    await delay(250);
+    // console.log('ADD SCORE:', addScore);
+    // console.log('DONE SCORE:', this._currentScore);
+    // console.log('ITEMS:', this.numOfItems);
+    // console.log('TOTAL:', this.totalNumOfItems);
+
     if (
       !this._scores[this.level] ||
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -195,7 +214,7 @@ export class Game {
           console.error('Received an Error from Execute:', error.message);
           if (error.message === 'Died') console.log('Expected Death');
           else console.log('Unexpected Death');
-          this.died();
+          this.died(char);
           this.playing = false;
           return;
         }
@@ -206,18 +225,12 @@ export class Game {
       // console.log(actions);
       // console.log(checks);
 
-      const addScore = (this.numOfItems * 1000) / blocklys;
-      this._currentScore += addScore;
-      // console.log('ADD SCORE:', addScore);
-      // console.log('DONE SCORE:', this._currentScore);
-      // console.log('ITEMS:', this.numOfItems);
-      // console.log('TOTAL:', this.totalNumOfItems);
-      this.printLevel();
       if (this.totalNumOfItems <= this.numOfItems) {
-        await this.win();
+        await this.win(blocklys);
       } else {
         await this.reset();
       }
+      this.printLevel();
       this.playing = false;
     } else {
       for (const char of this.chars) {

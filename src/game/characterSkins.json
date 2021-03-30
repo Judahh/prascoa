@@ -38,6 +38,15 @@
         "maxFrame": 75
       }
     },
+    "crash": {
+      "minFrame": 0,
+      "maxFrame": 0,
+      "startX": 0,
+      "startY": 0,
+      "width": 19.5,
+      "height": 32.6,
+      "speed": 0.1
+    },
     "themeSound": {
       "url": "sounds/rabbit",
       "delay": 0,
@@ -73,6 +82,7 @@
       "start": 1.5,
       "end": 1.5
     },
-    "crashType": "fall"
+    "crashType": "fall",
+    "crashSprite": "sprites/rabbitFall.svg"
   }
 ]
