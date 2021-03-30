@@ -16,6 +16,7 @@ import { Block } from './block';
 import { Position } from './position';
 import { SharedCanvas } from './sharedCanvas';
 import { delay } from './util';
+import { Confetti } from './confetti';
 export class Game {
   protected _level: number;
   protected _currentLevel?: number[][];
@@ -160,6 +161,8 @@ export class Game {
 
   async win(blocklys: number) {
     this.chars[0].play('winSound');
+    const confetti = new Confetti();
+    confetti.startConfetti();
     const addScore = (this.numOfItems * 1000) / blocklys;
     const total = this._currentScore + addScore;
 
@@ -172,6 +175,7 @@ export class Game {
     }
     this._currentScore = total;
     await delay(250);
+    confetti.stopConfetti();
     // console.log('ADD SCORE:', addScore);
     // console.log('DONE SCORE:', this._currentScore);
     // console.log('ITEMS:', this.numOfItems);
