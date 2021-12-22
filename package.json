@@ -27,7 +27,7 @@
     "cors": "latest",
     "coveralls": "latest",
     "detect-browser-language": "latest",
-    "google-auth-library": "latest",
+    "google-auth-library": "7.10.2",
     "next": "latest",
     "next-with-workbox": "latest",
     "nprogress": "latest",
