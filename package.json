@@ -44,7 +44,7 @@
     "styled-components": "latest",
     "webpack": "latest",
     "workbox-precaching": "latest",
-    "workbox-window": "latest"
+    "workbox-window": "6.4.1"
   },
   "devDependencies": {
     "@babel/preset-env": "latest",
