@@ -28,7 +28,7 @@
     "coveralls": "latest",
     "detect-browser-language": "latest",
     "google-auth-library": "latest",
-    "next": "latest",
+    "next": "10.2.0",
     "next-with-workbox": "latest",
     "nprogress": "latest",
     "polished": "latest",
