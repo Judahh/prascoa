@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "axios": "latest",
-    "blockly": "latest",
+    "blockly": "9.2.0",
     "clsx": "latest",
     "cors": "latest",
     "coveralls": "latest",
