@@ -21,8 +21,8 @@
     "integration:coveralls": "jest $npm_package_config_integration_config $npm_package_config_jest && coveralls < $npm_package_config_integration_coverall && rm -rf ./tests/integration/coverage/coverage"
   },
   "dependencies": {
-    "axios": "latest",
-    "blockly": "latest",
+    "axios": "1.13.5",
+    "blockly": "9.2.0",
     "clsx": "latest",
     "cors": "latest",
     "coveralls": "latest",
